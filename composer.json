@@ -32,6 +32,12 @@
         }
     },
     "scripts": {
+
+        "rapihin": [
+        "php artisan optimize:clear",
+        "php artisan view:clear",
+        "php artisan cache:clear"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
