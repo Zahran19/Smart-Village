@@ -34,35 +34,44 @@ Route::get('/pojok-warga/detail', function () {
     return view('pojok-warga.detail');
 });
 
-// Ini adalah rute baru untuk memanggil halaman Admin Dashboard
+// Admin Routes
+
+Route::get('/admin', function() {
+    return redirect("/admin/dashboard");
+});
+
+Route::get('/admin/login', function() {
+    return view("admin.login");
+});
+
 Route::get('/admin/dashboard', function () {
-    return view('admin.admin-dashboard');
+    return view('admin.dashboard');
 });
 
 Route::get('/admin/beranda', function () {
-    return view('admin.admin-beranda');
+    return view('admin.beranda');
 });
 
 Route::get('/admin/visi-misi', function () {
-    return view('admin.admin-visi-misi');
+    return view('admin.visi-misi');
 });
 
 Route::get('/admin/sejarah-desa', function () {
-    return view('admin.admin-sejarah-desa');
+    return view('admin.sejarah-desa');
 });
 
 Route::get('/admin/pemerintah-desa', function () {
-    return view('admin.admin-pemerintah-desa');
+    return view('admin.pemerintah-desa');
 });
 
 Route::get('/admin/pojok-warga', function () {
-    return view('admin.admin-pojok-warga');
+    return view('admin.pojok-warga');
 });
 
 Route::get('/admin/potensi-galeri', function () {
-    return view('admin.admin-potensi-galeri');
+    return view('admin.potensi-galeri');
 });
 
 Route::get('/admin/kontak', function () {
-    return view('admin.admin-kontak');
+    return view('admin.kontak');
 });
