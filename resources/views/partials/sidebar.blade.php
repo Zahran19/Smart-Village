@@ -76,6 +76,15 @@
            class="{{ request()->is('admin/kontak') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
             Kontak
         </a>
+        <!-- Log Out -->
+        <a href="{{ url('/admin/logout') }}"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        class="w-full block mt-2 text-left text-[#929397] hover:text-red-500 hover:bg-red-50 px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
+            Log Out
+        </a>
+        <form id="logout-form" method="POST" action="{{ url('/admin/logout') }}" class="hidden">
+            @csrf
+        </form>
     </nav>
     
     <!-- Ornamen Background Sidebar -->
