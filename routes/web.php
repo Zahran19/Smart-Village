@@ -1,77 +1,43 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('beranda');
-});
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PageController;
 
-Route::get('/sejarah', function () {
-    return view('sejarah');
-});
+// GET Method
+Route::get('/', [PageController::class, 'index']);
 
-Route::get('/visi-misi', function () {
-    return view('visimisi');
-});
-
-Route::get('/pemerintah-desa', function () {
-    return view('pemerintah');
-});
-
-Route::get('/pojok-warga', function () {
-    return view('pojokwarga');
-});
-
-Route::get('/potensi-galeri', function () {
-    return view('potensi');
-});
-
-Route::get('/kontak', function () {
-    return view('kontak');
-});
-
-Route::get('/pojok-warga/detail', function () {
-    return view('pojok-warga.detail');
-});
+Route::get('/beranda', [PageController::class, 'berandaPage']);
+Route::get('/sejarah', [PageController::class, 'sejarahPage']);
+Route::get('/visi-misi', [PageController::class, 'visiMisiPage']);
+Route::get('/pemerintah-desa', [PageController::class, 'pemerintahDesaPage']);
+Route::get('/pojok-warga', [PageController::class, 'pojokWargaPage']);
+Route::get('/pojok-warga/detail', [PageController::class, 'pojokWargaDetailPage']);
+Route::get('/potensi-galeri', [PageController::class, 'potensiGaleriPage']);
+Route::get('/kontak', [PageController::class, 'kontakPage']);
 
 // Admin Routes
+Route::get('/admin/login', [AdminController::class, 'loginPage'])->name('login');
+Route::post('/admin/login', [AdminController::class, 'login']);
 
-Route::get('/admin', function() {
-    return redirect("/admin/dashboard");
-});
+Route::middleware('auth')->group(function() {
+    // GET Method    
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboardPage']);
+    Route::get('/admin/beranda', [AdminController::class, 'berandaPage']);
+    Route::get('/admin/visi-misi', [AdminController::class, 'visiMisiPage']);
+    Route::get('/admin/sejarah-desa', [AdminController::class, 'sejarahDesaPage']);
+    Route::get('/admin/pemerintah-desa', [AdminController::class, 'pemerintahDesaPage']);
+    Route::get('/admin/pojok-warga', [AdminController::class, 'pojokWargaPage']);
+    Route::get('/admin/potensi-galeri', [AdminController::class, 'potensiGaleriPage']);
+    Route::get('/admin/kontak', [AdminController::class, 'kontakPage']);
 
-Route::get('/admin/login', function() {
-    return view("admin.login");
-});
+    // POST Method
+    Route::post('/admin/logout', [AdminController::class, 'logout']);
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
+    // PATCH Method
 
-Route::get('/admin/beranda', function () {
-    return view('admin.beranda');
-});
-
-Route::get('/admin/visi-misi', function () {
-    return view('admin.visi-misi');
-});
-
-Route::get('/admin/sejarah-desa', function () {
-    return view('admin.sejarah-desa');
-});
-
-Route::get('/admin/pemerintah-desa', function () {
-    return view('admin.pemerintah-desa');
-});
-
-Route::get('/admin/pojok-warga', function () {
-    return view('admin.pojok-warga');
-});
-
-Route::get('/admin/potensi-galeri', function () {
-    return view('admin.potensi-galeri');
-});
-
-Route::get('/admin/kontak', function () {
-    return view('admin.kontak');
+    // DELETE Method
 });
