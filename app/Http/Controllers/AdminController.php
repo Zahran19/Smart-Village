@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller {
     // Index
@@ -42,15 +43,15 @@ class AdminController extends Controller {
     // Backend logic
     public function login(Request $request) {
         $request->validate([
-            'login' => ['required', 'string'],
+            'username_or_email' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        $login = $request->input('login');
+        $username_or_email = $request->input('username_or_email');
 
-        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $field = filter_var($username_or_email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        $credentials = [$field => $login, 'password' => $request->input('password')];
+        $credentials = [$field => $username_or_email, 'password' => $request->input('password')];
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

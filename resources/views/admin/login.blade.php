@@ -15,8 +15,8 @@
             @csrf
             
             <div style="margin-bottom: 15px;">
-                <label for="email" style="display: block; margin-bottom: 5px;">Email</label>
-                <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #000;">
+                <label for="username_or_email" style="display: block; margin-bottom: 5px;">Username / Email</label>
+                <input type="text" id="username_or_email" name="username_or_email" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #000;">
             </div>
 
             <div style="margin-bottom: 20px;">
