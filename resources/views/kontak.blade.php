@@ -42,7 +42,7 @@
                     </div>
                     <h3 class="text-2xl font-black text-[#272831] mb-2">Alamat Kantor</h3>
                     <p class="text-slate-500 leading-relaxed text-sm">
-                        Jl. Raya Cimulang No. 45<br>Kec. Rancabungur, Bogor
+                        {{ $contents['alamat']->value }}
                     </p>
                 </div>
 
@@ -52,7 +52,7 @@
                     </div>
                     <h3 class="text-2xl font-black text-[#272831] mb-2">Email Resmi</h3>
                     <p class="text-slate-500 leading-relaxed text-sm">
-                        admin@cimulang.desa.id<br>support@cimulang.id
+                        {{ $contents['email']->value }}
                     </p>
                 </div>
 
@@ -62,7 +62,7 @@
                     </div>
                     <h3 class="text-2xl font-black text-[#272831] mb-2">WhatsApp</h3>
                     <p class="text-slate-500 leading-relaxed text-sm">
-                        +62 812-3456-7890<br>Pelayanan 24 Jam
+                        {{ $contents['no_whatsapp']->value }}
                     </p>
                 </div>
 
@@ -99,7 +99,7 @@
                 <div class="bg-white rounded-[3rem] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 h-full min-h-[500px] flex flex-col">
                     <div class="flex-grow w-full h-full rounded-[2.5rem] overflow-hidden relative group">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d106.7713977!3d-6.577266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4a4e0a6e021%3A0x1d06e0c07c0e8b0!2sDesa%20Cimulang!5e0!3m2!1sid!2sid!4v1625123456789!5m2!1sid!2sid" 
+                            src="{{ $contents['google_maps_embed']->value }}" 
                             class="w-full h-full absolute inset-0" 
                             style="border:0;" 
                             allowfullscreen="" 
