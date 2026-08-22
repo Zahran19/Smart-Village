@@ -35,7 +35,7 @@
                         <div class="absolute top-8 left-8 text-desa-primary/10 font-serif text-8xl leading-none">“</div>
                         <div class="relative z-10 pl-6">
                             <p class="text-xl md:text-3xl font-bold text-[#272831] leading-relaxed italic">
-                                "Terwujudnya Desa Cimulang yang Maju, Mandiri, dan Sejahtera Berbasis Teknologi Informasi serta Kearifan Lokal pada Tahun 2030."
+                                {{ $contents['visi']->value }}
                             </p>
                         </div>
                     </div>
@@ -49,26 +49,15 @@
                     
                     <div class="relative z-10">
                         <ul class="space-y-6">
-                            <li class="flex items-start gap-5 group">
-                                <span class="flex-shrink-0 w-10 h-10 rounded-2xl bg-desa-light text-desa-primary flex items-center justify-center font-black text-sm group-hover:bg-desa-primary group-hover:text-white transition-colors">1</span>
-                                <p class="text-slate-600 font-medium text-lg leading-relaxed pt-1">Meningkatkan kualitas pelayanan publik melalui digitalisasi administrasi desa.</p>
-                            </li>
-                            <li class="flex items-start gap-5 group">
-                                <span class="flex-shrink-0 w-10 h-10 rounded-2xl bg-desa-light text-desa-primary flex items-center justify-center font-black text-sm group-hover:bg-desa-primary group-hover:text-white transition-colors">2</span>
-                                <p class="text-slate-600 font-medium text-lg leading-relaxed pt-1">Mengembangkan potensi ekonomi lokal melalui pemberdayaan UMKM berbasis digital.</p>
-                            </li>
-                            <li class="flex items-start gap-5 group">
-                                <span class="flex-shrink-0 w-10 h-10 rounded-2xl bg-desa-light text-desa-primary flex items-center justify-center font-black text-sm group-hover:bg-desa-primary group-hover:text-white transition-colors">3</span>
-                                <p class="text-slate-600 font-medium text-lg leading-relaxed pt-1">Mewujudkan infrastruktur desa yang merata dan berwawasan lingkungan.</p>
-                            </li>
-                            <li class="flex items-start gap-5 group">
-                                <span class="flex-shrink-0 w-10 h-10 rounded-2xl bg-desa-light text-desa-primary flex items-center justify-center font-black text-sm group-hover:bg-desa-primary group-hover:text-white transition-colors">4</span>
-                                <p class="text-slate-600 font-medium text-lg leading-relaxed pt-1">Melestarikan nilai-nilai budaya dan gotong royong dalam kehidupan bermasyarakat.</p>
-                            </li>
+                            @foreach (json_decode($contents['misi']->value) as $index => $item)
+                                <li class="flex items-start gap-5 group">
+                                    <span class="flex-shrink-0 w-10 h-10 rounded-2xl bg-desa-light text-desa-primary flex items-center justify-center font-black text-sm group-hover:bg-desa-primary group-hover:text-white transition-colors">{{ $index + 1 }}</span>
+                                    <p class="text-slate-600 font-medium text-lg leading-relaxed pt-1">{{ $item }}</p>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-
                 <div class="order-1 md:order-2 md:col-span-4 h-full min-h-[300px]">
                     <div class="bg-[#FFDC2E] rounded-[3rem] p-10 flex items-center justify-center shadow-lg h-full relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
                         <div class="absolute -left-4 -top-4 w-32 h-32 bg-white/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>

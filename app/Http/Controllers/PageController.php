@@ -3,36 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SiteContent;
 
 class PageController extends Controller {
     // Index
     public function index() {
-        return view('beranda');
+        return redirect('beranda');
     }
 
     // Serving page
     public function berandaPage() {
-        return view('beranda');
+        $contents = SiteContent::where('page', 'beranda')->get()->keyBy('key');
+        return view('beranda', compact('contents'));
     }
     public function sejarahPage() {
-        return view('sejarah');
+        $contents = SiteContent::where('page', 'sejarah')->get()->keyBy('key');
+        return view('sejarah', compact('contents'));
     }
     public function visiMisiPage() {
-        return view('visi-misi');
+        $contents = SiteContent::where('page', 'visi_misi')->get()->keyBy('key');
+        return view('visi-misi', compact('contents'));
     }
     public function pemerintahDesaPage() {
-        return view('pemerintah-desa');
+        $contents = SiteContent::where('page', 'pemerintah_desa')->get()->keyBy('key');
+        return view('pemerintah-desa', compact('contents'));
     }
     public function pojokWargaPage() {
-        return view('pojok-warga');
+        $contents = SiteContent::where('page', 'pojok_warga')->get()->keyBy('key');
+        return view('pojok-warga', compact('contents'));
     }
     public function pojokWargaDetailPage() {
-        return viev('pojok-warga.detail');
+        $contents = SiteContent::where('page', 'pojok_warga_detail')->get()->keyBy('key');
+        return view('pojok-warga.detail', compact('contents'));
     }
     public function potensiGaleriPage() {
-        return view('potensi-galeri');
+        $contents = SiteContent::where('page', 'potensi_galeri')->get()->keyBy('key');
+        return view('potensi-galeri', compact('contents'));
     }
     public function kontakPage() {
-        return view('kontak');
+        $contents = SiteContent::where('page', 'kontak')->get()->keyBy('key');
+        return view('kontak', compact('contents'));
     }
 }

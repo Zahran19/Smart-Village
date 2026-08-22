@@ -22,7 +22,7 @@
                     Smart Village
                 </h1>
                 <span class="text-3xl md:text-8xl font-black text-white capitalize drop-shadow-2xl">
-                    Desa Cimulang
+                    {{ $contents['hero_title']->value }}
                 </span>
             </div>
 
