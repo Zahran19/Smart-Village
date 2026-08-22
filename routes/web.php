@@ -9,7 +9,7 @@ use App\Http\Controllers\PageController;
 // GET Method
 Route::get('/', [PageController::class, 'index']);
 
-Route::get('/beranda', [PageController::class, 'berandaPage']);
+Route::get('/beranda', [PageController::class, 'berandaPage'])->name('home');
 Route::get('/sejarah', [PageController::class, 'sejarahPage']);
 Route::get('/visi-misi', [PageController::class, 'visiMisiPage']);
 Route::get('/pemerintah-desa', [PageController::class, 'pemerintahDesaPage']);
