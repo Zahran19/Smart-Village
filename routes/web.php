@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\VisiMisiController;
 
 // GET Method
+// public routes
 Route::get('/', [PageController::class, 'index']);
 
 Route::get('/beranda', [PageController::class, 'berandaPage'])->name('home');
@@ -38,6 +40,10 @@ Route::middleware('auth')->group(function() {
     Route::post('/admin/logout', [AdminController::class, 'logout']);
 
     // PATCH Method
+
+    // visi misi routes
+    Route::put('/admin/visi/{id}', [VisiMisiController::class, 'updateVisi']);
+    Route::put('/admin/misi/{id}', [VisiMisiController::class, 'updateMisi']);
 
     // DELETE Method
 });
