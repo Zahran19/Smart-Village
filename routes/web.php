@@ -11,6 +11,9 @@ use App\Http\Controllers\VisiMisiController;
 // public routes
 Route::get('/', [PageController::class, 'index']);
 
+Route::get('/test-misi', [PageController::class, 'testMisiPage']);
+Route::get('/test-visi', [PageController::class, 'testVisiPage']);
+
 Route::get('/beranda', [PageController::class, 'berandaPage'])->name('home');
 Route::get('/sejarah', [PageController::class, 'sejarahPage']);
 Route::get('/visi-misi', [PageController::class, 'visiMisiPage']);
@@ -38,12 +41,14 @@ Route::middleware('auth')->group(function() {
 
     // POST Method
     Route::post('/admin/logout', [AdminController::class, 'logout']);
-
-    // PATCH Method
-
-    // visi misi routes
-    Route::put('/admin/visi/{id}', [VisiMisiController::class, 'updateVisi']);
-    Route::put('/admin/misi/{id}', [VisiMisiController::class, 'updateMisi']);
-
-    // DELETE Method
+    
 });
+
+Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
+
+// PATCH Method
+Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
+Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
+
+// DELETE Method
+Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);

@@ -12,6 +12,12 @@ class PageController extends Controller {
     }
 
     // Serving page
+    public function testVisiPage() {
+        return view('test-visi');
+    }
+    public function testMisiPage() {
+        return view('test-misi');
+    }
     public function berandaPage() {
         $contents = SiteContent::where('page', 'beranda')->get()->keyBy('key');
         $kontak_contents = SiteContent::where('page', 'kontak')->get()->keyBy('key');

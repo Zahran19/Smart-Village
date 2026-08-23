@@ -7,43 +7,75 @@ use App\Models\SiteContent;
 
 class VisiMisiController extends Controller
 {
-    // logic update visi
-    public function updateVisi(Request $request, $id) {
-        // validate input
+    public function modifyVisi(Request $request) {
         $request->validate([
-            'isi_visi' => 'required|string'
+            'visi' => 'required|string'
         ]);
 
-        // search data visi by id
-        $visi = ::findOrFail($id);
-
-        // update data and save string and paragraf
-        $visi->isi = $request->isi_visi;
+        $visi = SiteContent::where('page', 'visi_misi')->where('key', 'visi')->firstOrFail();
+        $visi->value = $request->visi;
         $visi->save();
 
-        // return succes and back to page
-        return redirect()->back()->with('success', 'visi berhasil di update!');
+        return redirect()->back()->with('success', 'Visi berhasil diupdate!');
     }
 
-    public function updateMisi(Request $request, $id) {
-        // validate input
+    public function addMisi(Request $request) {
         $request->validate([
-            "misi" => 'required|array',
-            'misi.*' => 'nullable|string' // Tiap baris boleh kosong, tapi kalau diisi harus string
+            'misi' => 'required|string'
         ]);
 
-        // clean array , delete form input (kosong) yang di biarin kosong
-        $misi_array = array_filter($request->misi);
+        $misi = SiteContent::where('page', 'visi_misi')->where('key', 'misi')->firstOrFail();
+        $misiArray = json_decode($misi->value, true);
 
-        // search data misi by id
-        $misi = ProfilDesa::findOrFail($id);
+        if (!is_array($misiArray)) $misiArray = [];
+        $misiArray[] = $request->misi;
+        $misi->value = json_encode($misiArray);
 
-        // update data array, change array to json biar muat di simpen di kolom isi
-        // array value di pake biar indexnya tetep urut dari 0
-        $misi->isi = json_encode(array_values($misi_array));
         $misi->save();
 
-        // return succes and back to page
+        return redirect()->back()->with('success', 'Misi berhasil ditambahkan!');
+    }
+    public function modifyMisi(Request $request) {
+        $request->validate([
+            'id'   => 'required|integer|min:0', // indeks harus ≥ 0
+            'misi' => 'required|string'
+        ]);
+
+        $misi = SiteContent::where('page', 'visi_misi')->where('key', 'misi')->firstOrFail();
+        $misiArray = json_decode($misi->value, true);
+
+        if (!is_array($misiArray)) $misiArray = [];
+
+        $index = $request->id;
+        if (!isset($misiArray[$index])) {
+            return redirect()->back()->withErrors(['id' => 'id misi tidak ditemukan.']);
+        }
+
+        $misiArray[$index] = $request->misi;
+
+        $misi->value = json_encode($misiArray);
+        $misi->save();
+
         return redirect()->back()->with('success', 'Misi berhasil diperbarui!');
+    }
+    public function removeMisi(Request $request) {
+        $request->validate([
+            'id' => 'required|integer|min:0'
+        ]);
+
+        $misi = SiteContent::where('page', 'visi_misi')->where('key', 'misi')->firstOrFail();
+
+        $misiArray = json_decode($misi->value, true);
+        if (!is_array($misiArray)) {
+            $misiArray = [];
+        }
+
+        $index = $request->id;
+        if (!isset($misiArray[$index])) return redirect()->back()->withErrors(['id' => 'Misi tidak ditemukan.']);
+        unset($misiArray[$index]);
+        $misi->value = json_encode(array_values($misiArray));
+        $misi->save();
+
+        return redirect()->back()->with('success', 'Misi berhasil dihapus!');
     }
 }
