@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\KontakController;
 
 // GET Method
 // public routes
@@ -13,6 +14,7 @@ Route::get('/', [PageController::class, 'index']);
 
 Route::get('/test-misi', [PageController::class, 'testMisiPage']);
 Route::get('/test-visi', [PageController::class, 'testVisiPage']);
+Route::get('/test-kontak', [PageController::class, 'testKontakPage']);
 
 Route::get('/beranda', [PageController::class, 'berandaPage'])->name('home');
 Route::get('/sejarah', [PageController::class, 'sejarahPage']);
@@ -44,7 +46,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/admin/logout', [AdminController::class, 'logout']);
     
     // PATCH Method
-    Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);
+    
     Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
     Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
 
@@ -52,5 +54,6 @@ Route::middleware('auth')->group(function() {
     Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
 });
 
+Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);
 
 

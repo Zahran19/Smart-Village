@@ -62,7 +62,7 @@
                     </div>
                     <h3 class="text-2xl font-black text-[#272831] mb-2">WhatsApp</h3>
                     <p class="text-slate-500 leading-relaxed text-sm">
-                        {{ $contents['no_whatsapp']->value }}
+                        {{ $contents['whatsapp']->value }}
                     </p>
                 </div>
 

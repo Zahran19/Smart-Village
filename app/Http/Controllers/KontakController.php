@@ -7,21 +7,25 @@ use App\Models\SiteContent;
 
 class KontakController extends Controller
 {
-    public function modifyKontak(Request $request) {
-        // validate input
-        $request->validate([    
-            'key' => 'required|string',  // email, alamat, instagram, wa
-            'value' => 'required|string'
+    public function modifyKontak(Request $request)
+    {
+        $request->validate([
+            'alamat' => 'required|string',
+            'email'  => 'required|email',
+            'whatsapp' => 'required|string',
+            'instagram' => 'required|string',
+            'google_maps_embed' => 'nullable|string',
         ]);
 
-        // Cari data <sp></sp>esifik di page 'kontak' berdasarkan key yang dilempar dari form
-        $kontak = SiteContent::where('page', 'kontak')->where('key', $request->key)->firstOrFail();
+        // Simpan atau update setiap key
+        $keys = ['alamat', 'email', 'whatsapp', 'instagram', 'google_maps_embed'];
+        foreach ($keys as $key) {
+            SiteContent::updateOrCreate(
+                ['page' => 'kontak', 'key' => $key],
+                ['value' => $request->$key]
+            );
+        }
 
-        // replace value lama dengan new value
-        $kontak->value = $request->value;
-        $kontak->save();
-
-        // return page messages success
-        return redirect()->back()->with('success', 'Data kontak berhasil diupdate!');
+        return redirect()->back()->with('success', 'Kontak berhasil diperbarui!');
     }
 }

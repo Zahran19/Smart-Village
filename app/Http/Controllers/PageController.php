@@ -18,6 +18,9 @@ class PageController extends Controller {
     public function testMisiPage() {
         return view('test-misi');
     }
+    public function testKontakPage() {
+        return view('test-kontak');
+    }
     public function berandaPage() {
         $contents = SiteContent::where('page', 'beranda')->get()->keyBy('key');
         $kontak_contents = SiteContent::where('page', 'kontak')->get()->keyBy('key');

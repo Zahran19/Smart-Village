@@ -51,7 +51,7 @@ class SiteSeeder extends Seeder
         ]);
         SiteContent::create([
             'page' => 'kontak',
-            'key' => 'no_whatsapp',
+            'key' => 'whatsapp',
             'value' => '+62 812-3456-7890',
             'type' => 'text'
         ]);
