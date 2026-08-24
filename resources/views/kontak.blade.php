@@ -66,6 +66,16 @@
                     </p>
                 </div>
 
+                <div class="bg-white rounded-[3rem] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 group hover:-translate-y-2 transition-transform duration-300 text-center md:col-start-2">
+                    <div class="w-20 h-20 mx-auto bg-desa-light text-desa-primary rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#272831] mb-2">Instagram</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">
+                        {{ $contents['instagram']->value }}
+                    </p>
+                </div>
+
             </div>
 
             <div class="text-center mb-12 reveal">
