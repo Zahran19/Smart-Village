@@ -40,15 +40,17 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/kontak', [AdminController::class, 'kontakPage']);
 
     // POST Method
+    Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
     Route::post('/admin/logout', [AdminController::class, 'logout']);
     
+    // PATCH Method
+    Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);
+    Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
+    Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
+
+    // DELETE Method
+    Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
 });
 
-Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
 
-// PATCH Method
-Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
-Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
 
-// DELETE Method
-Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
