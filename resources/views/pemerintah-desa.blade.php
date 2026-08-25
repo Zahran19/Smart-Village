@@ -34,88 +34,36 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
-                
-                <div class="reveal group h-full">
-                    <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
-                        <div class="relative w-32 h-32 mx-auto mb-6">
-                            <div class="absolute inset-0 bg-desa-yellow rounded-full rotate-6 group-hover:rotate-12 transition-transform duration-500"></div>
-                            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+            @php
+                $anggota = json_decode($contents['struktur_organisasi']->value ?? '[]', true);
+            @endphp
+
+            @if (count($anggota) > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
+                    @foreach ($anggota as $item)
+                        <div class="reveal group h-full">
+                            <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
+                                <div class="relative w-32 h-32 mx-auto mb-6">
+                                    {{-- Warna background berbeda untuk Kepala Desa --}}
+                                    <div class="absolute inset-0 
+                                        {{ strpos(strtolower($item['jabatan'] ?? ''), 'kepala desa') !== false ? 'bg-desa-yellow' : 'bg-desa-light' }} 
+                                        rounded-full rotate-6 group-hover:rotate-12 transition-transform duration-500">
+                                    </div>
+                                    <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
+                                        <img src="{{ $item['profile_img'] ?? asset('images/default-avatar.jpg') }}" 
+                                            alt="{{ $item['nama'] ?? 'Anggota' }}" 
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-black text-[#272831] mb-1">{{ $item['nama'] ?? '' }}</h3>
+                                <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">{{ $item['jabatan'] ?? '' }}</p>
                             </div>
                         </div>
-                        <h3 class="text-xl font-black text-[#272831] mb-1">Bapak Kepala Desa</h3>
-                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">Kepala Desa</p>
-                        <p class="text-slate-500 text-sm">"Mengabdi dengan hati, membangun dengan aksi."</p>
-                    </div>
+                    @endforeach
                 </div>
-
-                <div class="reveal group h-full">
-                    <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
-                        <div class="relative w-32 h-32 mx-auto mb-6">
-                            <div class="absolute inset-0 bg-desa-light rounded-full rotate-6 group-hover:-rotate-6 transition-transform duration-500"></div>
-                            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-black text-[#272831] mb-1">Ibu Sekretaris</h3>
-                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">Sekretaris Desa</p>
-                    </div>
-                </div>
-
-                <div class="reveal group h-full">
-                    <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
-                        <div class="relative w-32 h-32 mx-auto mb-6">
-                            <div class="absolute inset-0 bg-desa-light rounded-full rotate-6 group-hover:-rotate-6 transition-transform duration-500"></div>
-                            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-black text-[#272831] mb-1">Bapak Bendahara</h3>
-                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">Kaur Keuangan</p>
-                    </div>
-                </div>
-
-                <div class="reveal group h-full">
-                    <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
-                        <div class="relative w-32 h-32 mx-auto mb-6">
-                            <div class="absolute inset-0 bg-desa-light rounded-full rotate-6 group-hover:-rotate-6 transition-transform duration-500"></div>
-                            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-black text-[#272831] mb-1">Bapak Kasi</h3>
-                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">Kasi Pemerintahan</p>
-                    </div>
-                </div>
-
-                <div class="reveal group h-full">
-                    <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
-                        <div class="relative w-32 h-32 mx-auto mb-6">
-                            <div class="absolute inset-0 bg-desa-light rounded-full rotate-6 group-hover:-rotate-6 transition-transform duration-500"></div>
-                            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-black text-[#272831] mb-1">Bapak Kadus</h3>
-                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">Kepala Dusun I</p>
-                    </div>
-                </div>
-
-                <div class="reveal group h-full">
-                    <div class="bg-white rounded-[3rem] p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-slate-100 h-full hover:-translate-y-2 transition-transform duration-300">
-                        <div class="relative w-32 h-32 mx-auto mb-6">
-                            <div class="absolute inset-0 bg-desa-light rounded-full rotate-6 group-hover:-rotate-6 transition-transform duration-500"></div>
-                            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-black text-[#272831] mb-1">Ibu Kadus</h3>
-                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-4">Kepala Dusun II</p>
-                    </div>
-                </div>
-
-            </div>
+            @else
+                <p class="text-center text-slate-500">Belum ada data struktur organisasi.</p>
+            @endif
         </div>
     </section>
 

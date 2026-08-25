@@ -93,5 +93,13 @@ class SiteSeeder extends Seeder
             'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             'type' => 'text'
         ]);
+
+        // ini buat pemerintah desa
+        SiteContent::create([
+            'page' => 'pemerintah_desa',
+            'key' => 'struktur_organisasi',
+            'value' => '[{"profile_img": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80", "nama": "Bapak Kepala Desa", "jabatan": "Kepala Desa"}]',
+            'type' => 'array'
+        ]);
     }
 }

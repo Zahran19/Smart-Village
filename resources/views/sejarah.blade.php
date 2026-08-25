@@ -70,7 +70,6 @@
                          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" 
                           alt="Peta Desa Lama" 
                           class="w-full h-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-110">
-                        
                          <div class="absolute inset-0 flex items-center justify-center">
                         </div>
                     </div>
