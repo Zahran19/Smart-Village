@@ -51,7 +51,13 @@
 
             <!-- Tabel 1: Potensi Desa -->
             <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 relative z-10 w-full overflow-x-auto mb-10">
-                <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tight">Data Potensi Desa</h3>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tight">Data Potensi Desa</h3>
+                    <!-- Tombol Tambah Potensi -->
+                    <button type="button" onclick="openAddPotensiModal()" class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                        Tambah Potensi Desa
+                    </button>
+                </div>
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b-2 border-slate-100">
@@ -80,9 +86,15 @@
                                 <div class="w-16 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-[10px] text-slate-400 font-bold border-2 border-slate-200 border-dashed">Img</div>
                             </td>
                             <td class="py-5 px-4 align-top text-center">
-                                <button class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
-                                    Edit
-                                </button>
+                                <!-- Flex container buat tombol Edit & Delete -->
+                                <div class="flex gap-2 justify-center">
+                                    <button type="button" onclick="openEditPotensiModal('{{ $potensi['judul'] }}', '{{ addslashes($potensi['rangkuman']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                        Edit
+                                    </button>
+                                    <button type="button" onclick="openDeletePotensiModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                        Delete
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                             
@@ -93,13 +105,20 @@
 
             <!-- Tabel 2: Galeri Desa -->
             <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 relative z-10 w-full overflow-x-auto mb-10">
-                <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tight">Galeri Desa</h3>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tight">Galeri Desa</h3>
+                    
+                    <!-- Tombol Tambah Galeri -->
+                    <button type="button" onclick="openAddGaleriModal()" class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                        Tambah Galeri Baru
+                    </button>
+                </div>
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b-2 border-slate-100">
                             <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-16">No</th>
                             <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-32">Foto</th>
-                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap">Deskripsi</th>
+                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap">Judul</th>
                             <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap text-center w-32">Action</th>
                         </tr>
                     </thead>
@@ -120,10 +139,16 @@
                                 {{ $galeri['deskripsi'] }}
                             </td>
                             <td class="py-5 px-4 align-top text-center">
-                                <button class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                            <!-- Tombol Edit & Delete berdampingan -->
+                            <div class="flex gap-2 justify-center">
+                                <button type="button" onclick="openEditGaleriModal('{{ addslashes($galeri['deskripsi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
-                            </td>
+                                <button type="button" onclick="openDeleteGaleriModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
                         </tr>
                             
                         @endforeach
@@ -136,3 +161,5 @@
 
 </body>
 </html>
+
+@include('partials.modals')

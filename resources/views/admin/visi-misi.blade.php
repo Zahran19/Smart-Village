@@ -57,7 +57,7 @@
                     <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Data Visi Misi</h3>
 
                     <!-- Tombol Tambah Misi Baru -->
-                    <button class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                    <button type="button" onclick="openAddModal()" class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                         Tambah Misi Baru
                     </button>
                 </div>
@@ -99,13 +99,13 @@
                                 <div class="flex gap-2">
                                     
                                     <!-- Tombol Edit (Selalu Muncul) -->
-                                    <button class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <button type="button" onclick="openModal('{{ $data['judul'] }}', '{{ addslashes($data['isi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Edit
                                     </button>
 
                                     <!-- Tombol Delete (Muncul HANYA kalau judulnya Misi) -->
                                     @if($data['judul'] == 'Misi')
-                                    <button class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <button type="button" onclick="openDeleteModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Delete
                                     </button>
                                     @endif
@@ -124,3 +124,8 @@
 
 </body>
 </html>
+
+@include('partials.modals')
+
+
+

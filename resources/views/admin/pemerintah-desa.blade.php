@@ -54,6 +54,12 @@
                 
                 <div class="flex justify-between items-center mb-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Perangkat Desa</h3>
+
+                    <!-- Tombol Tambah Anggota Baru -->
+                    <button type="button" onclick="openAddPerangkatModal()" class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                        Tambah Anggota Baru
+                    </button>
+
                 </div>
 
                 <table class="w-full text-left border-collapse">
@@ -94,10 +100,19 @@
                             
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-middle">
-                                <button class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
-                                    Edit
-                                </button>
+                                <div class="flex gap-2">
+                                    <button onclick="openPerangkatModal('{{ $perangkat['jabatan'] }}', '{{ addslashes($perangkat['nama']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                        Edit
+                                    </button>
+
+                                    <!-- Tombol Delete -->
+                                    <button type="button" onclick="openDeletePerangkatModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                        Delete
+                                    </button>
+                                </div>
                             </td>
+
+                            
                         </tr>
                             
                         @endforeach
@@ -160,3 +175,5 @@
 
 </body>
 </html>
+
+@include('partials.modals')
