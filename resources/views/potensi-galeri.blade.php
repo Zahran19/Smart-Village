@@ -82,11 +82,6 @@
                     <h2 class="text-3xl md:text-4xl font-black text-[#272831] mb-4">Galeri Desa</h2>
                     <p class="text-slate-500 text-lg">Dokumentasi kegiatan, keindahan alam, dan aktivitas warga.</p>
                 </div>
-                <div class="mt-6 md:mt-0">
-                    <button class="inline-flex items-center gap-2 bg-desa-primary/10 text-desa-primary px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-desa-primary hover:text-white transition-all">
-                        Lihat Semua 
-                    </button>
-                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">

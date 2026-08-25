@@ -51,9 +51,6 @@
                     <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80" 
                          alt="Kantor Desa" 
                          class="w-full h-[400px] md:h-[500px] object-cover">
-                    <div class="absolute top-8 left-8 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full">
-                        <span class="text-xs font-bold text-white/80 tracking-widest uppercase">Kantor Desa</span>
-                    </div>
                 </div>
             </div>
 

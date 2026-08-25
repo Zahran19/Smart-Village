@@ -31,9 +31,6 @@
                     <p class="text-slate-500 leading-relaxed text-lg mb-8">
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     </p>
-                    <button class="inline-flex items-center gap-3 bg-desa-primary/10 text-desa-primary px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-desa-primary hover:text-white transition-all">
-                        Baca Selengkapnya
-                    </button>
                 </div>
             </div>
 
@@ -81,9 +78,6 @@
                           class="w-full h-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-110">
                         
                          <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="bg-white/90 backdrop-blur-sm px-8 py-4 rounded-full shadow-xl">
-                                <span class="text-desa-dark font-black uppercase tracking-widest text-xs">Peta Wilayah 2026</span>
-                            </div>
                         </div>
                     </div>
                 </div>

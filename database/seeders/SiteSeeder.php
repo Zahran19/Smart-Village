@@ -32,7 +32,7 @@ class SiteSeeder extends Seeder
         SiteContent::create([
             'page' => 'visi_misi',
             'key' => 'misi',
-            'value' => '["Meningkatkan kualitas pelayanan publik melalui digitalisasi administrasi desa.", "Mengembangkan potensi ekonomi lokal melalui pemberdayaan UMKM berbasis digital.", "Mewujudkan infrastruktur desa yang merata dan berwawasan lingkungan.", "Melestarikan nilai-nilai budaya dan gotong royong dalam kehidupan bermasyarakat."]',
+            'value' => '1. abcd\n2.efgh',
             'type' => 'array'
         ]);
         

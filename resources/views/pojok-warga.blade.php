@@ -39,9 +39,6 @@
                 <div class="bg-white rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 group hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                     <div class="h-64 overflow-hidden relative">
                          <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                         <div class="absolute top-6 left-6 bg-desa-primary text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
-                            Pembangunan
-                         </div>
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-grow">
                         <span class="text-xs font-bold text-slate-400 mb-3 block flex items-center gap-2">
@@ -61,9 +58,6 @@
                 <div class="bg-white rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 group hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                     <div class="h-64 overflow-hidden relative">
                          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                         <div class="absolute top-6 left-6 bg-desa-yellow text-desa-dark px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
-                            Ekonomi
-                         </div>
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-grow">
                         <span class="text-xs font-bold text-slate-400 mb-3 block flex items-center gap-2">
