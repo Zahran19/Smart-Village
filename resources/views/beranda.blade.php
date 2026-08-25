@@ -22,12 +22,12 @@
                     Smart Village
                 </h1>
                 <span class="text-3xl md:text-8xl font-black text-white capitalize drop-shadow-2xl">
-                    {{ $contents['hero_title']->value }}
+                    {{ $contents['title']->value }}
                 </span>
             </div>
 
             <p class="text-xl md:text-1xl text-white font-inter mb-12 leading-relaxed max-w-1xl mx-auto strong-shadow">
-                "Membangun masa depan desa dengan harmoni alam dan kecanggihan teknologi."
+                {{ $contents['description']->value }}
             </p>
 
             <a href="#tentang" class="inline-flex items-center justify-between min-w-[280px] gap-4 px-8 py-4 bg-[#5c6b38]/70 backdrop-blur-sm border-[3px] border-white text-white font-semibold text-xl rounded-full shadow-2xl transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#5c6b38]/90 group">
@@ -60,7 +60,7 @@
                         Profil Desa
                     </h4>
                     <h2 class="text-5xl md:text-6xl font-black text-[#272831] leading-tight tracking-tighter">
-                        Desa Cimulang
+                        {{ $contents['title']->value }}
                     </h2>
                     <div class="w-16 h-1.5 bg-desa-primary mt-6 rounded-full"></div>
                 </div>

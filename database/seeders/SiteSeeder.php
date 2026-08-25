@@ -17,8 +17,14 @@ class SiteSeeder extends Seeder
         // ini buat beranda
         SiteContent::create([
             'page' => 'beranda',
-            'key' => 'hero_title',
+            'key' => 'title',
             'value' => 'Desa Cimulang',
+            'type' => 'text'
+        ]);
+        SiteContent::create([
+            'page' => 'beranda',
+            'key' => 'description',
+            'value' => 'Mewujudkan tata kelola pemerintahan desa yang transparan dan inovatif melalui transformasi digital demi kesejahteraan seluruh masyarakat Cimulang.',
             'type' => 'text'
         ]);
 
@@ -32,7 +38,7 @@ class SiteSeeder extends Seeder
         SiteContent::create([
             'page' => 'visi_misi',
             'key' => 'misi',
-            'value' => '1. abcd\n2.efgh',
+            'value' => '["Meningkatkan kualitas pelayanan publik melalui digitalisasi administrasi desa.", "Mengembangkan potensi ekonomi lokal melalui pemberdayaan UMKM berbasis digital.", "Mewujudkan infrastruktur desa yang merata dan berwawasan lingkungan.", "Melestarikan nilai-nilai budaya dan gotong royong dalam kehidupan bermasyarakat."]',
             'type' => 'array'
         ]);
         
@@ -65,6 +71,26 @@ class SiteSeeder extends Seeder
             'page' => 'kontak',
             'key' => 'google_maps_embed',
             'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d106.7713977!3d-6.577266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4a4e0a6e021%3A0x1d06e0c07c0e8b0!2sDesa%20Cimulang!5e0!3m2!1sid!2sid!4v1625123456789!5m2!1sid!2sid',
+            'type' => 'text'
+        ]);
+
+        // ini buat sejarah
+        SiteContent::create([
+            'page' => 'sejarah',
+            'key' => 'awal_mula_terbentuk',
+            'value' => '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."',
+            'type' => 'text'
+        ]);
+        SiteContent::create([
+            'page' => 'sejarah',
+            'key' => 'masa_perjuangan',
+            'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            'type' => 'text'
+        ]);
+        SiteContent::create([
+            'page' => 'sejarah',
+            'key' => 'pemekaran_wilayah',
+            'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             'type' => 'text'
         ]);
     }

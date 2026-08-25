@@ -29,7 +29,7 @@
                 <div class="max-w-4xl mx-auto text-center">
                     <h2 class="text-3xl md:text-4xl font-black text-[#272831] mb-6">Awal Mula Terbentuk</h2>
                     <p class="text-slate-500 leading-relaxed text-lg mb-8">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        {{ $contents['awal_mula_terbentuk']->value }}
                     </p>
                 </div>
             </div>
@@ -49,24 +49,18 @@
 
                 <div class="reveal h-full">
                     <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 h-full flex flex-col justify-center">
-                        <div class="w-12 h-12 bg-desa-primary/10 rounded-2xl flex items-center justify-center text-desa-primary mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
                         <h3 class="text-2xl font-black text-[#272831] mb-4">Masa Perjuangan</h3>
                         <p class="text-slate-500 leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            {{ $contents['masa_perjuangan']->value }}
                         </p>
                     </div>
                 </div>
 
                 <div class="reveal h-full">
                     <div class="bg-white rounded-[3rem] p-10 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 h-full flex flex-col justify-center">
-                        <div class="w-12 h-12 bg-desa-primary/10 rounded-2xl flex items-center justify-center text-desa-primary mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                        </div>
                         <h3 class="text-2xl font-black text-[#272831] mb-4">Pemekaran Wilayah</h3>
                         <p class="text-slate-500 leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            {{ $contents['pemekaran_wilayah']->value }}
                         </p>
                     </div>
                 </div>

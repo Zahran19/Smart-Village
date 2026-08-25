@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     
-    <title>{{ $title ?? 'Desa Cimulang' }}</title>
+    <title>{{ $title ?? $fooder_contents['beranda']['title']->value }}</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
@@ -76,7 +76,7 @@
             <a href="{{ url('/') }}" class="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:-translate-y-0.5">
                 <img src="{{ asset('logo.png') }}" alt="Logo Desa" class="w-10 h-10 object-contain">
                 <span class="text-[25px] font-black capitalize transition-colors duration-500" :class="scrolled ? 'text-[#272831]' : 'text-white'">
-                    Desa Cimulang
+                    {{ $fooder_contents['beranda']['title']->value }}
                 </span>
             </a>
             
