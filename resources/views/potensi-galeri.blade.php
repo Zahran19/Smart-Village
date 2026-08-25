@@ -116,17 +116,27 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-2 bg-white p-3 rounded-[2.5rem] shadow-lg border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
+                 <div class="bg-white p-3 rounded-[2.5rem] shadow-lg border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
                     <div class="h-64 rounded-[2rem] overflow-hidden relative group">
                         <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
                     </div>
                     <div class="px-4 py-3">
-                         <span class="text-xs font-bold text-desa-dark block text-center">Pemandangan Alam Desa Cimulang</span>
+                         <span class="text-xs font-bold text-desa-dark block text-center">Kegiatan Posyandu</span>
                     </div>
                 </div>
 
-                 <div class="bg-white p-3 rounded-[2.5rem] shadow-lg border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
+                <div class="bg-white p-3 rounded-[2.5rem] shadow-lg border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="h-64 rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                    <div class="px-4 py-3">
+                         <span class="text-xs font-bold text-desa-dark block text-center">Kegiatan Posyandu</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-3 rounded-[2.5rem] shadow-lg border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
                     <div class="h-64 rounded-[2rem] overflow-hidden relative group">
                         <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
