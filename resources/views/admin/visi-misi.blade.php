@@ -50,11 +50,27 @@
                 <div class="w-16 h-1.5 bg-[#007540] mt-6 rounded-full"></div>
             </div>
 
-            <!-- Area Tabel Data Visi Misi -->
+            <!-- Area Tabel Data Visi -->
+            <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 relative z-10 w-full overflow-x-auto">
+                <form action="{{ url('/admin/visi') }}" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Data Visi</h3>
+                    </div>
+                    <div class="mb-4">
+                        <textarea name="visi" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik visi di sini!" required>{{ $contents['visi']->value }}</textarea>
+                    </div>
+                    <button type="submit" class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                        Update Visi
+                    </button>
+                </form>
+            </div>
+            <!-- Area Tabel Data Misi -->
             <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 relative z-10 w-full overflow-x-auto">
                 
                 <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Data Visi Misi</h3>
+                    <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Data Misi</h3>
 
                     <!-- Tombol Tambah Misi Baru -->
                     <button type="button" onclick="openAddModal()" class="bg-[#FFDC2E] text-[#007540] hover:bg-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
@@ -66,50 +82,28 @@
                     <thead>
                         <tr class="border-b-2 border-slate-100">
                             <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-16">No</th>
-                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-48">Judul</th>
                             <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap">Isi</th>
                             <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-32">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Looping data Visi dan Misi -->
-                        @foreach([
-                            ['judul' => 'Visi', 'isi' => 'Mewujudkan Desa Cimulang yang maju, sejahtera, mandiri, dan berbasis teknologi digital pada tahun 2026.'],
-                            ['judul' => 'Misi', 'isi' => '1. Meningkatkan kualitas tata kelola pemerintahan desa yang transparan. 2. Membangun infrastruktur digital untuk warga. 3. Memberdayakan ekonomi UMKM warga sekitar.'],
-                            ['judul' => 'Misi', 'isi' => '2. Membangun infrastruktur digital untuk warga.']
-                        ] as $index => $data)
-                            
-                        <!-- Baris tabel -->
+                        @foreach(json_decode($contents['misi']->value) as $index => $item)
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
-                            
-                            <!-- Nomor Urut -->
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $index + 1 }}</td>
-                            
-                            <!-- Judul (Visi / Misi) -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $data['judul'] }}</td>
-                            
-                            <!-- Isi (Deskripsi) -->
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $data['isi'] }}
+                                {{ $item }}
                             </td>
                             
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top">
-                                <!-- Flex gap-2 biar tombol sejajar nyamping dan ada jarak dikit -->
                                 <div class="flex gap-2">
-                                    
-                                    <!-- Tombol Edit (Selalu Muncul) -->
-                                    <button type="button" onclick="openModal('{{ $data['judul'] }}', '{{ addslashes($data['isi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <button type="button" onclick="openModal({{ $index }}, '{{ $item }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Edit
                                     </button>
-
-                                    <!-- Tombol Delete (Muncul HANYA kalau judulnya Misi) -->
-                                    @if($data['judul'] == 'Misi')
                                     <button type="button" onclick="openDeleteModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Delete
                                     </button>
-                                    @endif
-
                                 </div>
                             </td>
                         </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SiteContent;
 
 class AdminController extends Controller {
     // Index
@@ -22,7 +23,8 @@ class AdminController extends Controller {
         return view('admin.beranda');
     }
     public function visiMisiPage() {
-        return view('admin.visi-misi');
+        $contents = SiteContent::where('page', 'visi_misi')->get()->keyBy('key');
+        return view('admin.visi-misi', compact('contents'));
     }
     public function sejarahDesaPage() {
         return view('admin.sejarah-desa');

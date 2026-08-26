@@ -11,18 +11,19 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Buat Temen Lu Nanti -->
-            <form action="#" method="POST" id="formEditKonten">
-                
+            <form action="{{ url('/admin/misi') }}" method="POST" id="formEditKonten">
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title">Edit Konten</h3>
                     
                     <!-- Hidden input biar temen lu tau yang lagi diedit itu Misi ke-berapa atau Visi -->
-                    <input type="hidden" name="key" id="inputKey" value="">
+                    <input type="hidden" name="id" id="inputId" value="">
                     
                     <div class="mb-4">
-                        <label for="inputIsi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Konten</label>
+                        <label for="inputMisi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Konten</label>
                         <!-- Textarea buat ngedit -->
-                        <textarea name="value" id="inputIsi" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik isi di sini..." required></textarea>
+                        <textarea name="misi" id="inputMisi" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik isi di sini..." required></textarea>
                     </div>
                 </div>
                 
@@ -53,8 +54,8 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Buat Temen Lu -->
-            <form action="#" method="POST" id="formAddMisi">
-                
+            <form action="{{ url('/admin/misi') }}" method="POST" id="formAddMisi">
+                @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add">Tambah Misi Baru</h3>
                     
@@ -92,11 +93,10 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
             
             <!-- Form Buat Temen Lu -->
-            <form action="#" method="POST" id="formDeleteMisi">
-                <!-- Temen lu tinggal masukin @csrf dan @method('DELETE') di sini -->
-                
-                <!-- Hidden input untuk nyimpen ID/Index array yang mau dihapus -->
-                <input type="hidden" name="id" id="inputIdDelete" value="">
+            <form action="{{ url('/admin/misi') }}" method="POST" id="formDeleteMisi">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" id="inputId2" value="">
                 
                 <div class="bg-white px-8 pb-8 pt-8 text-center">
                     <!-- Icon Warning Merah -->
@@ -499,47 +499,25 @@
 
 <script>
     // func for crud visi misi
-    function openModal(judul, isiTeks) {
-        // Hapus class 'hidden' biar modalnya muncul
+    function openModal(isiId, isiMisi) {
+        document.getElementById('inputId').value = isiId;
         document.getElementById('modalEdit').classList.remove('hidden');
-        
-        // Ganti judul modal biar dinamis (Misal: Edit Visi / Edit Misi)
-        document.getElementById('modal-title').innerText = 'Edit ' + judul;
-        
-        // Isi textarea otomatis pake data yang mau diedit
-        document.getElementById('inputIsi').value = isiTeks;
-        
-        // Isi hidden input buat nandain buat dikirim ke API
-        document.getElementById('inputKey').value = judul;
+        document.getElementById('modal-title').innerText = 'Edit Misi';
+        document.getElementById('inputMisi').value = isiMisi;
     }
-
     function closeModal() {
-        // Tambahin lagi class 'hidden' biar modalnya ilang
         document.getElementById('modalEdit').classList.add('hidden');
     }
-
-    // func add misi baru
     function openAddModal() {
-        // Tunjukin modal tambah
         document.getElementById('modalAdd').classList.remove('hidden');
-        
-        // Pastiin textarea kosong tiap kali modal dibuka
-        document.getElementById('inputIsiBaru').value = '';
+        document.getElementById('inputMisiBaru').value = '';
     }
-
     function closeAddModal() {
-        // Sembunyiin modal tambah
         document.getElementById('modalAdd').classList.add('hidden');
     }
-
-    // func delete misi
-    function openDeleteModal(id) {
-        // Tunjukin modal delete
+    function openDeleteModal(isiId) {
         document.getElementById('modalDelete').classList.remove('hidden');
-        
-        // Masukin ID (index) baris yang diklik ke dalem hidden input
-        // Biar pas disubmit, server tau misi nomor berapa yang mau dihapus
-        document.getElementById('inputIdDelete').value = id;
+        document.getElementById('inputId2').value = isiId;
     }
 
     function closeDeleteModal() {

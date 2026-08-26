@@ -46,7 +46,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/admin/logout', [AdminController::class, 'logout']);
     
     // PATCH Method
-    
     Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
     Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
 
@@ -55,5 +54,3 @@ Route::middleware('auth')->group(function() {
 });
 
 Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);
-
-
