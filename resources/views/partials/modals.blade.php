@@ -129,6 +129,51 @@
 
 {{-- ==================================================================== --}}
 
+
+{{-- untuk modal edit sejarah --}}
+
+<div id="modalEditSejarah" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-sejarah" role="dialog" aria-modal="true">
+    
+    <!-- Background Gelap -->
+    <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditSejarahModal()"></div>
+
+    <!-- Posisi Modal di Tengah -->
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
+            
+            <!-- Form Khusus Sejarah Buat Temen Lu -->
+            <form action="#" method="POST" id="formEditSejarah">
+                <!-- Temen lu tinggal nambahin @csrf dan @method('PATCH') di sini -->
+                
+                <div class="bg-white px-8 pb-8 pt-8">
+                    <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-sejarah">Edit Sejarah</h3>
+                    
+                    <!-- Hidden input biar temen lu tau baris mana yang lagi diedit -->
+                    <input type="hidden" name="key" id="inputKeySejarah" value="">
+                    
+                    <div class="mb-4">
+                        <label for="inputIsiSejarah" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Sejarah</label>
+                        <textarea name="value" id="inputIsiSejarah" rows="6" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Tombol Action -->
+                <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
+                    <button type="button" onclick="closeEditSejarahModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{{-- ========================================================== --}}
+
+
 {{-- untuk modal pemerintah desa --}}
 
 {{-- tambah pemeritah desa --}}
@@ -417,6 +462,7 @@
         </div>
     </div>
 </div>
+{{-- ================================================================ --}}
 
 <!-- ================= MODAL GALERI DESA ================= -->
 
@@ -526,6 +572,26 @@
     }
 
     // =====================================================
+
+    // for edit sejarah desa
+    function openEditSejarahModal(judul, isiTeks) {
+        // Tunjukin modal khusus sejarah
+        document.getElementById('modalEditSejarah').classList.remove('hidden');
+        
+        // Ganti judul dinamis (Misal: Edit Asal Usul Desa)
+        document.getElementById('modal-title-sejarah').innerText = 'Edit ' + judul;
+        
+        // Isi textarea dan hidden input
+        document.getElementById('inputIsiSejarah').value = isiTeks;
+        document.getElementById('inputKeySejarah').value = judul;
+    }
+
+    function closeEditSejarahModal() {
+        // Sembunyiin modal sejarah
+        document.getElementById('modalEditSejarah').classList.add('hidden');
+    }
+
+    // ==================================================
 
     // func for crud pemerintah desa
 
