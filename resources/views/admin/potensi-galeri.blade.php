@@ -70,7 +70,7 @@
                     </thead>
                     <tbody>
                         <!-- Looping data Potensi -->
-                        @foreach ($contents['potensi'] as $potensi)
+                        @foreach ($contents['potensi'] as $index => $potensi)
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $index + 1 }}</td>
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $potensi['title'] }}</td>
@@ -79,7 +79,7 @@
                             </td>
                             <td class="py-5 px-4 align-top">
                                 <!-- Placeholder Foto dengan styling senada -->
-                                <div class="w-16 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-[10px] text-slate-400 font-bold border-2 border-slate-200 border-dashed">Img</div>
+                                <div class="w-16 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-[10px] text-slate-400 font-bold border-2 border-slate-200 border-dashed"><img src="{{ asset($potensi['img']) }}"></div>
                             </td>
                             <td class="py-5 px-4 align-top text-center">
                                 <!-- Flex container buat tombol Edit & Delete -->
@@ -120,13 +120,13 @@
                     </thead>
                     <tbody>
                         <!-- Looping data Galeri -->
-                        @foreach ($contents['galeri'] as $galeri)
+                        @foreach ($contents['galeri'] as $index => $galeri)
                             
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $index + 1 }}</td>
                             <td class="py-5 px-4 align-top">
                                 <!-- Placeholder Foto dengan ukuran lebih besar -->
-                                <div class="w-24 h-16 bg-slate-100 rounded-xl flex items-center justify-center text-xs text-slate-400 font-bold border-2 border-slate-200 border-dashed">Foto</div>
+                                <div class="w-24 h-16 bg-slate-100 rounded-xl flex items-center justify-center text-xs text-slate-400 font-bold border-2 border-slate-200 border-dashed"><img src="{{ asset($galeri['img']) }}"></div>
                             </td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
                                 {{ $galeri['title'] }}
