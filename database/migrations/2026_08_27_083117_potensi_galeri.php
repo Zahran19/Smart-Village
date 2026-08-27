@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('galeri', function (Blueprint $table) {
+        Schema::create('potensi_galeri', function (Blueprint $table) {
             $table->id();
+            $table->text('type'); // ada 2 type: potensi and galeri
             $table->text('img');
             $table->text('title');
-            $table->text('short_desc');
+            $table->text('short_desc'); // potensi only
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('galeri');
+        Schema::dropIfExists('potensi_galeri');
     }
 };

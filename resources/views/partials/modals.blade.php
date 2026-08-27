@@ -204,10 +204,11 @@
                         <input type="text" name="nama" id="inputAddNama" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Masukkan nama lengkap..." required>
                     </div>
 
-                    <!-- Input Foto Baru (Wajib) -->
+                    <!-- Input Foto -->
                     <div class="mb-2">
-                        <label for="inputAddFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto</label>
+                        <label for="inputAddFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Opsional)</label>
                         <input type="file" name="profile_img" id="inputAddFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        <p class="text-[10px] text-slate-400 mt-2">*Biarkan kosong jika tidak ingin menambahkan foto</p>
                     </div>
                 </div>
                 
@@ -259,7 +260,7 @@
 
                     <!-- Input Foto -->
                     <div class="mb-2">
-                        <label for="inputFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto Baru (Opsional)</label>
+                        <label for="inputFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Opsional)</label>
                         <input type="file" name="profile_img" id="inputFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
                         <p class="text-[10px] text-slate-400 mt-2">*Biarkan kosong jika tidak ingin mengubah foto</p>
                     </div>
@@ -398,7 +399,7 @@
                         <textarea name="rangkuman" id="inputAddRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
                     <div class="mb-2">
-                        <label for="inputAddFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Wajib)</label>
+                        <label for="inputAddFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto</label>
                         <input type="file" name="foto" id="inputAddFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
                     </div>
                 </div>
