@@ -8,6 +8,42 @@ use App\Models\PotensiGaleri;
 
 class PotensiGaleriController extends Controller
 {
+    private function defaultImage(string $type): string
+    {
+        return "images/{$type}/default.jpg";
+    }
+
+    private function deleteImage(?string $path, string $type): void
+    {
+        if (!$path || $path === $this->defaultImage($type)) {
+            return;
+        }
+
+        $storagePath = str_replace('storage/', '', $path);
+
+        Storage::disk('public')->delete($storagePath);
+    }
+
+    private function storeImage($file, string $type, ?string $oldImage = null): string
+    {
+        if ($oldImage) {
+            $this->deleteImage($oldImage, $type);
+        }
+
+        $path = $file->store($type, 'public');
+
+        // Simpan sebagai storage/potensi/xxx.jpg
+        // atau storage/galeri/xxx.jpg
+        return 'storage/' . $path;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | POTENSI
+    |--------------------------------------------------------------------------
+    */
+
     public function addPotensi(Request $request)
     {
         $validated = $request->validate([
@@ -15,19 +51,29 @@ class PotensiGaleriController extends Controller
             'title' => 'required|string|max:255',
             'short_desc' => 'required|string',
         ]);
-
         $validated['type'] = 'potensi';
-        $validated['img'] = $request->file('img')->store('potensi', 'public');
+        
 
+        if ($request->hasFile('img')) {
+            $validated['img'] = $this->storeImage(
+                $request->file('img'),
+                'potensi'
+            );
+        } else {
+            $validated['img'] = $this->defaultImage('potensi');
+        }
         PotensiGaleri::create($validated);
 
-        return back()->with('success', 'Potensi berhasil ditambahkan.');
+        return back()->with(
+            'success',
+            'Potensi berhasil ditambahkan.'
+        );
     }
 
     public function modifyPotensi(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|exists:potensi_galeri,id',
+            'id' => 'required|exists:potensi_galeris,id',
             'img' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string|max:255',
             'short_desc' => 'required|string',
@@ -41,36 +87,47 @@ class PotensiGaleriController extends Controller
         $potensi->short_desc = $validated['short_desc'];
 
         if ($request->hasFile('img')) {
-            if ($potensi->img) {
-                Storage::disk('public')->delete($potensi->img);
-            }
-
-            $potensi->img = $request->file('img')->store('potensi', 'public');
+            $potensi->img = $this->storeImage(
+                $request->file('img'),
+                'potensi',
+                $potensi->img
+            );
         }
 
         $potensi->save();
 
-        return back()->with('success', 'Potensi berhasil diperbarui.');
+        return back()->with(
+            'success',
+            'Potensi berhasil diperbarui.'
+        );
     }
 
     public function removePotensi(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|exists:potensi_galeri,id',
+            'id' => 'required|exists:potensi_galeris,id',
         ]);
 
         $potensi = PotensiGaleri::where('id', $validated['id'])
             ->where('type', 'potensi')
             ->firstOrFail();
 
-        if ($potensi->img) {
-            Storage::disk('public')->delete($potensi->img);
-        }
+        $this->deleteImage($potensi->img, 'potensi');
 
         $potensi->delete();
 
-        return back()->with('success', 'Potensi berhasil dihapus.');
+        return back()->with(
+            'success',
+            'Potensi berhasil dihapus.'
+        );
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | GALERI
+    |--------------------------------------------------------------------------
+    */
 
     public function addGaleri(Request $request)
     {
@@ -80,18 +137,29 @@ class PotensiGaleriController extends Controller
         ]);
 
         $validated['type'] = 'galeri';
-        $validated['short_desc'] = null;
-        $validated['img'] = $request->file('img')->store('galeri', 'public');
+        $validated['short_desc'] = '';
+
+        if ($request->hasFile('img')) {
+            $validated['img'] = $this->storeImage(
+                $request->file('img'),
+                'galeri'
+            );
+        } else {
+            $validated['img'] = $this->defaultImage('galeri');
+        }
 
         PotensiGaleri::create($validated);
 
-        return back()->with('success', 'Galeri berhasil ditambahkan.');
+        return back()->with(
+            'success',
+            'Galeri berhasil ditambahkan.'
+        );
     }
 
     public function modifyGaleri(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|exists:potensi_galeri,id',
+            'id' => 'required|exists:potensi_galeris,id',
             'img' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'title' => 'required|string|max:255',
         ]);
@@ -101,37 +169,41 @@ class PotensiGaleriController extends Controller
             ->firstOrFail();
 
         $galeri->title = $validated['title'];
-        $galeri->short_desc = null;
+        $galeri->short_desc = '';
 
         if ($request->hasFile('img')) {
-            if ($galeri->img) {
-                Storage::disk('public')->delete($galeri->img);
-            }
-
-            $galeri->img = $request->file('img')->store('galeri', 'public');
+            $galeri->img = $this->storeImage(
+                $request->file('img'),
+                'galeri',
+                $galeri->img
+            );
         }
 
         $galeri->save();
 
-        return back()->with('success', 'Galeri berhasil diperbarui.');
+        return back()->with(
+            'success',
+            'Galeri berhasil diperbarui.'
+        );
     }
 
     public function removeGaleri(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|exists:potensi_galeri,id',
+            'id' => 'required|exists:potensi_galeris,id',
         ]);
 
         $galeri = PotensiGaleri::where('id', $validated['id'])
             ->where('type', 'galeri')
             ->firstOrFail();
 
-        if ($galeri->img) {
-            Storage::disk('public')->delete($galeri->img);
-        }
+        $this->deleteImage($galeri->img, 'galeri');
 
         $galeri->delete();
 
-        return back()->with('success', 'Galeri berhasil dihapus.');
+        return back()->with(
+            'success',
+            'Galeri berhasil dihapus.'
+        );
     }
 }

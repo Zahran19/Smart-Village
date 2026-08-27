@@ -392,15 +392,15 @@
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-potensi">Tambah Potensi Desa</h3>
                     <div class="mb-4">
                         <label for="inputAddJudulPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul Potensi</label>
-                        <input type="text" name="judul" id="inputAddJudulPotensi" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                        <input type="text" name="title" id="inputAddJudulPotensi" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
                     </div>
                     <div class="mb-4">
                         <label for="inputAddRangkumanPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Rangkuman Singkat</label>
-                        <textarea name="rangkuman" id="inputAddRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="short_desc" id="inputAddRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
                     <div class="mb-2">
-                        <label for="inputAddFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto</label>
-                        <input type="file" name="foto" id="inputAddFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        <label for="inputAddFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Wajib)</label>
+                        <input type="file" name="img" id="inputAddFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -420,19 +420,20 @@
             <form action="{{ url('/admin/potensi' )}}" method="POST" enctype="multipart/form-data" id="formEditPotensi">
                 @csrf
                 @method('PATCH')
+                <input type="hidden" name="id" id="inputIdEditPotensi" value="">
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-edit-potensi">Edit Potensi</h3>
                     <div class="mb-4">
                         <label for="inputEditJudulPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul Potensi</label>
-                        <input type="text" name="judul" id="inputEditJudulPotensi" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                        <input type="text" name="title" id="inputEditJudulPotensi" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
                     </div>
                     <div class="mb-4">
                         <label for="inputEditRangkumanPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Rangkuman Singkat</label>
-                        <textarea name="rangkuman" id="inputEditRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="short_desc" id="inputEditRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
                     <div class="mb-2">
                         <label for="inputEditFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto Baru (Opsional)</label>
-                        <input type="file" name="foto" id="inputEditFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        <input type="file" name="img" id="inputEditFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -485,11 +486,11 @@
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-galeri">Tambah Galeri Baru</h3>
                     <div class="mb-4">
                         <label for="inputAddDeskripsiGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul / Deskripsi Foto</label>
-                        <textarea name="deskripsi" id="inputAddDeskripsiGaleri" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis deskripsi foto..." required></textarea>
+                        <textarea name="title" id="inputAddDeskripsiGaleri" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis deskripsi foto..." required></textarea>
                     </div>
                     <div class="mb-2">
                         <label for="inputAddFotoGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Wajib)</label>
-                        <input type="file" name="foto" id="inputAddFotoGaleri" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        <input type="file" name="img" id="inputAddFotoGaleri" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -509,15 +510,16 @@
             <form action="{{ url('/admin/galeri') }}" method="POST" enctype="multipart/form-data" id="formEditGaleri">
                 @csrf
                 @method('PATCH')
+                 <input type="hidden" name="id" id="modalEditGaleriId">
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-edit-galeri">Edit Galeri Desa</h3>
                     <div class="mb-4">
                         <label for="inputEditDeskripsiGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul / Deskripsi Foto</label>
-                        <textarea name="deskripsi" id="inputEditDeskripsiGaleri" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="title" id="inputEditDeskripsiGaleri" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
                     <div class="mb-2">
                         <label for="inputEditFotoGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto Baru (Opsional)</label>
-                        <input type="file" name="foto" id="inputEditFotoGaleri" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        <input type="file" name="img" id="inputEditFotoGaleri" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -687,6 +689,7 @@
     }
 
     function openEditPotensiModal(id, judul, rangkuman) {
+        document.getElementById('inputIdEditPotensi').value = id
         document.getElementById('modalEditPotensi').classList.remove('hidden');
         document.getElementById('inputEditJudulPotensi').value = judul;
         document.getElementById('inputEditRangkumanPotensi').value = rangkuman;
@@ -716,6 +719,7 @@
 
     function openEditGaleriModal(id, deskripsi) {
         document.getElementById('modalEditGaleri').classList.remove('hidden');
+        document.getElementById('modalEditGaleriId').value = id;
         document.getElementById('inputEditDeskripsiGaleri').value = deskripsi;
         document.getElementById('inputEditFotoGaleri').value = ''; // Reset file input
     }

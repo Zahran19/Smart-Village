@@ -9,6 +9,7 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\PemDesController;
+use App\Http\Controllers\PotensiGaleriController;
 
 // GET Method
 // public routes
@@ -62,6 +63,6 @@ Route::middleware('auth')->group(function() {
     // DELETE Method
     Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
     Route::delete('/admin/pemerintah-desa', [PemDesController::class,  'removePemDes']);
-    Route::post('/admin/potensi', [PotensiGaleriController::class,  'removePotensi']);
-    Route::post('/admin/galeri', [PotensiGaleriController::class, 'removeGaleri']);
+    Route::delete('/admin/potensi', [PotensiGaleriController::class, 'removePotensi']);
+    Route::delete('/admin/galeri', [PotensiGaleriController::class, 'removeGaleri']);
 });
