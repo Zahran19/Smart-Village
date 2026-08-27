@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SiteSeeder::class,
-            PotensiGaleriSeeder::class
+            PotensiGaleriSeeder::class,
+            PojokWargaSeeder::class
         ]);
     }
 }

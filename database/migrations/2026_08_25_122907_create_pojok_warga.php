@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('pojok_wargas', function (Blueprint $table) {
             $table->id();
-            $table->text('img');
+            $table->text('img')->nullable();
             $table->text('title');
-            $table->text('slug');
+            $table->text('slug')->unique();
             $table->text('short_desc');
             $table->text('content');
-            $table->text('status');
+            $table->text('status')->default('draft');
+            $table->timestamp('date_released')->nullable();
             $table->timestamps();
         });
     }
