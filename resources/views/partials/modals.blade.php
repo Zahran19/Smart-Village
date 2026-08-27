@@ -573,16 +573,17 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Khusus Kontak -->
-            <form action="#" method="POST" id="formEditKontak">
-                
+            <form action="{{ url('/admin/kontak') }}" method="POST" id="formEditKontak">
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-kontak">Edit Kontak</h3>
                     
-                    <input type="hidden" name="kategori" id="inputKeyKontak" value="">
+                    <input type="hidden" name="key" id="inputKeyKontak" value="">
                     
                     <div class="mb-4">
                         <label for="inputIsiKontak" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Data Kontak</label>
-                        <textarea name="isi" id="inputIsiKontak" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="value" id="inputIsiKontak" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
                 </div>
                 
@@ -782,14 +783,14 @@
     // ===============================================
 
     // func for kontak desa
-    function openEditKontakModal(kategori, isiTeks) {
+    function openEditKontakModal(kategori, isiKey, isiTeks) {
         document.getElementById('modalEditKontak').classList.remove('hidden');
         
         // Ganti judul modal dinamis
         document.getElementById('modal-title-kontak').innerText = 'Edit ' + kategori;
         
         document.getElementById('inputIsiKontak').value = isiTeks;
-        document.getElementById('inputKeyKontak').value = kategori;
+        document.getElementById('inputKeyKontak').value = isiKey;
     }
 
     function closeEditKontakModal() {

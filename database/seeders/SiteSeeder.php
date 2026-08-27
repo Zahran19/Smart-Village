@@ -64,7 +64,7 @@ class SiteSeeder extends Seeder
         SiteContent::create([
             'page' => 'kontak',
             'key' => 'instagram',
-            'value' => '@desa_cimulang',
+            'value' => 'desa_cimulang',
             'type' => 'text'
         ]);
         SiteContent::create([

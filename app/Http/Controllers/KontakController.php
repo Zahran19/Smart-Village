@@ -10,22 +10,26 @@ class KontakController extends Controller
     public function modifyKontak(Request $request)
     {
         $request->validate([
-            'alamat' => 'required|string',
-            'email'  => 'required|email',
-            'whatsapp' => 'required|string',
-            'instagram' => 'required|string',
-            'google_maps_embed' => 'nullable|string',
+            'key' => 'required|string',
+            'value' => 'required|string',
         ]);
 
-        // Simpan atau update setiap key
-        $keys = ['alamat', 'email', 'whatsapp', 'instagram', 'google_maps_embed'];
-        foreach ($keys as $key) {
-            SiteContent::updateOrCreate(
-                ['page' => 'kontak', 'key' => $key],
-                ['value' => $request->$key]
-            );
+        $exists = SiteContent::where('page', 'kontak')
+            ->where('key', $request->key)
+            ->exists();
+
+        if (!$exists) {
+            return redirect()->back()
+                ->with('error', 'Terjadi Kesalahan! Coba lagi nanti');
         }
 
-        return redirect()->back()->with('success', 'Kontak berhasil diperbarui!');
+        SiteContent::where('page', 'kontak')
+            ->where('key', $request->key)
+            ->update([
+                'value' => $request->value,
+            ]);
+
+        return redirect()->back()
+            ->with('success', 'Kontak berhasil diperbarui!');
     }
 }
