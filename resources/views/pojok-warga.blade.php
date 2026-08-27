@@ -2,7 +2,7 @@
 
     <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('bg.jpeg') }}" class="w-full h-full object-cover">
+            <img src="{{ asset('images/bg.jpeg') }}" class="w-full h-full object-cover">
             
             <div class="absolute inset-0 bg-gradient-to-b from-[#FFDC2E]/5 via-[#FFDC2E]/5 to-black/60"></div>
             

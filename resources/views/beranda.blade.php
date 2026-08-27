@@ -2,7 +2,7 @@
 
 <section id="beranda" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('bg.jpeg') }}"
+        <img src="{{ asset('images/bg.jpeg') }}"
              alt="Landscape Desa"
              class="w-full h-full object-cover">
         

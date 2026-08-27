@@ -142,9 +142,10 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Khusus Sejarah Buat Temen Lu -->
-            <form action="#" method="POST" id="formEditSejarah">
+            <form action="{{ url('/admin/sejarah-desa') }}" method="POST" id="formEditSejarah">
                 <!-- Temen lu tinggal nambahin @csrf dan @method('PATCH') di sini -->
-                
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-sejarah">Edit Sejarah</h3>
                     
@@ -186,9 +187,8 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Buat Temen Lu -->
-            <form action="#" method="POST" enctype="multipart/form-data" id="formAddPerangkat">
-                <!-- Nanti temen lu tinggal nambahin @csrf di sini -->
-                
+            <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" enctype="multipart/form-data" id="formAddPerangkat">
+                @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-perangkat">Tambah Anggota Baru</h3>
                     
@@ -207,7 +207,7 @@
                     <!-- Input Foto Baru (Wajib) -->
                     <div class="mb-2">
                         <label for="inputAddFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto</label>
-                        <input type="file" name="foto" id="inputAddFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        <input type="file" name="profile_img" id="inputAddFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
                     </div>
                 </div>
                 
@@ -238,12 +238,13 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Buat Temen Lu (Wajib ada enctype buat upload foto) -->
-            <form action="#" method="POST" enctype="multipart/form-data" id="formEditPerangkat">
-                <!-- Temen lu tinggal nambahin @csrf dan @method('PATCH') di sini -->
-                
+            <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" enctype="multipart/form-data" id="formEditPerangkat">
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-perangkat">Edit Perangkat Desa</h3>
                     
+                    <input type="hidden" name="id" id="modal-id-perangkat" value="">
                     <!-- Input Jabatan (Bisa dijadiin hidden/readonly kalo jabatannya paten) -->
                     <div class="mb-4">
                         <label for="inputJabatan" class="block text-sm font-inter font-bold text-[#272831] mb-2">Jabatan</label>
@@ -259,7 +260,7 @@
                     <!-- Input Foto -->
                     <div class="mb-2">
                         <label for="inputFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto Baru (Opsional)</label>
-                        <input type="file" name="foto" id="inputFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        <input type="file" name="profile_img" id="inputFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
                         <p class="text-[10px] text-slate-400 mt-2">*Biarkan kosong jika tidak ingin mengubah foto</p>
                     </div>
                 </div>
@@ -290,9 +291,9 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
             
             <!-- Form Buat Temen Lu -->
-            <form action="#" method="POST" id="formDeletePerangkat">
-                <!-- Temen lu tinggal masukin @csrf dan @method('DELETE') di sini -->
-                
+            <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" id="formDeletePerangkat">
+                @csrf
+                @method('DELETE')
                 <!-- Hidden input untuk nyimpen ID/Index array yang mau dihapus -->
                 <input type="hidden" name="id" id="inputIdDeletePerangkat" value="">
                 
@@ -340,9 +341,10 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form Buat Temen Lu -->
-            <form action="#" method="POST" id="formEditBerita">
+            <form action="{{ url('/admin/pojok-warga') }}" method="POST" id="formEditBerita">
                 <!-- Nanti temen lu tinggal nambahin @csrf dan @method('PATCH') di sini -->
-                
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-berita">Edit Berita Warga</h3>
                     
@@ -383,7 +385,8 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddPotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
-            <form action="#" method="POST" enctype="multipart/form-data" id="formAddPotensi">
+            <form action="{{ url('/admin/potensi') }}" method="POST" enctype="multipart/form-data" id="formAddPotensi">
+                @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-potensi">Tambah Potensi Desa</h3>
                     <div class="mb-4">
@@ -413,7 +416,9 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditPotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
-            <form action="#" method="POST" enctype="multipart/form-data" id="formEditPotensi">
+            <form action="{{ url('/admin/potensi' )}}" method="POST" enctype="multipart/form-data" id="formEditPotensi">
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-edit-potensi">Edit Potensi</h3>
                     <div class="mb-4">
@@ -443,7 +448,9 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeletePotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
-            <form action="#" method="POST" id="formDeletePotensi">
+            <form action="{{ url('/admin/potensi') }}" method="POST" id="formDeletePotensi">
+                @csrf
+                @method('DELETE')
                 <input type="hidden" name="id" id="inputIdDeletePotensi" value="">
                 <div class="bg-white px-8 pb-8 pt-8 text-center">
                     <div class="mx-auto flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-red-100 mb-6">
@@ -471,7 +478,8 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
-            <form action="#" method="POST" enctype="multipart/form-data" id="formAddGaleri">
+            <form action="{{ url('/admin/galeri') }}" method="POST" enctype="multipart/form-data" id="formAddGaleri">
+                @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-galeri">Tambah Galeri Baru</h3>
                     <div class="mb-4">
@@ -497,7 +505,9 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
-            <form action="#" method="POST" enctype="multipart/form-data" id="formEditGaleri">
+            <form action="{{ url('/admin/galeri') }}" method="POST" enctype="multipart/form-data" id="formEditGaleri">
+                @csrf
+                @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-edit-galeri">Edit Galeri Desa</h3>
                     <div class="mb-4">
@@ -523,7 +533,9 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
-            <form action="#" method="POST" id="formDeleteGaleri">
+            <form action="{{ url('/admin/galeri' )}}" method="POST" id="formDeleteGaleri">
+                @csrf
+                @method('DELETE')
                 <input type="hidden" name="id" id="inputIdDeleteGaleri" value="">
                 <div class="bg-white px-8 pb-8 pt-8 text-center">
                     <div class="mx-auto flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-red-100 mb-6">
@@ -574,16 +586,16 @@
     // =====================================================
 
     // for edit sejarah desa
-    function openEditSejarahModal(judul, isiTeks) {
+    function openEditSejarahModal(isiKey, isiTeks) {
         // Tunjukin modal khusus sejarah
         document.getElementById('modalEditSejarah').classList.remove('hidden');
         
         // Ganti judul dinamis (Misal: Edit Asal Usul Desa)
-        document.getElementById('modal-title-sejarah').innerText = 'Edit ' + judul;
+        document.getElementById('modal-title-sejarah').innerText = 'Edit Sejarah Desa';
         
         // Isi textarea dan hidden input
         document.getElementById('inputIsiSejarah').value = isiTeks;
-        document.getElementById('inputKeySejarah').value = judul;
+        document.getElementById('inputKeySejarah').value = isiKey;
     }
 
     function closeEditSejarahModal() {
@@ -610,7 +622,8 @@
     }
 
     // for edit pemerintah desa
-    function openPerangkatModal(jabatan, nama) {
+    function openPerangkatModal(id, jabatan, nama) {
+        document.getElementById('modal-id-perangkat').value = id;
         document.getElementById('modalPerangkat').classList.remove('hidden');
         document.getElementById('modal-title-perangkat').innerText = 'Edit ' + jabatan;
         

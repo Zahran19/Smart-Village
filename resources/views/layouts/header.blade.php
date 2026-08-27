@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     
     <title>{{ $title ?? $fooder_contents['beranda']['title']->value }}</title>
 
@@ -74,7 +74,7 @@
 
         <div class="container mx-auto px-8 md:px-24 flex justify-between items-center relative z-10">
             <a href="{{ url('/') }}" class="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:-translate-y-0.5">
-                <img src="{{ asset('logo.png') }}" alt="Logo Desa" class="w-10 h-10 object-contain">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-10 h-10 object-contain">
                 <span class="text-[25px] font-black capitalize transition-colors duration-500" :class="scrolled ? 'text-[#272831]' : 'text-white'">
                     {{ $fooder_contents['beranda']['title']->value }}
                 </span>

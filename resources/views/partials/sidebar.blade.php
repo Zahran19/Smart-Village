@@ -3,7 +3,7 @@
             
     <!-- Logo Gambar & Judul Teks -->
     <div class="flex items-center justify-center gap-2 mb-14">
-        <img src="{{ asset('logo.png') }}" alt="Logo" class="h-12 w-auto object-contain fallback-logo text-[8px]">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 w-auto object-contain fallback-logo text-[8px]">
         <div class="flex flex-col justify-center">
             <h2 class="text-[#272831] font-inter font-black text-xl leading-none tracking-tighter">Cimulang</h2>
             <span class="text-[#007540] font-inter uppercase tracking-[0.3em] text-[9px] font-black mt-1">Smart Village</span>

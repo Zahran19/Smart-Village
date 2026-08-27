@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\SejarahController;
+use App\Http\Controllers\PemDesController;
 
 // GET Method
 // public routes
@@ -44,13 +46,17 @@ Route::middleware('auth')->group(function() {
     // POST Method
     Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
     Route::post('/admin/logout', [AdminController::class, 'logout']);
+    Route::post('/admin/pemerintah-desa', [PemDesController::class], 'addPemDes');
     
     // PATCH Method
     Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
     Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
+    Route::patch('/admin/sejarah-desa', [SejarahController::class, 'modifySejarah']);
+    Route::post('/admin/pemerintah-desa', [PemDesController::class], 'modifyPemDes');
 
     // DELETE Method
     Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
+    Route::post('/admin/pemerintah-desa', [PemDesController::class], 'removePemDes');
 });
 
 Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);

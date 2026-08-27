@@ -27,19 +27,24 @@ class AdminController extends Controller {
         return view('admin.visi-misi', compact('contents'));
     }
     public function sejarahDesaPage() {
-        return view('admin.sejarah-desa');
+        $contents = SiteContent::where('page', 'sejarah')->get()->keyBy('key');
+        return view('admin.sejarah-desa', compact('contents'));
     }
     public function pemerintahDesaPage() {
-        return view('admin.pemerintah-desa');
+        $contents = SiteContent::where('page', 'pemerintah_desa')->get()->keyBy('key');
+        return view('admin.pemerintah-desa', compact('contents'));
     }
     public function pojokWargaPage() {
-        return view('admin.pojok-warga');
+        $contents = SiteContent::where('page', 'pojok_warga')->get()->keyBy('key');
+        return view('admin.pojok-warga', compact('contents'));
     }
     public function potensiGaleriPage() {
-        return view('admin.potensi-galeri');
+        $contents = SiteContent::where('page', 'potensi_galeri')->get()->keyBy('key');
+        return view('admin.potensi-galeri', compact('contents'));
     }
     public function kontakPage() {
-        return view('admin.kontak');
+        $contents = SiteContent::where('page', 'kontak')->get()->keyBy('key');
+        return view('admin.kontak', compact('contents'));
     }
 
     // Backend logic

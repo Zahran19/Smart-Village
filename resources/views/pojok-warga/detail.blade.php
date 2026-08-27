@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <title>Detail Informasi | Desa Cimulang</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -33,7 +33,7 @@
     <nav class="fixed w-full z-50 py-3 bg-white/100 shadow-md backdrop-blur-md border-b border-slate-100"> 
         <div class="container mx-auto px-8 md:px-24 flex justify-between items-center">
             <a href="{{ url('/') }}" class="flex items-center gap-2 group cursor-pointer hover:-translate-y-0.5 transition-transform">
-                <img src="{{ asset('logo.png') }}" alt="Logo" class="w-10 h-10 object-contain">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10 h-10 object-contain">
                 <span class="text-[25px] font-black capitalize text-[#272831]">Desa Cimulang</span>
             </a>
             <a href="{{ url('/') }}" class="text-sm font-bold text-desa-primary hover:text-desa-dark transition-colors flex items-center gap-2">
@@ -116,7 +116,7 @@
             
             <div class="md:col-span-4 space-y-6">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('logo.png') }}" alt="Logo Desa" class="w-12 h-12 object-contain brightness-110">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-12 h-12 object-contain brightness-110">
                     <span class="text-2xl font-black tracking-tighter capitalize">Desa Cimulang</span>
                 </div>
                 <p class="text-[#FFFFFF] text-sm leading-relaxed text-left">

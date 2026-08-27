@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemerintah Desa Admin | Smart Village Desa Cimulang</title>
-    <link rel="icon" href="{{ asset('fav-icon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/fav-icon.png') }}" type="image/png">
     
     <!-- Memanggil CSS Tailwind bawaan Laravel -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -73,50 +73,65 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Looping data Perangkat Desa -->
-                        @foreach([
-                            ['jabatan' => 'Kepala Desa', 'nama' => 'Bapak Budi Santoso'],
-                            ['jabatan' => 'Sekretaris Desa', 'nama' => 'Ibu Siti Aminah']
-                        ] as $index => $perangkat)
-                            
-                        <!-- Baris tabel -->
+                    @php
+                        // Ambil data struktur dari database, default array kosong
+                        $strukturData = json_decode($contents['struktur_organisasi']->value ?? '[]', true);
+                    @endphp
+
+                    @forelse($strukturData as $index => $perangkat)
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
-                            
-                            <!-- Nomor Urut -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-middle">{{ $index + 1 }}</td>
-                            
+                            <!-- Nomor -->
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-middle">
+                                {{ $index + 1 }}
+                            </td>
+
                             <!-- Jabatan -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-middle">{{ $perangkat['jabatan'] }}</td>
-                            
-                            <!-- Nama Lengkap -->
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-middle">
+                                {{ $perangkat['jabatan'] ?? '-' }}
+                            </td>
+
+                            <!-- Nama -->
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-middle">
-                                {{ $perangkat['nama'] }}
+                                {{ $perangkat['nama'] ?? '-' }}
                             </td>
 
                             <!-- Foto -->
                             <td class="py-5 px-4 align-middle">
-                                <div class="w-12 h-12 bg-slate-100 border border-slate-200 rounded-xl flex items-center justify-center text-[10px] font-bold text-slate-400">Foto</div>
+                                @php
+                                    $imgSrc = isset($perangkat['profile_img']) && $perangkat['profile_img'] 
+                                        ? asset($perangkat['profile_img']) 
+                                        : asset('images/pemdes/default.svg');
+                                @endphp
+                                <img src="{{ $imgSrc }}" 
+                                    alt="Foto {{ $perangkat['nama'] ?? '' }}" 
+                                    class="w-12 h-12 rounded-xl object-cover border border-slate-200">
                             </td>
-                            
+
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-middle">
                                 <div class="flex gap-2">
-                                    <button onclick="openPerangkatModal('{{ $perangkat['jabatan'] }}', '{{ addslashes($perangkat['nama']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <!-- Tombol Edit -->
+                                    <button onclick="openPerangkatModal({{ $index }}, '{{ addslashes($perangkat['jabatan'] ?? '') }}', '{{ addslashes($perangkat['nama'] ?? '') }}')" 
+                                            class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Edit
                                     </button>
 
                                     <!-- Tombol Delete -->
-                                    <button type="button" onclick="openDeletePerangkatModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <button type="button" onclick="openDeletePerangkatModal({{ $index }})" 
+                                            class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Delete
                                     </button>
                                 </div>
                             </td>
-
-                            
                         </tr>
-                            
-                        @endforeach
-                    </tbody>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="py-10 text-center text-sm text-[#929397]">
+                                Belum ada data perangkat desa.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
                 </table>
             </div>
 

@@ -6,7 +6,7 @@
             
             <div class="md:col-span-4 space-y-6">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('logo.png') }}" alt="Logo Desa" class="w-12 h-12 object-contain brightness-110">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-12 h-12 object-contain brightness-110">
                     <span class="text-2xl font-black tracking-tighter capitalize">{{ $fooder_contents['beranda']['title']->value }}</span>
                 </div>
                 <p class="text-white text-sm leading-relaxed text-left">

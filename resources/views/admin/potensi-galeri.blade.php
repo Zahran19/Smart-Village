@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Potensi & Galeri Admin | Smart Village Desa Cimulang</title>
-    <link rel="icon" href="{{ asset('fav-icon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/fav-icon.png') }}" type="image/png">
     
     <!-- Memanggil CSS Tailwind bawaan Laravel -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

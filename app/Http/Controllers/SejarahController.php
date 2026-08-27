@@ -10,18 +10,16 @@ class SejarahController extends Controller
     public function modifySejarah(Request $request)
     {
         $request->validate([
-            'awal_mula_terbentuk' => 'required|string',
-            'masa_perjuangan'  => 'required|string',
-            'pemekaran_wilayah' => 'required|string',
+            'key'   => 'required|string',
+            'value' => 'required|string',
         ]);
 
-        // Simpan atau update setiap key
-        $keys = ['awal_mula_terbentuk', 'masa_perjuangan', 'pemekaran_wilayah'];
-        foreach ($keys as $key) {
-            SiteContent::updateOrCreate(
-                ['page' => 'sejarah', 'key' => $key],
-                ['value' => $request->$key]
-            );
+        $affected = SiteContent::where('page', 'sejarah')
+                            ->where('key', $request->key)
+                            ->update(['value' => $request->value]);
+
+        if ($affected === 0) {
+            return redirect()->back()->withErrors(['key' => 'Data dengan key tersebut tidak ditemukan.']);
         }
 
         return redirect()->back()->with('success', 'Sejarah berhasil diperbarui!');

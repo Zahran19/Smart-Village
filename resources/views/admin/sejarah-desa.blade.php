@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sejarah Desa Admin | Smart Village Desa Cimulang</title>
-    <link rel="icon" href="{{ asset('fav-icon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/fav-icon.png') }}" type="image/png">
     
     <!-- Memanggil CSS Tailwind bawaan Laravel -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -66,35 +66,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Looping data Sejarah Desa -->
-                        @foreach([
-                            ['judul' => 'Asal Usul Desa', 'isi' => 'Desa Cimulang berawal dari sebuah perkampungan agraris kecil yang dibentuk oleh para tokoh masyarakat pada awal abad ke-19. Nama Cimulang diambil dari kata aliran air yang terus berputar.'],
-                            ['judul' => 'Masa Perkembangan', 'isi' => 'Pada era tahun 1980-an, desa ini mulai mengalami modernisasi dengan dibangunnya fasilitas jalan aspal dan masuknya jaringan listrik utama yang mendorong roda perekonomian warga.']
-                        ] as $index => $data)
-                            
-                        <!-- Baris tabel -->
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
-                            
-                            <!-- Nomor Urut -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $index + 1 }}</td>
-                            
-                            <!-- Judul -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $data['judul'] }}</td>
-                            
-                            <!-- Isi (Deskripsi) -->
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">1</td>
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Awal Mula Terbentuk</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $data['isi'] }}
+                                {{ $contents['awal_mula_terbentuk']->value }}
                             </td>
-                            
-                            <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top">
-                                <button type="button" onclick="openEditSejarahModal('{{ $data['judul'] }}', '{{ addslashes($data['isi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditSejarahModal('awal_mula_terbentuk', '{{ addslashes($contents['awal_mula_terbentuk']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
                         </tr>
-                            
-                        @endforeach
+                        <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">2</td>
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Masa Perjuangan</td>
+                            <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
+                                {{ $contents['masa_perjuangan']->value }}
+                            </td>
+                            <td class="py-5 px-4 align-top">
+                                <button type="button" onclick="openEditSejarahModal('masa_perjuangan', '{{ addslashes($contents['masa_perjuangan']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">3</td>
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Pemekaran Wilayah</td>
+                            <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
+                                {{ $contents['pemekaran_wilayah']->value }}
+                            </td>
+                            <td class="py-5 px-4 align-top">
+                                <button type="button" onclick="openEditSejarahModal('pemekaran_wilayah', '{{ addslashes($contents['pemekaran_wilayah']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
