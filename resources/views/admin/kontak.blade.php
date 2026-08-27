@@ -76,8 +76,9 @@
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
                                 {{ $kontak['isi'] }}
                             </td>
+                            <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditKontakModal('{{ $kontak['kategori'] }}', '{{ addslashes($kontak['isi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
@@ -93,3 +94,5 @@
 
 </body>
 </html>
+
+@include('partials.modals')
