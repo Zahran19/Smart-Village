@@ -558,6 +558,50 @@
     </div>
 </div>
 
+{{-- ================================================ --}}
+
+{{-- modal kontak desa --}}
+
+{{-- edit kontak --}}
+<div id="modalEditKontak" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-kontak" role="dialog" aria-modal="true">
+    
+    <!-- Background Gelap -->
+    <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditKontakModal()"></div>
+
+    <!-- Posisi Modal di Tengah -->
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
+            
+            <!-- Form Khusus Kontak -->
+            <form action="#" method="POST" id="formEditKontak">
+                
+                <div class="bg-white px-8 pb-8 pt-8">
+                    <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-kontak">Edit Kontak</h3>
+                    
+                    <input type="hidden" name="kategori" id="inputKeyKontak" value="">
+                    
+                    <div class="mb-4">
+                        <label for="inputIsiKontak" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Data Kontak</label>
+                        <textarea name="isi" id="inputIsiKontak" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Tombol Action -->
+                <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
+                    <button type="button" onclick="closeEditKontakModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
 <script>
     // func for crud visi misi
     function openModal(isiId, isiMisi) {
@@ -733,5 +777,23 @@
     }
     function closeDeleteGaleriModal() {
         document.getElementById('modalDeleteGaleri').classList.add('hidden');
+    }
+
+    // ===============================================
+
+    // func for kontak desa
+    function openEditKontakModal(kategori, isiTeks) {
+        document.getElementById('modalEditKontak').classList.remove('hidden');
+        
+        // Ganti judul modal dinamis
+        document.getElementById('modal-title-kontak').innerText = 'Edit ' + kategori;
+        
+        document.getElementById('inputIsiKontak').value = isiTeks;
+        document.getElementById('inputKeyKontak').value = kategori;
+    }
+
+    function closeEditKontakModal() {
+        // Sembunyiin modal kontak
+        document.getElementById('modalEditKontak').classList.add('hidden');
     }
 </script>
