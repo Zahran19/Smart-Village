@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SiteContent;
+use App\Models\PotensiGaleri;
 
 class PageController extends Controller {
     // Index
@@ -76,7 +77,7 @@ class PageController extends Controller {
         return view('pojok-warga.detail', compact('contents', 'fooder_contents'));
     }
     public function potensiGaleriPage() {
-        $contents = SiteContent::where('page', 'potensi_galeri')->get()->keyBy('key');
+        $contents = PotensiGaleri::all()->groupBy('type');
         $fooder_contents = SiteContent::whereIn('page', ['kontak', 'beranda']) # footer and header contents
             ->get()
             ->groupBy('page')

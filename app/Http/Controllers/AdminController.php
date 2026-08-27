@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SiteContent;
+use App\Models\PotensiGaleri;
 
 class AdminController extends Controller {
     // Index
@@ -39,7 +40,7 @@ class AdminController extends Controller {
         return view('admin.pojok-warga', compact('contents'));
     }
     public function potensiGaleriPage() {
-        $contents = SiteContent::where('page', 'potensi_galeri')->get()->keyBy('key');
+        $contents = PotensiGaleri::all()->groupBy('type');
         return view('admin.potensi-galeri', compact('contents'));
     }
     public function kontakPage() {

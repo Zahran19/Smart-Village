@@ -70,16 +70,12 @@
                     </thead>
                     <tbody>
                         <!-- Looping data Potensi -->
-                        @foreach([
-                            ['judul' => 'Pertanian Padi Unggul', 'rangkuman' => 'Hamparan sawah subur yang menjadi pilar utama ketahanan pangan dan ekonomi warga desa.'],
-                            ['judul' => 'Kerajinan Anyaman', 'rangkuman' => 'Produk kreatif UMKM lokal dari bambu pilihan yang sudah dipasarkan hingga ke luar kota.']
-                        ] as $index => $potensi)
-                            
+                        @foreach ($contents['potensi'] as $potensi)
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $index + 1 }}</td>
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $potensi['judul'] }}</td>
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $potensi['title'] }}</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $potensi['rangkuman'] }}
+                                {{ $potensi['short_desc'] }}
                             </td>
                             <td class="py-5 px-4 align-top">
                                 <!-- Placeholder Foto dengan styling senada -->
@@ -88,7 +84,7 @@
                             <td class="py-5 px-4 align-top text-center">
                                 <!-- Flex container buat tombol Edit & Delete -->
                                 <div class="flex gap-2 justify-center">
-                                    <button type="button" onclick="openEditPotensiModal('{{ $potensi['judul'] }}', '{{ addslashes($potensi['rangkuman']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <button type="button" onclick="openEditPotensiModal({{$index}}, '{{ $potensi['title'] }}', '{{ addslashes($potensi['short_desc']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Edit
                                     </button>
                                     <button type="button" onclick="openDeletePotensiModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
@@ -124,10 +120,7 @@
                     </thead>
                     <tbody>
                         <!-- Looping data Galeri -->
-                        @foreach([
-                            ['deskripsi' => 'Pemandangan alam Desa Cimulang saat matahari terbit.'],
-                            ['deskripsi' => 'Kegiatan gotong royong warga membersihkan saluran irigasi sawah.']
-                        ] as $index => $galeri)
+                        @foreach ($contents['galeri'] as $galeri)
                             
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">{{ $index + 1 }}</td>
@@ -136,12 +129,12 @@
                                 <div class="w-24 h-16 bg-slate-100 rounded-xl flex items-center justify-center text-xs text-slate-400 font-bold border-2 border-slate-200 border-dashed">Foto</div>
                             </td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $galeri['deskripsi'] }}
+                                {{ $galeri['title'] }}
                             </td>
                             <td class="py-5 px-4 align-top text-center">
                             <!-- Tombol Edit & Delete berdampingan -->
                             <div class="flex gap-2 justify-center">
-                                <button type="button" onclick="openEditGaleriModal('{{ addslashes($galeri['deskripsi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditGaleriModal({{$index}}, '{{ addslashes($galeri['title']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                                 <button type="button" onclick="openDeleteGaleriModal({{ $index }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
@@ -150,7 +143,6 @@
                             </div>
                         </td>
                         </tr>
-                            
                         @endforeach
                     </tbody>
                 </table>

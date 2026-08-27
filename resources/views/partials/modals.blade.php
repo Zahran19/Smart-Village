@@ -686,7 +686,7 @@
         document.getElementById('modalAddPotensi').classList.add('hidden');
     }
 
-    function openEditPotensiModal(judul, rangkuman) {
+    function openEditPotensiModal(id, judul, rangkuman) {
         document.getElementById('modalEditPotensi').classList.remove('hidden');
         document.getElementById('inputEditJudulPotensi').value = judul;
         document.getElementById('inputEditRangkumanPotensi').value = rangkuman;
@@ -714,7 +714,7 @@
         document.getElementById('modalAddGaleri').classList.add('hidden');
     }
 
-    function openEditGaleriModal(deskripsi) {
+    function openEditGaleriModal(id, deskripsi) {
         document.getElementById('modalEditGaleri').classList.remove('hidden');
         document.getElementById('inputEditDeskripsiGaleri').value = deskripsi;
         document.getElementById('inputEditFotoGaleri').value = ''; // Reset file input

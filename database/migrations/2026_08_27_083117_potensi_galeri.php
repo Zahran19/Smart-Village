@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('potensi_galeri', function (Blueprint $table) {
+        Schema::create('potensi_galeris', function (Blueprint $table) {
             $table->id();
             $table->text('type'); // ada 2 type: potensi and galeri
             $table->text('img');
