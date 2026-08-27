@@ -46,17 +46,22 @@ Route::middleware('auth')->group(function() {
     // POST Method
     Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
     Route::post('/admin/logout', [AdminController::class, 'logout']);
-    Route::post('/admin/pemerintah-desa', [PemDesController::class], 'addPemDes');
+    Route::post('/admin/pemerintah-desa', [PemDesController::class, 'addPemDes']);
+    Route::post('/admin/potensi', [PotensiGaleriController::class, 'addPotensi']);
+    Route::post('/admin/galeri', [PotensiGaleriController::class, 'addGaleri']);
     
     // PATCH Method
     Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
     Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
     Route::patch('/admin/sejarah-desa', [SejarahController::class, 'modifySejarah']);
-    Route::post('/admin/pemerintah-desa', [PemDesController::class], 'modifyPemDes');
+    Route::patch('/admin/pemerintah-desa', [PemDesController::class, 'modifyPemDes']);
+    Route::patch('/admin/potensi', [PotensiGaleriController::class, 'modifyPotensi']);
+    Route::patch('/admin/galeri', [PotensiGaleriController::class, 'modifyGaleri']);
+    Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);
 
     // DELETE Method
     Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
-    Route::post('/admin/pemerintah-desa', [PemDesController::class], 'removePemDes');
+    Route::delete('/admin/pemerintah-desa', [PemDesController::class,  'removePemDes']);
+    Route::post('/admin/potensi', [PotensiGaleriController::class,  'removePotensi']);
+    Route::post('/admin/galeri', [PotensiGaleriController::class, 'removeGaleri']);
 });
-
-Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);

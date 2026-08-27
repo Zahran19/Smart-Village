@@ -52,7 +52,7 @@
                                     <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
                                         <img src="{{ $item['profile_img'] ?? asset('images/default-avatar.jpg') }}" 
                                             alt="{{ $item['nama'] ?? 'Anggota' }}" 
-                                            class="w-full h-full object-cover">
+                                            class="w-full h-full">
                                     </div>
                                 </div>
                                 <h3 class="text-xl font-black text-[#272831] mb-1">{{ $item['nama'] ?? '' }}</h3>
