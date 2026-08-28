@@ -13,7 +13,7 @@ class PojokWargaSeeder extends Seeder
     public function run(): void
     {
         PojokWarga::create([
-            'img' => 'images/pojok_warga/default.jpg',
+            'img' => 'images/pojok_warga/default.svg',
             'title' => 'Draft Testing',
             'slug' => 'draft-testing',
             'short_desc' => 'Draft Short Description testing!',
@@ -23,7 +23,7 @@ class PojokWargaSeeder extends Seeder
         ]);
 
         PojokWarga::create([
-            'img' => 'images/pojok_warga/default.jpg',
+            'img' => 'images/pojok_warga/default.svg',
             'title' => 'Berita Testing Pertama',
             'slug' => 'berita-testing-pertama',
             'short_desc' => 'Ini adalah berita testing pertama untuk Pojok Warga.',
@@ -33,7 +33,7 @@ class PojokWargaSeeder extends Seeder
         ]);
 
         PojokWarga::create([
-            'img' => 'images/pojok_warga/default.jpg',
+            'img' => 'images/pojok_warga/default.svg',
             'title' => 'Berita Testing Terbaru',
             'slug' => 'berita-testing-terbaru',
             'short_desc' => 'Ini adalah berita testing terbaru.',

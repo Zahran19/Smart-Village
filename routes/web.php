@@ -23,8 +23,8 @@ Route::get('/beranda', [PageController::class, 'berandaPage'])->name('home');
 Route::get('/sejarah', [PageController::class, 'sejarahPage']);
 Route::get('/visi-misi', [PageController::class, 'visiMisiPage']);
 Route::get('/pemerintah-desa', [PageController::class, 'pemerintahDesaPage']);
-Route::get('/pojok-warga', [PageController::class, 'pojokWargaPage']);
-Route::get('/pojok-warga/detail', [PageController::class, 'pojokWargaDetailPage']);
+Route::get('/pojok-warga', [PageController::class, 'pojokWargaPage'])->name('pojok-warga.index');;
+Route::get('/pojok-warga/{slug}', [PageController::class, 'pojokWargaDetailPage'])->name('pojok-warga.detail');
 Route::get('/potensi-galeri', [PageController::class, 'potensiGaleriPage']);
 Route::get('/kontak', [PageController::class, 'kontakPage']);
 

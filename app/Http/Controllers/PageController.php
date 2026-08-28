@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SiteContent;
 use App\Models\PotensiGaleri;
+use App\Models\PojokWarga;
 
 class PageController extends Controller {
     // Index
@@ -59,22 +60,31 @@ class PageController extends Controller {
         return view('pemerintah-desa', compact('contents', 'fooder_contents'));
     }
     public function pojokWargaPage() {
-        $contents = SiteContent::where('page', 'pojok_warga')->get()->keyBy('key');
-        $fooder_contents = SiteContent::whereIn('page', ['kontak', 'beranda']) # footer and header contents
-            ->get()
-            ->groupBy('page')
-            ->map(fn ($contents) => $contents->keyBy('key'));
+        $pojok = PojokWarga::where('status', 'published')
+                    ->orderBy('date_released', 'desc')
+                    ->get();
 
-        return view('pojok-warga', compact('contents', 'fooder_contents'));
+        $latestNews = $pojok->take(2);
+        $archives   = $pojok->slice(2);
+
+        $fooder_contents = SiteContent::whereIn('page', ['kontak', 'beranda'])
+                            ->get()
+                            ->groupBy('page')
+                            ->map(fn($contents) => $contents->keyBy('key'));
+
+        return view('pojok-warga', compact('latestNews', 'archives', 'fooder_contents'));
     }
-    public function pojokWargaDetailPage() {
-        $contents = SiteContent::where('page', 'pojok_warga_detail')->get()->keyBy('key');
-        $fooder_contents = SiteContent::whereIn('page', ['kontak', 'beranda']) # footer and header contents
-            ->get()
-            ->groupBy('page')
-            ->map(fn ($contents) => $contents->keyBy('key'));
+    public function pojokWargaDetailPage($slug) {
+        $berita = PojokWarga::where('slug', $slug)
+                    ->where('status', 'published')
+                    ->firstOrFail();
 
-        return view('pojok-warga.detail', compact('contents', 'fooder_contents'));
+        $fooder_contents = SiteContent::whereIn('page', ['kontak', 'beranda'])
+                            ->get()
+                            ->groupBy('page')
+                            ->map(fn($contents) => $contents->keyBy('key'));
+
+        return view('pojok-warga.detail', compact('berita', 'fooder_contents'));
     }
     public function potensiGaleriPage() {
         $contents = PotensiGaleri::all()->groupBy('type');
