@@ -12,7 +12,7 @@
             <div class="bg-white px-8 py-6 border-b-2 border-slate-100 flex justify-between items-center z-10 relative">
                 <div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tight" id="modal-title-pesan">Semua Pesan Warga</h3>
-                    <p class="text-sm font-inter text-[#929397] mt-1">Daftar masukan dan keluhan dari pengunjung website.</p>
+                    <p class="text-sm font-inter text-[#929397] mt-1">Daftar masukan dan keluhan dari pengunjung website</p>
                 </div>
                 <button onclick="closeSemuaPesanModal()" class="text-slate-400 hover:text-red-500 bg-slate-50 hover:bg-red-50 p-3 rounded-full transition-colors focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
