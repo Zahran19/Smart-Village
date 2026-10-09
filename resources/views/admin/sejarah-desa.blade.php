@@ -26,18 +26,6 @@
             <!-- Ornamen Background Konten -->
             <div class="absolute top-0 right-0 w-96 h-96 bg-[#007540]/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-            <!-- Topbar profil -->
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6 relative z-10">
-                
-                <div class="w-full flex justify-end">
-                    <!-- Tombol Edit Profil -->
-                    <button class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1">
-                        Edit Profil
-                    </button>
-                </div>
-
-            </header>
-
             <!-- Judul Halaman -->
             <div class="mb-12 relative z-10">
                 <h4 class="text-[#007540] font-inter font-extrabold uppercase tracking-[0.4em] text-xs mb-2">

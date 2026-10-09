@@ -29,11 +29,11 @@
             <!-- Topbar profile -->
             <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6 relative z-10">
                 
-                <div class="w-full flex justify-end">
+                <div class="w-full flex justify-end relative z-50">
                     <!-- Tombol Edit Profil -->
-                    <button class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1">
+                    <a href="{{ route('profile_admin') }}" class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1">
                         Edit Profil
-                    </button>
+                    </a>
                 </div>
                 
 
@@ -52,29 +52,15 @@
 
             <!-- Grid Kartu Statistik -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 relative z-10">
-                
+            
                 <!-- Kartu 1 -->
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
-                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#007540]/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                    <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Total Penduduk</p>
-                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">1.000</h3>
-                </div>
-                
-                <!-- Kartu 2 -->
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
-                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#FFDC2E]/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                    <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Total Kartu Keluarga</p>
-                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">800</h3>
-                </div>
-                
-                <!-- Kartu 3 -->
                 <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
                     <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#007540]/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
                     <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Total Berita</p>
                     <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">10</h3>
                 </div>
                 
-                <!-- Kartu 4 -->
+                <!-- Kartu 2 -->
                 <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
                     <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#FFDC2E]/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
                     <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Kunjungan Web</p>

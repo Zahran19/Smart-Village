@@ -143,7 +143,6 @@
             
             <!-- Form Khusus Sejarah Buat Temen Lu -->
             <form action="{{ url('/admin/sejarah-desa') }}" method="POST" id="formEditSejarah">
-                <!-- Temen lu tinggal nambahin @csrf dan @method('PATCH') di sini -->
                 @csrf
                 @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
@@ -331,22 +330,67 @@
 
 {{-- crud pojok warga --}}
 
+{{-- modal tambah berita (pojok warga) --}}
+<div id="modalAddBerita" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-add-berita" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddBeritaModal()"></div>
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
+            <form action="#" method="POST">
+                
+                <!-- UPDATE DI SINI: Tambahin max-h-[65vh] dan overflow-y-auto -->
+                <div class="bg-white px-8 pb-8 pt-8 max-h-[65vh] overflow-y-auto custom-scrollbar">
+                    <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-berita">Tambah Berita Baru</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul</label>
+                        <input type="text" name="judul" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Masukkan judul berita..." required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Deskripsi Singkat</label>
+                        <textarea name="deskripsi_singkat" rows="2" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis deskripsi singkat..." required></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Konten Berita</label>
+                        <textarea name="konten" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis isi konten di sini..." required></textarea>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Status</label>
+                        <select name="status" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors cursor-pointer" required>
+                            <option value="" disabled selected>Pilih status tayang...</option>
+                            <option value="Draft">Draft</option>
+                            <option value="Release">Release</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- UPDATE DI SINI: Tambahin border-t-2 biar ada garis batas rapi pas di-scroll -->
+                <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem] border-t-2 border-slate-100 relative z-10">
+                    <button type="button" onclick="closeAddBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">Batal</button>
+                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Edit Berita (Pojok Warga) -->
 <div id="modalBerita" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-berita" role="dialog" aria-modal="true">
     
     <!-- Background Gelap -->
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeBeritaModal()"></div>
 
-    <!-- Posisi Modal di Tengah -->
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
+            <!-- Form -->
             <form action="{{ url('/admin/pojok-warga') }}" method="POST" id="formEditBerita">
-                <!-- Nanti temen lu tinggal nambahin @csrf dan @method('PATCH') di sini -->
                 @csrf
                 @method('PATCH')
-                <div class="bg-white px-8 pb-8 pt-8">
+                
+                <div class="bg-white px-8 pb-8 pt-8 max-h-[65vh] overflow-y-auto custom-scrollbar">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-berita">Edit Berita Warga</h3>
                     
                     <!-- Input Judul Berita -->
@@ -355,15 +399,30 @@
                         <input type="text" name="judul" id="inputJudulBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
                     </div>
 
-                    <!-- Textarea Isi Berita -->
+                    <!-- KOLOM BARU: Deskripsi Singkat -->
+                    <div class="mb-4">
+                        <label for="inputDeskripsiBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Deskripsi Singkat</label>
+                        <textarea name="deskripsi_singkat" id="inputDeskripsiBerita" rows="2" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                    </div>
+
+                    <!-- Textarea Isi Berita  -->
                     <div class="mb-4">
                         <label for="inputIsiBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Berita</label>
-                        <textarea name="isi" id="inputIsiBerita" rows="6" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="isi" id="inputIsiBerita" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                    </div>
+
+                    <!-- KOLOM BARU: Status (Draft/Release) -->
+                    <div class="mb-2">
+                        <label for="inputStatusBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Status</label>
+                        <select name="status" id="inputStatusBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors cursor-pointer" required>
+                            <option value="Draft">Draft</option>
+                            <option value="Release">Release</option>
+                        </select>
                     </div>
                 </div>
                 
                 <!-- Tombol Action -->
-                <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
+                <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem] border-t-2 border-slate-100 relative z-10">
                     <button type="button" onclick="closeBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">
                         Batal
                     </button>
@@ -373,6 +432,35 @@
                 </div>
             </form>
 
+        </div>
+    </div>
+</div>
+
+{{-- modal delete berita (pojok warga) --}}
+<div id="modalDeleteBerita" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-delete-berita" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteBeritaModal()"></div>
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-center shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
+            <form action="#" method="POST">
+                <!-- Tambahin @csrf dan @method('DELETE') di sini -->
+                <input type="hidden" name="judul" id="inputDeleteJudul">
+                <div class="bg-white px-8 pb-6 pt-10">
+                    <!-- Icon Warning (Tong Sampah / Alert) -->
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-100 mb-6">
+                        <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-inter font-black text-[#272831] mb-2">Hapus Berita?</h3>
+                    <p class="text-sm font-inter text-[#929397] leading-relaxed">
+                        Yakin nih mau ngapus berita <span id="textDeleteJudul" class="font-bold text-[#272831]"></span>? Data yang udah dihapus nggak bisa dibalikin lagi lho.
+                    </p>
+                </div>
+                <div class="bg-slate-50 px-8 py-6 flex justify-center gap-3 rounded-b-[2rem]">
+                    <button type="button" onclick="closeDeleteBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none w-full">Batal</button>
+                    <button type="submit" class="px-6 py-3 bg-red-500 border-2 border-red-500 text-white font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-red-600 hover:border-red-600 transition-all shadow-md hover:-translate-y-0.5 focus:outline-none w-full">Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -602,6 +690,44 @@
     </div>
 </div>
 
+{{-- ========================================== --}}
+
+{{-- modal confirmation log out admin --}}
+<div id="modalLogout" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-logout" role="dialog" aria-modal="true">
+    
+    <!-- Background Gelap -->
+    <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeLogoutModal()"></div>
+
+    <!-- Posisi Modal di Tengah -->
+    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-center shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
+            
+            <div class="bg-white px-8 pb-6 pt-10">
+                <!-- Icon Warning Merah -->
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-100 mb-6">
+                    <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-inter font-black text-[#272831] mb-2">Konfirmasi Log Out</h3>
+                <p class="text-sm font-inter text-[#929397] leading-relaxed">
+                    Apakah Anda yakin ingin keluar dari sistem admin Desa Cimulang? Sesi Anda akan diakhiri!
+                </p>
+            </div>
+            
+            <!-- Tombol Aksi Modal -->
+            <div class="bg-slate-50 px-8 py-6 flex justify-center gap-3 rounded-b-[2rem]">
+                <button type="button" onclick="closeLogoutModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none w-full">
+                    Batal
+                </button>
+                <button type="button" onclick="submitLogoutForm()" class="px-6 py-3 bg-red-500 border-2 border-red-500 text-white font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-red-600 hover:border-red-600 transition-all shadow-md hover:-translate-y-0.5 focus:outline-none w-full">
+                    Ya, Keluar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <script>
     // func for crud visi misi
@@ -705,6 +831,14 @@
 
     // func for pojok warga
 
+    // for tambah pojok warga
+    function openAddBeritaModal() {
+        document.getElementById('modalAddBerita').classList.remove('hidden');
+    }
+    function closeAddBeritaModal() {
+        document.getElementById('modalAddBerita').classList.add('hidden');
+    }
+
     // for edit pojok warga
     function openBeritaModal(judul, isi) {
         // Tunjukin modal berita
@@ -718,6 +852,16 @@
     function closeBeritaModal() {
         // Sembunyiin modal berita
         document.getElementById('modalBerita').classList.add('hidden');
+    }
+
+    // for delete pojok warga
+    function openDeleteBeritaModal(judul) {
+        document.getElementById('inputDeleteJudul').value = judul;
+        document.getElementById('textDeleteJudul').innerText = '"' + judul + '"';
+        document.getElementById('modalDeleteBerita').classList.remove('hidden');
+    }
+    function closeDeleteBeritaModal() {
+        document.getElementById('modalDeleteBerita').classList.add('hidden');
     }
 
     // ==================================================================
@@ -796,5 +940,20 @@
     function closeEditKontakModal() {
         // Sembunyiin modal kontak
         document.getElementById('modalEditKontak').classList.add('hidden');
+    }
+
+    // =================================
+
+    // for log out confirmation
+    function openLogoutModal() {
+        document.getElementById('modalLogout').classList.remove('hidden');
+    }
+
+    function closeLogoutModal() {
+        document.getElementById('modalLogout').classList.add('hidden');
+    }
+
+    function submitLogoutForm() {
+        document.getElementById('logout-form').submit();
     }
 </script>

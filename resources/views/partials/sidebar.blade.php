@@ -61,24 +61,25 @@
 
         <!-- Pojok Warga -->
         <a href="{{ url('/admin/pojok-warga') }}" 
-           class="{{ request()->is('admin/pojok-warga') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
+            class="{{ request()->is('admin/pojok-warga') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
             Pojok Warga
         </a>
         
         <!-- Potensi & Galeri -->
         <a href="{{ url('/admin/potensi-galeri') }}" 
-           class="{{ request()->is('admin/potensi-galeri') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
+            class="{{ request()->is('admin/potensi-galeri') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
             Potensi & Galeri
         </a>
         
         <!-- Kontak -->
         <a href="{{ url('/admin/kontak') }}" 
-           class="{{ request()->is('admin/kontak') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
+            class="{{ request()->is('admin/kontak') ? 'bg-[#007540] text-white shadow-lg shadow-[#007540]/30 hover:scale-105' : 'text-[#929397] hover:text-[#007540] hover:bg-slate-50' }} px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
             Kontak
         </a>
-        <!-- Log Out -->
-        <a href="{{ url('/admin/logout') }}"
-        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+
+        <!-- Log Out (Trigger Modal) -->
+        <a href="#" 
+        onclick="openLogoutModal()"
         class="w-full block mt-2 text-left text-[#929397] hover:text-red-500 hover:bg-red-50 px-6 py-4 rounded-full font-inter font-black text-xs uppercase tracking-widest transition-all">
             Log Out
         </a>
@@ -90,3 +91,5 @@
     <!-- Ornamen Background Sidebar -->
     <div class="absolute bottom-0 left-0 w-40 h-40 bg-[#FFDC2E]/20 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2 -z-10"></div>
 </aside>
+
+@include('partials.modals')

@@ -26,18 +26,6 @@
             <!-- Ornamen Background Konten -->
             <div class="absolute top-0 right-0 w-96 h-96 bg-[#007540]/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-            <!-- Topbar profile -->
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6 relative z-10">
-                
-                <div class="w-full flex justify-end">
-                    <!-- Tombol Edit Profil -->
-                    <button class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1">
-                        Edit Profil
-                    </button>
-                </div>
-
-            </header>
-
             <!-- Judul Halaman -->
             <div class="mb-12 relative z-10">
                 <h4 class="text-[#007540] font-inter font-extrabold uppercase tracking-[0.4em] text-xs mb-2">
@@ -52,6 +40,12 @@
             <!-- Tabel Data Pojok Warga -->
             <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 relative z-10 w-full overflow-x-auto mb-10">
                 
+                <div class="w-full flex justify-end mb-6">
+                    <button onclick="openAddBeritaModal()" class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1 focus:outline-none">
+                        Tambah Berita Baru
+                    </button>
+                </div>
+
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b-2 border-slate-100">
@@ -84,9 +78,15 @@
                             
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button onclick="openBeritaModal('{{ addslashes($berita['judul']) }}', '{{ addslashes($berita['isi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <div class="flex flex-row items-center justify-center gap-3">
+                                    <button onclick="openBeritaModal('{{ addslashes($berita['judul']) }}', '{{ addslashes($berita['isi']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
+
+                                <button onclick="openDeleteBeritaModal('{{ addslashes($berita['judul']) }}')" class="whitespace-nowrap px-6 py-2.5 bg-transparent border-2 border-red-500 text-red-500 font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-red-500 hover:text-white transition-colors focus:outline-none">
+                                    Delete
+                                </button>
+                                </div>
                             </td>
                         </tr>
                             

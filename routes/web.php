@@ -10,6 +10,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\PemDesController;
 use App\Http\Controllers\PotensiGaleriController;
+use App\Http\Controllers\ProfileController;
 
 // GET Method
 // public routes
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/pojok-warga', [AdminController::class, 'pojokWargaPage']);
     Route::get('/admin/potensi-galeri', [AdminController::class, 'potensiGaleriPage']);
     Route::get('/admin/kontak', [AdminController::class, 'kontakPage']);
+    Route::get('admin/profile', [ProfileController::class, 'index'])->name('profile_admin');
 
     // POST Method
     Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
