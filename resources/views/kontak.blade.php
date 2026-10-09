@@ -92,8 +92,8 @@
                             <input type="text" placeholder="Masukkan nama..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all">
                         </div>
                         <div>
-                            <label class="block text-desa-dark font-bold text-xs uppercase tracking-widest mb-2">Email / Telepon</label>
-                            <input type="text" placeholder="Masukkan kontak..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all">
+                            <label class="block text-desa-dark font-bold text-xs uppercase tracking-widest mb-2">No Telepon</label>
+                            <input type="text" placeholder="Masukkan No Telepon..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all">
                         </div>
                         <div>
                             <label class="block text-desa-dark font-bold text-xs uppercase tracking-widest mb-2">Isi Pesan</label>

@@ -132,7 +132,7 @@
                 <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 h-[450px] flex flex-col">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Pesan Warga</h3>
-                        <span class="bg-[#FFDC2E] text-[#007540] text-[10px] font-inter font-black px-3 py-1 rounded-full">3 Baru</span>
+                        {{-- <span class="bg-[#FFDC2E] text-[#007540] text-[10px] font-inter font-black px-3 py-1 rounded-full">3 Baru</span> --}}
                     </div>
                     
                     <div class="flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar">
@@ -155,7 +155,7 @@
                         @endforeach
                     </div>
                     
-                    <button class="mt-6 w-full py-4 border-2 border-slate-100 hover:border-[#007540] hover:bg-[#007540] hover:text-white rounded-[1.5rem] text-[10px] text-[#272831] font-inter font-black uppercase tracking-[0.2em] transition-all">
+                    <button onclick="openSemuaPesanModal()" type="button" class="mt-6 w-full py-4 border-2 border-slate-100 hover:border-[#007540] hover:bg-[#007540] hover:text-white rounded-[1.5rem] text-[10px] text-[#272831] font-inter font-black uppercase tracking-[0.2em] transition-all">
                         Lihat Semua
                     </button>
                 </div>
@@ -166,3 +166,5 @@
 
 </body>
 </html>
+
+@include('partials.dashboard_modal')
