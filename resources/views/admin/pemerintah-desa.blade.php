@@ -122,57 +122,6 @@
                 </tbody>
                 </table>
             </div>
-
-            <!-- Tabel 2: Sekilas tentang Desa -->
-            <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 relative z-10 w-full overflow-x-auto">
-                
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Sekilas tentang Desa</h3>
-                </div>
-
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b-2 border-slate-100">
-                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-16">No</th>
-                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-64">Kategori</th>
-                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap">Jumlah</th>
-                            <th class="py-5 px-4 text-[#929397] font-inter font-black text-[10px] uppercase tracking-widest whitespace-nowrap w-32">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Looping data Sekilas Desa -->
-                        @foreach([
-                            ['kategori' => 'Luas Wilayah', 'jumlah' => '500 Ha'],
-                            ['kategori' => 'Jumlah Dusun', 'jumlah' => '5 Dusun']
-                        ] as $index => $sekilas)
-                            
-                        <!-- Baris tabel -->
-                        <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
-                            
-                            <!-- Nomor Urut -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-middle">{{ $index + 1 }}</td>
-                            
-                            <!-- Kategori -->
-                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-middle">{{ $sekilas['kategori'] }}</td>
-                            
-                            <!-- Jumlah -->
-                            <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-middle">
-                                {{ $sekilas['jumlah'] }}
-                            </td>
-                            
-                            <!-- Tombol Action -->
-                            <td class="py-5 px-4 align-middle">
-                                <button class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                            
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
         </main>
     </div>
 

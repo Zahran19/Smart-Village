@@ -164,9 +164,6 @@
                 <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" 
                      class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <svg class="w-6 h-6 text-desa-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
                 </div>
             </div>
 
@@ -174,9 +171,6 @@
                 <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" 
                      class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <svg class="w-6 h-6 text-desa-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
                 </div>
             </div>
 
@@ -184,9 +178,6 @@
                 <img src="https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=800&q=80" 
                      class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <svg class="w-6 h-6 text-desa-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
                 </div>
             </div>
 
@@ -194,9 +185,6 @@
                 <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
                          class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <svg class="w-6 h-6 text-desa-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
                 </div>
             </div>
         </div>
