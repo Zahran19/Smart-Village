@@ -52,5 +52,27 @@
 
     </div>
 
+    <!-- Pastiin CDN SweetAlert dipanggil di halaman login -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Login Gagal!',
+            text: "{{ $errors->first() }}", 
+            showConfirmButton: false,
+            timer: 3000, 
+            timerProgressBar: true, 
+            background: '#ffffff',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50 shadow-2xl',
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]'
+            }
+        });
+    </script>
+    @endif
+
 </body>
 </html>
