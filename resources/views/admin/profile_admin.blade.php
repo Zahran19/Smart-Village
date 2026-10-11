@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profil Admin - Desa Cimulang</title>
+    <link rel="icon" href="{{ asset('images/fav-icon.png') }}" type="image/png">
+
     
     <!-- Load Tailwind & Font Inter -->
     <script src="https://cdn.tailwindcss.com"></script>

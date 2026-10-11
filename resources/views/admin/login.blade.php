@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - Desa Cimulang</title>
+    <link rel="icon" href="{{ asset('images/fav-icon.png') }}" type="image/png">
+
     
     <!-- Load Tailwind & Font Inter -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,13 +15,18 @@
     </style>
 </head>
 
-<!-- Body pake background gambar sawah/pedesaan -->
 <body class="flex justify-center items-center min-h-screen m-0 bg-cover bg-center bg-no-repeat relative" style="background-image: url('{{ asset('images/admin_login.jpg') }}');">
 
-    <!-- Overlay Gelap + Blur biar backgroundnya elegan dan card tetep kebaca -->
     <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] z-0"></div>
 
-    <!-- Card Login (z-10 biar ada di atas overlay) -->
+    {{-- button back to beranda --}}
+    <a href="/" class="absolute top-8 right-8 z-50 flex items-center gap-2 bg-white/90 backdrop-blur-md border-2 border-white/50 px-6 py-3 rounded-full shadow-2xl text-[#007540] hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest transition-all duration-300 group hover:-translate-x-1 focus:outline-none">
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Kembali ke Beranda
+    </a>
+
     <div class="bg-white p-10 md:p-12 rounded-[3rem] shadow-2xl border-[8px] border-white/80 w-full max-w-md relative z-10 transition-all hover:border-white">
         
         <!-- Header Login -->
@@ -52,7 +59,6 @@
 
     </div>
 
-    <!-- Pastiin CDN SweetAlert dipanggil di halaman login -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if($errors->any())

@@ -14,7 +14,6 @@
 </head>
 <body class="bg-slate-50 font-inter text-slate-800 antialiased overflow-hidden">
 
-    <!-- Wrapper Utama: Dikunci tinggi 100vh dan tidak boleh overflow keluar window -->
     <div class="flex h-screen w-full overflow-hidden">
         
         <!-- ================= MEMANGGIL SIDEBAR MASTER ================= -->
@@ -55,7 +54,6 @@
                     <!-- Input Judul Hero -->
                     <div>
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul Utama (Title)</label>
-                        <!-- Value diisi dummy sesuai frontend, nanti ganti pake variabel dari DB -->
                         <input type="text" name="hero_title" value="Smart Village Desa Cimulang" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
                     </div>
 
@@ -69,7 +67,6 @@
                     <div>
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Gambar Background Hero</label>
                         <div class="flex items-center gap-4">
-                            <!-- Preview Kotak Kecil (Opsional biar UI keren) -->
                             <div class="w-24 h-16 bg-slate-200 rounded-xl overflow-hidden shrink-0 border-2 border-slate-100 shadow-sm">
                                 <img src="{{ asset('images/hero-bg.jpg') }}" alt="Preview BG" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=200&q=80'">
                             </div>
@@ -92,6 +89,46 @@
 
         </main>
     </div>
+
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- success notif --}}
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#007540', 
+            background: '#ffffff',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50', 
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
+
+    {{-- error notif --}}
+    @if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#ef4444', 
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
 
 </body>
 </html>
