@@ -1,22 +1,22 @@
-<footer class="bg-[#007540] text-white pt-20 pb-10 relative overflow-hidden">
+<footer class="bg-[#007540] text-white pt-12 md:pt-20 pb-10 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-desa-yellow to-transparent"></div>
     
-    <div class="container mx-auto px-8 md:px-24">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+    <div class="container mx-auto px-6 sm:px-8 md:px-24">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-16">
             
-            <div class="md:col-span-4 space-y-6">
+            <div class="md:col-span-4 space-y-4 sm:space-y-6">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-12 h-12 object-contain brightness-110">
-                    <span class="text-2xl font-black tracking-tighter capitalize">{{ $fooder_contents['beranda']['title']->value }}</span>
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-10 h-10 sm:w-12 sm:h-12 object-contain brightness-110">
+                    <span class="text-xl sm:text-2xl font-black tracking-tighter capitalize">{{ $fooder_contents['beranda']['title']->value }}</span>
                 </div>
-                <p class="text-white text-sm leading-relaxed text-left">
+                <p class="text-white text-xs sm:text-sm leading-relaxed text-left">
                     {{ $fooder_contents['beranda']['description']->value }}
                 </p>
             </div>
 
-            <div class="md:col-span-2 space-y-6">
-                <h4 class="text-sm font-black uppercase tracking-widest text-desa-yellow">Tautan Cepat</h4>
-                <ul class="space-y-4 text-sm uppercase font-bold">
+            <div class="md:col-span-2 space-y-4 sm:space-y-6">
+                <h4 class="text-xs sm:text-sm font-black uppercase tracking-widest text-desa-yellow">Tautan Cepat</h4>
+                <ul class="space-y-3 sm:space-y-4 text-xs sm:text-sm uppercase font-bold">
                     <li>
                         <a href="{{ url('/') }}" class="transition-colors duration-300 {{ request()->is('/') ? 'text-desa-yellow' : 'text-white hover:text-desa-yellow' }}">
                             Beranda
@@ -72,16 +72,16 @@
                 </ul>
             </div>
 
-            <div class="md:col-span-3 space-y-6">
-                <h4 class="text-sm font-black uppercase tracking-widest text-desa-yellow">Kontak Kami</h4>
-                <ul class="space-y-4 text-sm text-white"> 
+            <div class="md:col-span-3 space-y-4 sm:space-y-6">
+                <h4 class="text-xs sm:text-sm font-black uppercase tracking-widest text-desa-yellow">Kontak Kami</h4>
+                <ul class="space-y-4 text-xs sm:text-sm text-white"> 
                     <li>
-                        <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($fooder_contents['kontak']['alamat']->value) }}" target="_blank" class="flex items-center gap-3 group transition-colors duration-300 hover:text-desa-yellow">
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($fooder_contents['kontak']['alamat']->value) }}" target="_blank" class="flex items-start gap-3 group transition-colors duration-300 hover:text-desa-yellow">
                             <svg class="w-5 h-5 shrink-0 text-desa-yellow transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            <span class="font-bold pt-1 leading-snug">{{ $fooder_contents['kontak']['alamat']->value }}</span>
+                            <span class="font-bold pt-0.5 leading-snug">{{ $fooder_contents['kontak']['alamat']->value }}</span>
                         </a>
                     </li>
 
@@ -99,16 +99,16 @@
                             <svg class="w-5 h-5 shrink-0 text-desa-yellow transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
-                            <span class="font-bold pt-0.5">{{ $fooder_contents['kontak']['email']->value }}</span>
+                            <span class="font-bold pt-0.5 break-all sm:break-normal">{{ $fooder_contents['kontak']['email']->value }}</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="md:col-span-3 space-y-10"> 
-                <div class="space-y-6">
-                    <h4 class="text-sm font-black uppercase tracking-widest text-desa-yellow">Ikuti Kami</h4>
-                    <ul class="space-y-4 text-sm font-bold">
+            <div class="md:col-span-3 space-y-8 sm:space-y-10"> 
+                <div class="space-y-4 sm:space-y-6">
+                    <h4 class="text-xs sm:text-sm font-black uppercase tracking-widest text-desa-yellow">Ikuti Kami</h4>
+                    <ul class="space-y-4 text-xs sm:text-sm font-bold">
                         <li>
                             <a href="https://www.instagram.com/{{ $fooder_contents['kontak']['instagram']->value ?? '-' }}/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group transition-colors duration-300 hover:text-desa-yellow">
                                 <svg class="w-5 h-5 shrink-0 text-desa-yellow transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
@@ -122,8 +122,8 @@
             </div>
         </div>
 
-        <div class="border-t border-white/30 pt-8 flex justify-center items-center">
-            <p class="text-[10px] font-black capitalize tracking-[0.3em] text-white text-center">
+        <div class="border-t border-white/30 pt-6 sm:pt-8 flex justify-center items-center">
+            <p class="text-[9px] sm:text-[10px] font-black capitalize tracking-[0.2em] sm:tracking-[0.3em] text-white text-center px-4">
                 © 2026 {{ $fooder_contents['beranda']['title']->value }}. All rights reserved.
             </p>
         </div>

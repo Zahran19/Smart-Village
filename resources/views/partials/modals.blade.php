@@ -10,19 +10,16 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu Nanti -->
             <form action="{{ url('/admin/misi') }}" method="POST" id="formEditKonten">
                 @csrf
                 @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title">Edit Konten</h3>
                     
-                    <!-- Hidden input biar temen lu tau yang lagi diedit itu Misi ke-berapa atau Visi -->
                     <input type="hidden" name="id" id="inputId" value="">
                     
                     <div class="mb-4">
                         <label for="inputMisi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Konten</label>
-                        <!-- Textarea buat ngedit -->
                         <textarea name="misi" id="inputMisi" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik isi di sini..." required></textarea>
                     </div>
                 </div>
@@ -32,7 +29,6 @@
                     <button type="button" onclick="closeModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">
                         Batal
                     </button>
-                    <!-- Button type submit buat ngirim API -->
                     <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">
                         Simpan
                     </button>
@@ -53,7 +49,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
             <form action="{{ url('/admin/misi') }}" method="POST" id="formAddMisi">
                 @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
@@ -61,7 +56,6 @@
                     
                     <div class="mb-4">
                         <label for="inputIsiBaru" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Misi</label>
-                        <!-- Perhatiin name="misi" ini udah gua sesuaikan sama controller temen lu -->
                         <textarea name="misi" id="inputIsiBaru" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik misi baru di sini..." required></textarea>
                     </div>
                 </div>
@@ -88,11 +82,9 @@
     <!-- Background Gelap -->
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteModal()"></div>
 
-    <!-- Posisi Modal di Tengah (Lebih kecil dari modal edit) -->
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
             <form action="{{ url('/admin/misi') }}" method="POST" id="formDeleteMisi">
                 @csrf
                 @method('DELETE')
@@ -107,7 +99,7 @@
                     </div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-2 tracking-tighter" id="modal-title-delete">Hapus Misi?</h3>
                     <p class="text-sm font-inter text-[#929397]">
-                        Apakah kamu yakin ingin menghapus misi ini? Data yang sudah dihapus tidak dapat dikembalikan.
+                        Apakah kamu yakin ingin menghapus misi ini? misi yang sudah dihapus tidak dapat dikembalikan!
                     </p>
                 </div>
                 
@@ -141,14 +133,12 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Khusus Sejarah Buat Temen Lu -->
             <form action="{{ url('/admin/sejarah-desa') }}" method="POST" id="formEditSejarah">
                 @csrf
                 @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-sejarah">Edit Sejarah</h3>
                     
-                    <!-- Hidden input biar temen lu tau baris mana yang lagi diedit -->
                     <input type="hidden" name="key" id="inputKeySejarah" value="">
                     
                     <div class="mb-4">
@@ -185,7 +175,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
             <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" enctype="multipart/form-data" id="formAddPerangkat">
                 @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
@@ -237,7 +226,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu (Wajib ada enctype buat upload foto) -->
             <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" enctype="multipart/form-data" id="formEditPerangkat">
                 @csrf
                 @method('PATCH')
@@ -306,7 +294,7 @@
                     </div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-2 tracking-tighter" id="modal-title-delete-perangkat">Hapus Perangkat Desa?</h3>
                     <p class="text-sm font-inter text-[#929397]">
-                        Apakah kamu yakin ingin menghapus data perangkat desa ini? Data yang sudah dihapus tidak dapat dikembalikan.
+                        Apakah kamu yakin ingin menghapus data perangkat desa ini? Data yang sudah dihapus tidak dapat dikembalikan!
                     </p>
                 </div>
                 
@@ -337,7 +325,6 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             <form action="#" method="POST">
                 
-                <!-- UPDATE DI SINI: Tambahin max-h-[65vh] dan overflow-y-auto -->
                 <div class="bg-white px-8 pb-8 pt-8 max-h-[65vh] overflow-y-auto custom-scrollbar">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-berita">Tambah Berita Baru</h3>
                     
@@ -366,7 +353,6 @@
                     </div>
                 </div>
                 
-                <!-- UPDATE DI SINI: Tambahin border-t-2 biar ada garis batas rapi pas di-scroll -->
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem] border-t-2 border-slate-100 relative z-10">
                     <button type="button" onclick="closeAddBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">Batal</button>
                     <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">Simpan</button>
@@ -442,7 +428,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-center shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
             <form action="#" method="POST">
-                <!-- Tambahin @csrf dan @method('DELETE') di sini -->
                 <input type="hidden" name="judul" id="inputDeleteJudul">
                 <div class="bg-white px-8 pb-6 pt-10">
                     <!-- Icon Warning (Tong Sampah / Alert) -->
@@ -453,7 +438,7 @@
                     </div>
                     <h3 class="text-xl font-inter font-black text-[#272831] mb-2">Hapus Berita?</h3>
                     <p class="text-sm font-inter text-[#929397] leading-relaxed">
-                        Yakin nih mau ngapus berita <span id="textDeleteJudul" class="font-bold text-[#272831]"></span>? Data yang udah dihapus nggak bisa dibalikin lagi lho.
+                        Apakah kamu ingin menghapus berita <span id="textDeleteJudul" class="font-bold text-[#272831]"></span>? berita yang sudah di hapus tidak bisa di kembalikan!
                     </p>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-center gap-3 rounded-b-[2rem]">
@@ -469,7 +454,7 @@
 
 {{-- for crud potensi & galeri --}}
 
-<!-- 1. Modal Tambah Potensi -->
+<!-- Modal Tambah Potensi -->
 <div id="modalAddPotensi" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-add-potensi" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddPotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -500,7 +485,7 @@
     </div>
 </div>
 
-<!-- 2. Modal Edit Potensi -->
+<!-- Modal Edit Potensi -->
 <div id="modalEditPotensi" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-edit-potensi" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditPotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -533,7 +518,7 @@
     </div>
 </div>
 
-<!-- 3. Modal Delete Potensi -->
+<!-- Modal Delete Potensi -->
 <div id="modalDeletePotensi" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-delete-potensi" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeletePotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -549,7 +534,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-2 tracking-tighter">Hapus Potensi?</h3>
-                    <p class="text-sm font-inter text-[#929397]">Yakin ingin menghapus data potensi desa ini? Data tidak dapat dikembalikan.</p>
+                    <p class="text-sm font-inter text-[#929397]">Yakin ingin menghapus data potensi desa ini? potensi yang di hapus tidak dapat dikembalikan!</p>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-center gap-3 rounded-b-[2rem]">
                     <button type="button" onclick="closeDeletePotensiModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none w-full">Batal</button>
@@ -563,7 +548,7 @@
 
 <!-- ================= MODAL GALERI DESA ================= -->
 
-<!-- 1. Modal Tambah Galeri -->
+<!-- Modal Tambah Galeri -->
 <div id="modalAddGaleri" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-add-galeri" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -590,7 +575,7 @@
     </div>
 </div>
 
-<!-- 2. Modal Edit Galeri -->
+<!-- Modal Edit Galeri -->
 <div id="modalEditGaleri" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-edit-galeri" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -619,7 +604,7 @@
     </div>
 </div>
 
-<!-- 3. Modal Delete Galeri -->
+<!-- Modal Delete Galeri -->
 <div id="modalDeleteGaleri" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-delete-galeri" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
