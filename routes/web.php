@@ -11,6 +11,8 @@ use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\PemDesController;
 use App\Http\Controllers\PotensiGaleriController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\PojokWargaController;
 
 // GET Method
 // public routes
@@ -28,6 +30,7 @@ Route::get('/pojok-warga', [PageController::class, 'pojokWargaPage'])->name('poj
 Route::get('/pojok-warga/{slug}', [PageController::class, 'pojokWargaDetailPage'])->name('pojok-warga.detail');
 Route::get('/potensi-galeri', [PageController::class, 'potensiGaleriPage']);
 Route::get('/kontak', [PageController::class, 'kontakPage']);
+Route::post('/kontak/kirim-pesan', [KontakController::class, 'kirimPesan'])->name('kontak.kirim-pesan');
 
 // Admin Routes
 Route::get('/admin/login', [AdminController::class, 'loginPage'])->name('login');
@@ -41,12 +44,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/visi-misi', [AdminController::class, 'visiMisiPage']);
     Route::get('/admin/sejarah-desa', [AdminController::class, 'sejarahDesaPage']);
     Route::get('/admin/pemerintah-desa', [AdminController::class, 'pemerintahDesaPage']);
-    Route::get('/admin/pojok-warga', [AdminController::class, 'pojokWargaPage']);
+    Route::get('/admin/pojok-warga', [AdminController::class, 'pojokWargaPage'])->name('admin.pojok-warga');
     Route::get('/admin/potensi-galeri', [AdminController::class, 'potensiGaleriPage']);
-    Route::get('/admin/kontak', [AdminController::class, 'kontakPage']);
-    Route::get('admin/profile', [ProfileController::class, 'index'])->name('profile_admin');
+    Route::get('/admin/kontak', [AdminController::class, 'kontakPage'])->name('admin.kontak');
+    Route::get('/admin/profile', [ProfileController::class, 'index'])->name('profile_admin');
+    Route::put('/admin/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::post('/admin/profile', [ProfileController::class, 'update']);
 
     // POST Method
+    Route::post('/admin/pojok-warga', [PojokWargaController::class, 'addPojokWarga'])->name('admin.pojok-warga.store');
     Route::post('/admin/misi', [VisiMisiController::class, 'addMisi']);
     Route::post('/admin/logout', [AdminController::class, 'logout']);
     Route::post('/admin/pemerintah-desa', [PemDesController::class, 'addPemDes']);
@@ -54,15 +60,22 @@ Route::middleware('auth')->group(function() {
     Route::post('/admin/galeri', [PotensiGaleriController::class, 'addGaleri']);
     
     // PATCH Method
+    Route::patch('/admin/pojok-warga', [PojokWargaController::class, 'modifyPojokWarga'])->name('admin.pojok-warga.update');
+    Route::post('/admin/pojok-warga/update', [PojokWargaController::class, 'modifyPojokWarga']);
+    Route::patch('/admin/beranda/update-hero', [BerandaController::class, 'updateHero'])->name('admin.beranda.update-hero');
+    Route::post('/admin/beranda/update-hero', [BerandaController::class, 'updateHero']);
     Route::patch('/admin/visi', [VisiMisiController::class, 'modifyVisi']);
     Route::patch('/admin/misi', [VisiMisiController::class, 'modifyMisi']);
     Route::patch('/admin/sejarah-desa', [SejarahController::class, 'modifySejarah']);
     Route::patch('/admin/pemerintah-desa', [PemDesController::class, 'modifyPemDes']);
     Route::patch('/admin/potensi', [PotensiGaleriController::class, 'modifyPotensi']);
     Route::patch('/admin/galeri', [PotensiGaleriController::class, 'modifyGaleri']);
-    Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak']);
+    Route::patch('/admin/kontak', [KontakController::class, 'modifyKontak'])->name('admin.kontak.update');
+    Route::post('/admin/kontak', [KontakController::class, 'modifyKontak']);
 
     // DELETE Method
+    Route::delete('/admin/pojok-warga', [PojokWargaController::class, 'removePojokWarga'])->name('admin.pojok-warga.destroy');
+    Route::post('/admin/pojok-warga/delete', [PojokWargaController::class, 'removePojokWarga']);
     Route::delete('/admin/misi', [VisiMisiController::class, 'removeMisi']);
     Route::delete('/admin/pemerintah-desa', [PemDesController::class,  'removePemDes']);
     Route::delete('/admin/potensi', [PotensiGaleriController::class, 'removePotensi']);

@@ -2,7 +2,7 @@
 
 <section id="beranda" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('images/bg.jpeg') }}"
+        <img src="{{ isset($contents['hero_image']) && $contents['hero_image']->value ? asset($contents['hero_image']->value) : asset('images/bg.jpeg') }}"
              alt="Landscape Desa"
              class="w-full h-full object-cover">
         
@@ -17,16 +17,26 @@
             </span>
 
             <div class="flex flex-col mb-8 sm:mb-10">
+                @php
+                    $fullTitle = $contents['hero_title']->value ?? $contents['title']->value ?? 'Desa Cimulang';
+                    if (str_starts_with(strtolower($fullTitle), 'smart village ')) {
+                        $mainTitle = 'Smart Village';
+                        $subTitle = substr($fullTitle, strlen('Smart Village '));
+                    } else {
+                        $mainTitle = 'Smart Village';
+                        $subTitle = $fullTitle;
+                    }
+                @endphp
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-inter font-bold text-white leading-none tracking-tighter mb-2 sm:mb-4 strong-shadow">
-                    Smart Village
+                    {{ $mainTitle }}
                 </h1>
                 <span class="text-4xl sm:text-6xl md:text-8xl font-black text-white capitalize drop-shadow-2xl px-2">
-                    {{ $contents['title']->value }}
+                    {{ $subTitle }}
                 </span>
             </div>
 
             <p class="text-base sm:text-lg md:text-xl text-white font-inter mb-10 sm:mb-12 leading-relaxed max-w-2xl mx-auto strong-shadow px-4">
-                {{ $contents['description']->value }}
+                {{ $contents['hero_description']->value ?? $contents['description']->value ?? 'Mewujudkan tata kelola pemerintahan desa yang transparan dan inovatif melalui transformasi digital demi kesejahteraan seluruh masyarakat Cimulang.' }}
             </p>
 
             <a href="#tentang" class="inline-flex items-center justify-between w-full sm:w-auto min-w-[280px] gap-4 px-8 py-4 bg-[#5c6b38]/70 backdrop-blur-sm border-[3px] border-white text-white font-semibold text-lg sm:text-xl rounded-full shadow-2xl transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#5c6b38]/90 group">
@@ -98,45 +108,66 @@
 
     <div class="container mx-auto px-6 sm:px-8 md:px-24">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-            
-            <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal">
-                <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" 
-                         alt="Digital" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            @if(isset($latestNews) && $latestNews->isNotEmpty())
+                @foreach($latestNews as $news)
+                    <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal flex flex-col justify-between">
+                        <div>
+                            <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
+                                <img src="{{ $news->img ? asset($news->img) : asset('images/pojok_warga/default.svg') }}" 
+                                     alt="{{ $news->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                     onerror="this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80'">
+                            </div>
+                            <div class="px-4 sm:px-6 pb-2 text-center">
+                                <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight line-clamp-2">{{ $news->title }}</h3>
+                                <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">{{ $news->short_desc }}</p>
+                            </div>
+                        </div>
+                        <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
+                            <a href="{{ route('pojok-warga.detail', $news->slug) }}" class="block w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all text-center">
+                                Detail
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal">
+                    <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" 
+                             alt="Digital" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
+                        <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight">Infrastruktur Digital</h3>
+                        <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">Pemasangan titik hotspot gratis di area publik desa untuk mendukung digitalisasi UMKM warga Cimulang.</p>
+                        <a href="{{ url('/pojok-warga') }}" class="block w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all text-center">
+                            Detail
+                        </a>
+                    </div>
                 </div>
-                <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
-                    <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight">Infrastruktur Digital</h3>
-                    <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">Pemasangan titik hotspot gratis di area publik desa untuk mendukung digitalisasi UMKM warga Cimulang.</p>
-                    <a href="{{ url('/pojok-warga/detail') }}" class="block w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all text-center">
-                        Detail
-                    </a>
-                </div>
-            </div>
 
-            <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal">
-                <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
-                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80" 
-                         alt="Pangan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal">
+                    <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
+                        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80" 
+                             alt="Pangan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
+                        <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight">Ketahanan Pangan</h3>
+                        <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">Program pembibitan padi unggul untuk meningkatkan kualitas panen kelompok tani di wilayah Cimulang.</p>
+                        <a href="{{ url('/pojok-warga') }}" class="block w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all text-center">Detail</a>
+                    </div>
                 </div>
-                <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
-                    <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight">Ketahanan Pangan</h3>
-                    <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">Program pembibitan padi unggul untuk meningkatkan kualitas panen kelompok tani di wilayah Cimulang.</p>
-                    <button class="w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all">Detail</button>
-                </div>
-            </div>
 
-            <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal">
-                <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" 
-                         alt="Budaya" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="bg-white p-4 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white hover:shadow-2xl transition-all duration-500 group reveal">
+                    <div class="w-full h-56 sm:h-64 rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden mb-6 sm:mb-8">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" 
+                             alt="Budaya" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
+                        <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight">Festival Budaya</h3>
+                        <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">Persiapan pesta rakyat tahunan sebagai wujud syukur atas harmoni kehidupan desa dan tradisi lokal.</p>
+                        <a href="{{ url('/pojok-warga') }}" class="block w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all text-center">Detail</a>
+                    </div>
                 </div>
-                <div class="px-4 sm:px-6 pb-6 sm:pb-8 text-center">
-                    <h3 class="text-lg sm:text-xl font-black text-[#272831] mb-3 sm:mb-4 uppercase tracking-tight">Festival Budaya</h3>
-                    <p class="text-[#929397] text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">Persiapan pesta rakyat tahunan sebagai wujud syukur atas harmoni kehidupan desa dan tradisi lokal.</p>
-                    <button class="w-full py-3 sm:py-4 border-2 border-slate-50 group-hover:border-desa-primary group-hover:bg-desa-primary group-hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all">Detail</button>
-                </div>
-            </div>
-
+            @endif
         </div>
 
         <div class="mt-12 sm:mt-16 text-center reveal">
@@ -158,34 +189,46 @@
 
     <div class="container mx-auto px-6 sm:px-8 md:px-24">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 reveal">
-            
-            <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" 
-                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                </div>
-            </div>
-
-            <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" 
-                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                </div>
-            </div>
-
-            <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <img src="https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=800&q=80" 
-                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                </div>
-            </div>
-
-            <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
+            @if(isset($galeriList) && $galeriList->isNotEmpty())
+                @foreach($galeriList as $item)
+                    <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                        <img src="{{ $item->img ? asset($item->img) : asset('images/galeri/default.jpg') }}" 
+                             alt="{{ $item->title ?? 'Galeri Desa' }}"
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                             onerror="this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80'">
+                        <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" 
                          class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    </div>
                 </div>
-            </div>
+
+                <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" 
+                         class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    </div>
+                </div>
+
+                <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=800&q=80" 
+                         class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    </div>
+                </div>
+
+                <div class="group relative aspect-square rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] sm:border-[10px] border-slate-50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-desa-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    </div>
+                </div>
+            @endif
         </div>
 
         <div class="mt-12 sm:mt-20 text-center reveal">

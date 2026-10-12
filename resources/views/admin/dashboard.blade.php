@@ -11,6 +11,105 @@
     
     <!-- Memanggil font Inter dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- VanillaJS Datepicker CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
+
+    <style>
+        /* VanillaJS Datepicker Custom Styling agar selaras dengan tema Smart Village */
+        .datepicker {
+            z-index: 1050 !important;
+        }
+        .datepicker-dropdown {
+            z-index: 1050 !important;
+            padding-top: 6px;
+        }
+        .datepicker-picker {
+            background-color: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 1.5rem !important;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15) !important;
+            padding: 1.25rem !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+        .datepicker-header .datepicker-controls {
+            padding: 0 0 0.75rem 0 !important;
+        }
+        .datepicker-controls .button {
+            border: none !important;
+            background: transparent !important;
+            font-weight: 700 !important;
+            color: #272831 !important;
+            border-radius: 0.75rem !important;
+            transition: all 0.2s !important;
+        }
+        .datepicker-controls .button:hover {
+            background-color: #f1f5f9 !important;
+            color: #007540 !important;
+        }
+        .datepicker-controls .view-switch {
+            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            color: #272831 !important;
+        }
+        .datepicker .dow {
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            color: #94a3b8 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            height: 2rem !important;
+        }
+        .datepicker-cell {
+            height: 2.25rem !important;
+            font-size: 0.8125rem !important;
+            font-weight: 600 !important;
+            color: #334155 !important;
+            border-radius: 0.5rem !important;
+            transition: all 0.15s !important;
+        }
+        .datepicker-cell:not(.disabled):hover {
+            background-color: #f1f5f9 !important;
+            color: #007540 !important;
+        }
+        .datepicker-cell.focused:not(.selected) {
+            background-color: #f8fafc !important;
+        }
+        .datepicker-cell.today:not(.selected) {
+            background-color: #fef08a !important;
+            color: #854d0e !important;
+            font-weight: 800 !important;
+        }
+        .datepicker-cell.range {
+            background-color: rgba(0, 117, 64, 0.10) !important;
+            color: #007540 !important;
+            border-radius: 0 !important;
+        }
+        .datepicker-cell.range-start,
+        .datepicker-cell.range-end,
+        .datepicker-cell.selected,
+        .datepicker-cell.selected:hover {
+            background-color: #007540 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border-radius: 0.75rem !important;
+        }
+        .datepicker-cell.range-start {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+        }
+        .datepicker-cell.range-end {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+        .datepicker-cell.disabled {
+            color: #cbd5e1 !important;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 font-inter text-slate-800 antialiased overflow-hidden">
 
@@ -28,15 +127,12 @@
 
             <!-- Topbar profile -->
             <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6 relative z-10">
-                
                 <div class="w-full flex justify-end relative z-50">
                     <!-- Tombol Edit Profil -->
-                    <a href="{{ route('profile_admin') }}" class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1">
+                    <a href="{{ route('profile_admin') }}" class="inline-block px-8 py-4 bg-[#FFDC2E] text-[#007540] font-inter font-black rounded-full uppercase tracking-[0.2em] text-[10px] hover:bg-[#007540] hover:text-[#FFDC2E] transition-all shadow-lg hover:-translate-y-1 cursor-pointer">
                         Edit Profil
                     </a>
                 </div>
-                
-
             </header>
 
             <!-- Judul Dashboard -->
@@ -51,111 +147,125 @@
             </div>
 
             <!-- Grid Kartu Statistik -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 relative z-10">
             
-                <!-- Kartu 1 -->
+                <!-- Kartu 1: Total Berita -->
                 <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
                     <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#007540]/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
                     <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Total Berita</p>
-                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">10</h3>
+                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">
+                        {{ $totalBerita ?? 0 }}
+                    </h3>
+                    <p class="text-[11px] text-slate-400 font-medium mt-2 relative z-10">Artikel Pojok Warga</p>
                 </div>
                 
-                <!-- Kartu 2 -->
+                <!-- Kartu 2: Total Kunjungan Web (Tahun Ini) -->
                 <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
                     <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#FFDC2E]/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                    <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Kunjungan Web</p>
-                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">67</h3>
+                    <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Total Kunjungan</p>
+                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter relative z-10 group-hover:-translate-y-1 transition-transform">
+                        {{ number_format($visitData['visits_this_year'] ?? 0) }}
+                    </h3>
+                    <p class="text-[11px] text-slate-400 font-medium mt-2 relative z-10">Tahun Ini ({{ now()->year }})</p>
+                </div>
+
+                <!-- Kartu 3: Total Pesan Warga (Tanpa Badge Baru) -->
+                <div onclick="openSemuaPesanModal()" class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-[6px] border-white hover:border-[#007540]/20 hover:shadow-2xl transition-all duration-500 group overflow-hidden relative cursor-pointer">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-[#FFDC2E]/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                    <p class="text-[#007540] font-inter uppercase tracking-[0.2em] text-[10px] font-black mb-2 relative z-10">Pesan Warga</p>
+                    <h3 class="text-5xl font-inter font-black text-[#272831] tracking-tighter group-hover:-translate-y-1 transition-transform relative z-10">
+                        {{ $pesanData['total'] ?? 0 }}
+                    </h3>
+                    <p class="text-[11px] text-slate-400 font-medium mt-2 relative z-10">Klik untuk melihat semua</p>
                 </div>
 
             </div>
 
             <!-- Wrapper Grafik & Pesan -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 relative z-10 mb-12">
                 
-                <!-- ================= AREA GRAFIK ================= -->
+                <!-- ================= AREA GRAFIK KUNJUNGAN ================= -->
                 <div class="lg:col-span-2 bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 flex flex-col relative group">
-                    <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter mb-2">Grafik Kunjungan</h3>
-                    <p class="text-[#929397] font-inter text-sm font-medium">Statistik akses website desa periode 2021 - 2025</p>
                     
-                    <div class="flex-1 w-full relative mt-10 h-64">
-                        
-                        <!-- Y-axis (Kiri) -->
-                        <div class="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-[11px] font-inter font-bold text-slate-500 w-8 items-start">
-                            <span>40</span>
-                            <span>30</span>
-                            <span>20</span>
-                            <span>10</span>
-                            <span>0</span>
+                    <!-- Header Grafik & Kontrol Filter Tahun -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Grafik Kunjungan Web</h3>
+                            <p class="text-[#929397] font-inter text-xs sm:text-sm font-medium mt-0.5">
+                                {{ $visitData['filter_description'] ?? 'Statistik akses website desa' }}
+                            </p>
                         </div>
 
-                        <!-- Grid Area (Kanan) -->
-                        <div class="absolute left-10 right-6 top-2 bottom-8">
-                            
-                            <!-- Garis Putus-putus Horizontal -->
-                            <div class="absolute inset-0 flex flex-col justify-between z-0">
-                                <div class="border-t-[1.5px] border-dashed border-slate-200 w-full"></div>
-                                <div class="border-t-[1.5px] border-dashed border-slate-200 w-full"></div>
-                                <div class="border-t-[1.5px] border-dashed border-slate-200 w-full"></div>
-                                <div class="border-t-[1.5px] border-dashed border-slate-200 w-full"></div>
-                                <div class="border-t-[1.5px] border-slate-200 w-full"></div>
-                            </div>
-
-                            <!-- SVG Garis Kurva (Tebal & Glowing) -->
-                            <svg class="absolute inset-0 h-full w-full z-10 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
-                                <path d="M 0 87.5 L 25 75 L 50 72.5 L 75 45 L 100 40" fill="none" stroke="#007540" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" class="drop-shadow-[0_8px_8px_rgba(0,117,64,0.25)]"/>
-                            </svg>
-
-                            <!-- Data Points (Titik) -->
-                            <div class="absolute w-6 h-6 bg-[#FFDC2E] border-[4px] border-[#272831] rounded-full z-20 top-[87.5%] left-[0%] -translate-x-1/2 -translate-y-1/2 hover:scale-125 transition-transform duration-300 cursor-pointer shadow-md"></div>
-                            <div class="absolute w-6 h-6 bg-[#FFDC2E] border-[4px] border-[#272831] rounded-full z-20 top-[75%] left-[25%] -translate-x-1/2 -translate-y-1/2 hover:scale-125 transition-transform duration-300 cursor-pointer shadow-md"></div>
-                            <div class="absolute w-6 h-6 bg-[#FFDC2E] border-[4px] border-[#272831] rounded-full z-20 top-[72.5%] left-[50%] -translate-x-1/2 -translate-y-1/2 hover:scale-125 transition-transform duration-300 cursor-pointer shadow-md"></div>
-                            <div class="absolute w-6 h-6 bg-[#FFDC2E] border-[4px] border-[#272831] rounded-full z-20 top-[45%] left-[75%] -translate-x-1/2 -translate-y-1/2 hover:scale-125 transition-transform duration-300 cursor-pointer shadow-md"></div>
-                            <div class="absolute w-6 h-6 bg-[#FFDC2E] border-[4px] border-[#272831] rounded-full z-20 top-[40%] left-[100%] -translate-x-1/2 -translate-y-1/2 hover:scale-125 transition-transform duration-300 cursor-pointer shadow-md"></div>
-                        </div>
-
-                        <!-- X-axis Label (Bawah) -->
-                        <div class="absolute bottom-[-5px] left-10 right-6 h-6">
-                            <span class="absolute left-[0%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap">Jan 21</span>
-                            <span class="absolute left-[12.5%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap hidden md:block">Jul 21</span>
-                            <span class="absolute left-[25%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap">Jan 22</span>
-                            <span class="absolute left-[37.5%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap hidden md:block">Jul 22</span>
-                            <span class="absolute left-[50%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap">Jan 23</span>
-                            <span class="absolute left-[62.5%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap hidden md:block">Jul 23</span>
-                            <span class="absolute left-[75%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap">Jan 24</span>
-                            <span class="absolute left-[87.5%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap hidden md:block">Jul 24</span>
-                            <span class="absolute left-[100%] -translate-x-1/2 text-[11px] font-inter font-bold text-slate-500 whitespace-nowrap">Jan 25</span>
+                        <!-- Dropdown Filter Tahun (Bersih & Elegan) -->
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-xs font-inter font-bold text-slate-400">Pilih Tahun:</span>
+                            <form method="GET" action="{{ url('/admin/dashboard') }}" class="inline-block">
+                                <div class="relative">
+                                    <select name="year" onchange="this.form.submit()" 
+                                            class="bg-slate-50 border border-slate-200 hover:border-[#007540] text-slate-800 text-xs font-inter font-bold rounded-2xl px-4 py-2.5 pr-9 focus:outline-none focus:border-[#007540] cursor-pointer transition-all shadow-sm appearance-none">
+                                        <option value="all" {{ ($visitData['period'] ?? '') === 'yearly' ? 'selected' : '' }}>
+                                            Semua Tahun (Tren Tahunan)
+                                        </option>
+                                        @foreach(($visitData['available_years'] ?? [now()->year]) as $y)
+                                            <option value="{{ $y }}" {{ ($visitData['period'] ?? '') !== 'yearly' && ($visitData['selected_year'] ?? now()->year) == $y ? 'selected' : '' }}>
+                                                Tahun {{ $y }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <div class="absolute right-3 top-3 pointer-events-none text-slate-400">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    
+                    <!-- Area Canvas Chart.js (Line Chart Halus, Tanpa Bentol-Bentol Kasar) -->
+                    <div class="flex-1 w-full relative h-72">
+                        <canvas id="visitChart"></canvas>
+                    </div>
+
                 </div>
 
-                <!-- Area Pesan Masuk -->
-                <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 h-[450px] flex flex-col">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Pesan Warga</h3>
-                        {{-- <span class="bg-[#FFDC2E] text-[#007540] text-[10px] font-inter font-black px-3 py-1 rounded-full">3 Baru</span> --}}
-                    </div>
-                    
-                    <div class="flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar">
-                        <!-- Looping Pesan -->
-                        @foreach(['Halo admin, ada laporan jalan rusak di RT 02.', 'Mohon info syarat pembuatan KTP baru.', 'Selamat pagi, undangan rapat desa sudah saya terima.'] as $pesan)
-                            
-                            <!-- Desain Kotak Tiap Pesan -->
-                            <div class="bg-slate-50/70 p-5 rounded-[1.5rem] border-2 border-transparent hover:border-[#007540] hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer group">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[#929397] group-hover:bg-[#007540] group-hover:text-white transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                    </div>
-                                    <span class="text-xs font-inter font-bold text-[#272831]">Warga</span>
-                                </div>
-                                <p class="text-sm font-inter text-[#929397] font-medium leading-relaxed group-hover:text-[#272831] transition-colors">
-                                    "{{ $pesan }}"
-                                </p>
+                <!-- ================= AREA PESAN MASUK (HANYA HARI INI, MAKS 3, TANPA BADGE BARU) ================= -->
+                <div class="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl shadow-slate-200/50 border-[8px] border-white hover:border-slate-50 hover:shadow-2xl transition-all duration-500 h-[550px] flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="text-2xl font-inter font-black text-[#272831] tracking-tighter">Pesan Warga</h3>
+                                <p class="text-xs font-inter font-medium text-slate-400 mt-0.5">Pesan masuk hari ini</p>
                             </div>
-                            
-                        @endforeach
+                        </div>
+                        
+                        <div class="flex flex-col gap-3.5 overflow-y-auto max-h-[300px] pr-2 custom-scrollbar">
+                            @forelse(($pesanToday ?? collect()) as $pesan)
+                                <!-- Desain Kotak Tiap Pesan (Tanpa Badge Baru) -->
+                                <div onclick="openSemuaPesanModal()" class="bg-slate-50/70 p-4 rounded-[1.5rem] border-2 border-transparent hover:border-[#007540] hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <div class="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center text-[#929397] group-hover:bg-[#007540] group-hover:text-white transition-colors shrink-0">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                            </div>
+                                            <span class="text-xs font-inter font-bold text-[#272831] truncate">{{ $pesan->nama }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs font-inter text-[#64748b] font-medium leading-relaxed group-hover:text-[#272831] transition-colors line-clamp-2">
+                                        "{{ $pesan->pesan }}"
+                                    </p>
+                                </div>
+                            @empty
+                                <div class="py-16 text-center text-slate-400">
+                                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-300">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                                    </div>
+                                    <p class="text-xs font-inter font-medium text-slate-400">Belum ada pesan warga hari ini.</p>
+                                </div>
+                            @endforelse
+                        </div>
                     </div>
                     
-                    <button onclick="openSemuaPesanModal()" type="button" class="mt-6 w-full py-4 border-2 border-slate-100 hover:border-[#007540] hover:bg-[#007540] hover:text-white rounded-[1.5rem] text-[10px] text-[#272831] font-inter font-black uppercase tracking-[0.2em] transition-all">
+                    <!-- Tombol Lihat Semua Murni (Tanpa Counter Angka) -->
+                    <button onclick="openSemuaPesanModal()" type="button" class="mt-4 w-full py-3.5 border-2 border-slate-100 hover:border-[#007540] hover:bg-[#007540] hover:text-white rounded-[1.5rem] text-[10px] text-[#272831] font-inter font-black uppercase tracking-[0.2em] transition-all cursor-pointer">
                         Lihat Semua
                     </button>
                 </div>
@@ -163,6 +273,90 @@
 
         </main>
     </div>
+
+    <!-- Script Chart.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inisialisasi Chart.js Modern & Bersih
+            const ctx = document.getElementById('visitChart');
+            if (!ctx) return;
+
+            const chartLabels = @json($visitData['labels'] ?? []);
+            const chartDataValues = @json($visitData['values'] ?? []);
+
+            const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 260);
+            gradient.addColorStop(0, 'rgba(0, 117, 64, 0.16)');
+            gradient.addColorStop(1, 'rgba(0, 117, 64, 0.00)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Kunjungan',
+                        data: chartDataValues,
+                        borderColor: '#007540',
+                        borderWidth: 3,
+                        fill: true,
+                        backgroundColor: gradient,
+                        tension: 0.38,
+                        spanGaps: false, // Tidak menghubungkan data null sehingga tidak drop palsu ke 0
+                        pointRadius: 0, // Titik bulat bersih disembunyikan saat statis
+                        pointHoverRadius: 7, // Titik aksen hanya muncul saat di-hover mouse
+                        pointHoverBackgroundColor: '#FFDC2E',
+                        pointHoverBorderColor: '#007540',
+                        pointHoverBorderWidth: 2.5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            titleFont: { family: 'Inter', size: 12, weight: 'bold' },
+                            bodyFont: { family: 'Inter', size: 13, weight: '900' },
+                            padding: 12,
+                            cornerRadius: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    if (context.parsed.y === null) return 'Belum ada data';
+                                    return context.parsed.y + ' Kunjungan';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { family: 'Inter', size: 11, weight: 'bold' },
+                                color: '#94a3b8'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f1f5f9',
+                                borderDash: [4, 4]
+                            },
+                            ticks: {
+                                font: { family: 'Inter', size: 11, weight: 'bold' },
+                                color: '#94a3b8',
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
     <!-- CDN SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -195,7 +389,7 @@
             text: "{{ session('error') }}",
             confirmButtonColor: '#ef4444', 
             customClass: {
-                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                popup: 'rounded-[2rem] border-[6px] border-slate-50', 
                 title: 'font-inter font-black text-[#272831]',
                 htmlContainer: 'font-inter text-sm text-[#929397]',
                 confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'

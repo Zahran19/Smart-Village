@@ -86,21 +86,22 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 reveal">
                 
                 <div class="bg-white rounded-[2rem] md:rounded-[3rem] p-6 sm:p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100">
-                    <form action="#" class="space-y-4 sm:space-y-6">
+                    <form action="{{ route('kontak.kirim-pesan') }}" method="POST" class="space-y-4 sm:space-y-6">
+                        @csrf
                         <div>
                             <label class="block text-desa-dark font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1 sm:mb-2">Nama Lengkap</label>
-                            <input type="text" placeholder="Masukkan nama..." class="w-full bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all">
+                            <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama..." class="w-full bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all" required>
                         </div>
                         <div>
                             <label class="block text-desa-dark font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1 sm:mb-2">No Telepon</label>
-                            <input type="text" placeholder="Masukkan No Telepon..." class="w-full bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all">
+                            <input type="text" name="no_telepon" value="{{ old('no_telepon') }}" placeholder="Masukkan No Telepon..." class="w-full bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all" required>
                         </div>
                         <div>
                             <label class="block text-desa-dark font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1 sm:mb-2">Isi Pesan</label>
-                            <textarea rows="4" placeholder="Tuliskan pesan Anda..." class="w-full bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all resize-none"></textarea>
+                            <textarea rows="4" name="pesan" placeholder="Tuliskan pesan Anda..." class="w-full bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base placeholder-slate-400 text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-desa-primary/50 transition-all resize-none" required>{{ old('pesan') }}</textarea>
                         </div>
                         
-                        <button class="w-full bg-desa-primary hover:bg-desa-dark text-white font-black py-3 sm:py-4 rounded-xl sm:rounded-2xl uppercase tracking-[0.2em] text-[10px] sm:text-xs shadow-lg transform hover:-translate-y-1 transition-all">
+                        <button type="submit" class="w-full bg-desa-primary hover:bg-desa-dark text-white font-black py-3 sm:py-4 rounded-xl sm:rounded-2xl uppercase tracking-[0.2em] text-[10px] sm:text-xs shadow-lg transform hover:-translate-y-1 transition-all cursor-pointer">
                             Kirim Pesan
                         </button>
                     </form>
@@ -129,5 +130,35 @@
 
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Terkirim!',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#007540',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                confirmButton: 'font-bold rounded-full px-8 py-3'
+            }
+        });
+    </script>
+    @endif
+    @if($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal Mengirim',
+            text: "{{ $errors->first() }}",
+            confirmButtonColor: '#ef4444',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                confirmButton: 'font-bold rounded-full px-8 py-3'
+            }
+        });
+    </script>
+    @endif
 
 @include('layouts.footer')

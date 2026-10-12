@@ -26,28 +26,47 @@
         </div>
 
         <!-- Form Action -->
-        <form action="#" method="POST" id="formEditProfile">
+        <form action="{{ route('admin.profile.update') }}" method="POST" id="formEditProfile">
             @csrf
+            @method('PUT')
             
             <!-- Grid 2 Kolom untuk Nama & Username -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <!-- Input Name -->
                 <div>
                     <label for="name" class="block text-sm font-inter font-bold text-[#272831] mb-2">Nama Lengkap</label>
-                    <input type="text" name="name" id="name" placeholder="Masukan nama lengkap" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                    <input type="text" name="name" id="name" 
+                           value="{{ old('name', auth()->user()->name ?? '') }}" 
+                           placeholder="Masukan nama lengkap" 
+                           class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('name') border-red-500 @enderror" required>
+                    @error('name')
+                        <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Input Username -->
                 <div>
                     <label for="username" class="block text-sm font-inter font-bold text-[#272831] mb-2">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Masukan username" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                    <input type="text" name="username" id="username" 
+                           value="{{ old('username', auth()->user()->username ?? '') }}" 
+                           placeholder="Masukan username" 
+                           class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('username') border-red-500 @enderror" required>
+                    @error('username')
+                        <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
             <!-- Input Email -->
             <div class="mb-6">
                 <label for="email" class="block text-sm font-inter font-bold text-[#272831] mb-2">Alamat Email</label>
-                <input type="email" name="email" id="email" placeholder="Masukan email" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                <input type="email" name="email" id="email" 
+                       value="{{ old('email', auth()->user()->email ?? '') }}" 
+                       placeholder="Masukan email" 
+                       class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('email') border-red-500 @enderror" required>
+                @error('email')
+                    <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Input Password -->
@@ -56,7 +75,12 @@
                     Password Baru 
                     <span class="text-[10px] font-medium text-slate-400 ml-1 tracking-normal">(Kosongkan jika tidak ingin mengubah password)</span>
                 </label>
-                <input type="password" name="password" id="password" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Masukkan password baru...">
+                <input type="password" name="password" id="password" 
+                       class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('password') border-red-500 @enderror" 
+                       placeholder="Masukkan password baru...">
+                @error('password')
+                    <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Tombol Action -->

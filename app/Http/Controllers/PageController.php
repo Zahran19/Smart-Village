@@ -30,7 +30,18 @@ class PageController extends Controller {
             ->groupBy('page')
             ->map(fn ($contents) => $contents->keyBy('key'));
 
-        return view('beranda', compact('contents', 'fooder_contents'));
+        $latestNews = PojokWarga::where('status', 'published')
+            ->orderBy('date_released', 'desc')
+            ->take(3)
+            ->get();
+
+        $galeriList = PotensiGaleri::where('type', 'galeri')
+            ->orWhere('type', 'potensi')
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('beranda', compact('contents', 'fooder_contents', 'latestNews', 'galeriList'));
     }
     public function sejarahPage() {
         $contents = SiteContent::where('page', 'sejarah')->get()->keyBy('key');
@@ -60,12 +71,18 @@ class PageController extends Controller {
         return view('pemerintah-desa', compact('contents', 'fooder_contents'));
     }
     public function pojokWargaPage() {
-        $pojok = PojokWarga::where('status', 'published')
-                    ->orderBy('date_released', 'desc')
-                    ->get();
+        $latestNews = PojokWarga::where('status', 'published')
+            ->orderBy('date_released', 'desc')
+            ->take(2)
+            ->get();
 
-        $latestNews = $pojok->take(2);
-        $archives   = $pojok->slice(2);
+        $latestNewsIds = $latestNews->pluck('id')->toArray();
+
+        $archives = PojokWarga::where('status', 'published')
+            ->whereNotIn('id', $latestNewsIds)
+            ->orderBy('date_released', 'desc')
+            ->paginate(6)
+            ->withQueryString();
 
         $fooder_contents = SiteContent::whereIn('page', ['kontak', 'beranda'])
                             ->get()

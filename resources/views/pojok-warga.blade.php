@@ -64,7 +64,7 @@
             </div>
 
             {{-- Arsip Berita --}}
-            <div class="reveal">
+            <div class="reveal" id="arsip-berita">
                 <div class="flex items-center gap-4 mb-8 sm:mb-10">
                     <h2 class="text-xl sm:text-2xl font-black text-[#272831]">Arsip Berita</h2>
                     <div class="h-[1px] bg-slate-200 flex-grow"></div>
@@ -94,6 +94,69 @@
                         <div class="col-span-1 md:col-span-2 text-center text-slate-500 py-10">Tidak ada arsip berita.</div>
                     @endforelse
                 </div>
+
+                {{-- Pagination Navigasi --}}
+                @if($archives->hasPages())
+                    <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-200/80">
+                        <div class="text-xs sm:text-sm font-medium text-slate-500">
+                            Menampilkan <span class="font-bold text-[#272831]">{{ $archives->firstItem() ?? 0 }}</span> - <span class="font-bold text-[#272831]">{{ $archives->lastItem() ?? 0 }}</span> dari <span class="font-bold text-[#272831]">{{ $archives->total() }}</span> arsip berita
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            {{-- Previous Button --}}
+                            @if($archives->onFirstPage())
+                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-slate-400 bg-slate-100 cursor-not-allowed select-none">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Previous
+                                </span>
+                            @else
+                                <a href="{{ $archives->previousPageUrl() }}#arsip-berita"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-[#272831] bg-white border border-slate-200 hover:border-desa-primary hover:text-desa-primary hover:shadow-md transition-all">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Previous
+                                </a>
+                            @endif
+
+                            {{-- Page Numbers (Desktop) --}}
+                            <div class="hidden sm:flex items-center gap-1">
+                                @foreach($archives->getUrlRange(max(1, $archives->currentPage() - 2), min($archives->lastPage(), $archives->currentPage() + 2)) as $page => $url)
+                                    @if($page == $archives->currentPage())
+                                        <span class="w-8 h-8 rounded-full bg-desa-primary text-white font-bold text-xs flex items-center justify-center shadow-md">
+                                            {{ $page }}
+                                        </span>
+                                    @else
+                                        <a href="{{ $url }}#arsip-berita"
+                                           class="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center hover:border-desa-primary hover:text-desa-primary hover:shadow-sm transition-all">
+                                            {{ $page }}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            {{-- Next Button --}}
+                            @if($archives->hasMorePages())
+                                <a href="{{ $archives->nextPageUrl() }}#arsip-berita"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-[#272831] bg-white border border-slate-200 hover:border-desa-primary hover:text-desa-primary hover:shadow-md transition-all">
+                                    Next
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            @else
+                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-slate-400 bg-slate-100 cursor-not-allowed select-none">
+                                    Next
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                @endif
             </div>
 
         </div>

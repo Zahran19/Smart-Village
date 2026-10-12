@@ -72,7 +72,7 @@
                             <td class="py-5 px-4 align-top text-center">
                                 <!-- Flex container buat tombol Edit & Delete -->
                                 <div class="flex gap-2 justify-center">
-                                    <button type="button" onclick="openEditPotensiModal({{$potensi['id']}}, '{{ $potensi['title'] }}', '{{ addslashes($potensi['short_desc']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                    <button type="button" onclick="openEditPotensiModal({{$potensi['id']}}, '{{ addslashes($potensi['title']) }}', '{{ addslashes($potensi['short_desc']) }}', '{{ asset($potensi['img']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                         Edit
                                     </button>
                                     <button type="button" onclick="openDeletePotensiModal({{ $potensi['id'] }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
@@ -122,7 +122,7 @@
                             <td class="py-5 px-4 align-top text-center">
                             <!-- Tombol Edit & Delete berdampingan -->
                             <div class="flex gap-2 justify-center">
-                                <button type="button" onclick="openEditGaleriModal({{$galeri['id']}}, '{{ addslashes($galeri['title']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditGaleriModal({{$galeri['id']}}, '{{ addslashes($galeri['title']) }}', '{{ asset($galeri['img']) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                                 <button type="button" onclick="openDeleteGaleriModal({{ $galeri['id'] }})" class="bg-white border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">

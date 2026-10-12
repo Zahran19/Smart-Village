@@ -54,13 +54,19 @@
                     <!-- Input Judul Hero -->
                     <div>
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul Utama (Title)</label>
-                        <input type="text" name="hero_title" value="Smart Village Desa Cimulang" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                        <input type="text" name="hero_title" value="{{ old('hero_title', $contents['hero_title']->value ?? $contents['title']->value ?? 'Smart Village Desa Cimulang') }}" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('hero_title') border-red-500 @enderror" required>
+                        @error('hero_title')
+                            <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Input Deskripsi Hero -->
                     <div>
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Deskripsi Singkat</label>
-                        <textarea name="hero_description" rows="3" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>Mewujudkan tata kelola pemerintahan yang transparan dan inovatif melalui transformasi digital demi kesejahteraan seluruh masyarakat Cimulang.</textarea>
+                        <textarea name="hero_description" rows="3" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('hero_description') border-red-500 @enderror" required>{{ old('hero_description', $contents['hero_description']->value ?? $contents['description']->value ?? 'Mewujudkan tata kelola pemerintahan yang transparan dan inovatif melalui transformasi digital demi kesejahteraan seluruh masyarakat Cimulang.') }}</textarea>
+                        @error('hero_description')
+                            <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Input Background Image -->
@@ -68,12 +74,15 @@
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Gambar Background Hero</label>
                         <div class="flex items-center gap-4">
                             <div class="w-24 h-16 bg-slate-200 rounded-xl overflow-hidden shrink-0 border-2 border-slate-100 shadow-sm">
-                                <img src="{{ asset('images/hero-bg.jpg') }}" alt="Preview BG" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=200&q=80'">
+                                <img id="previewHeroImage" src="{{ isset($contents['hero_image']) && $contents['hero_image']->value ? asset($contents['hero_image']->value) : asset('images/hero-bg.jpg') }}" alt="Preview BG" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=200&q=80'">
                             </div>
                             
                             <!-- Input File Custom -->
-                            <input type="file" name="hero_image" accept="image/*" class="w-full text-sm text-[#929397] file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:bg-slate-100 file:text-[#272831] hover:file:bg-slate-200 file:transition-colors file:cursor-pointer cursor-pointer">
+                            <input type="file" name="hero_image" id="inputHeroImage" onchange="previewHeroImageHandler(this)" accept="image/*" class="w-full text-sm text-[#929397] file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:bg-slate-100 file:text-[#272831] hover:file:bg-slate-200 file:transition-colors file:cursor-pointer cursor-pointer">
                         </div>
+                        @error('hero_image')
+                            <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                        @enderror
                         <p class="text-[10px] font-medium text-slate-400 mt-2">* Kosongkan jika tidak ingin mengubah gambar. Format disarankan: JPG, PNG, WEBP (Landscape)</p>
                     </div>
 
@@ -130,5 +139,15 @@
     </script>
     @endif
 
+    <script>
+        function previewHeroImageHandler(input) {
+            if (input.files && input.files[0]) {
+                const preview = document.getElementById('previewHeroImage');
+                if (preview) {
+                    preview.src = URL.createObjectURL(input.files[0]);
+                }
+            }
+        }
+    </script>
 </body>
 </html>
