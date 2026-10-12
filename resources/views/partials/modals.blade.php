@@ -10,19 +10,16 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu Nanti -->
             <form action="{{ url('/admin/misi') }}" method="POST" id="formEditKonten">
                 @csrf
                 @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title">Edit Konten</h3>
                     
-                    <!-- Hidden input biar temen lu tau yang lagi diedit itu Misi ke-berapa atau Visi -->
                     <input type="hidden" name="id" id="inputId" value="">
                     
                     <div class="mb-4">
                         <label for="inputMisi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Konten</label>
-                        <!-- Textarea buat ngedit -->
                         <textarea name="misi" id="inputMisi" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik isi di sini..." required></textarea>
                     </div>
                 </div>
@@ -32,7 +29,6 @@
                     <button type="button" onclick="closeModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">
                         Batal
                     </button>
-                    <!-- Button type submit buat ngirim API -->
                     <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">
                         Simpan
                     </button>
@@ -53,7 +49,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
             <form action="{{ url('/admin/misi') }}" method="POST" id="formAddMisi">
                 @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
@@ -61,7 +56,6 @@
                     
                     <div class="mb-4">
                         <label for="inputIsiBaru" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Misi</label>
-                        <!-- Perhatiin name="misi" ini udah gua sesuaikan sama controller temen lu -->
                         <textarea name="misi" id="inputIsiBaru" rows="5" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Ketik misi baru di sini..." required></textarea>
                     </div>
                 </div>
@@ -88,11 +82,9 @@
     <!-- Background Gelap -->
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteModal()"></div>
 
-    <!-- Posisi Modal di Tengah (Lebih kecil dari modal edit) -->
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
             <form action="{{ url('/admin/misi') }}" method="POST" id="formDeleteMisi">
                 @csrf
                 @method('DELETE')
@@ -107,7 +99,7 @@
                     </div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-2 tracking-tighter" id="modal-title-delete">Hapus Misi?</h3>
                     <p class="text-sm font-inter text-[#929397]">
-                        Apakah kamu yakin ingin menghapus misi ini? Data yang sudah dihapus tidak dapat dikembalikan.
+                        Apakah kamu yakin ingin menghapus misi ini? misi yang sudah dihapus tidak dapat dikembalikan!
                     </p>
                 </div>
                 
@@ -141,14 +133,12 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Khusus Sejarah Buat Temen Lu -->
             <form action="{{ url('/admin/sejarah-desa') }}" method="POST" id="formEditSejarah">
                 @csrf
                 @method('PATCH')
                 <div class="bg-white px-8 pb-8 pt-8">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-sejarah">Edit Sejarah</h3>
                     
-                    <!-- Hidden input biar temen lu tau baris mana yang lagi diedit -->
                     <input type="hidden" name="key" id="inputKeySejarah" value="">
                     
                     <div class="mb-4">
@@ -185,7 +175,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu -->
             <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" enctype="multipart/form-data" id="formAddPerangkat">
                 @csrf
                 <div class="bg-white px-8 pb-8 pt-8">
@@ -204,10 +193,15 @@
                     </div>
 
                     <!-- Input Foto -->
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="inputAddFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Opsional)</label>
-                        <input type="file" name="profile_img" id="inputAddFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
-                        <p class="text-[10px] text-slate-400 mt-2">*Biarkan kosong jika tidak ingin menambahkan foto</p>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-16 h-16 rounded-2xl bg-slate-100 border-2 border-slate-200 overflow-hidden shrink-0 flex items-center justify-center">
+                                <img id="previewAddFotoPerangkat" src="{{ asset('images/pemdes/default.svg') }}" onerror="this.src='{{ asset('images/logo.png') }}'" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="profile_img" id="inputAddFoto" onchange="previewImage(this, 'previewAddFotoPerangkat')" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        </div>
+                        <p class="text-[10px] text-slate-400">*Biarkan kosong jika tidak ingin menambahkan foto</p>
                     </div>
                 </div>
                 
@@ -237,7 +231,6 @@
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
-            <!-- Form Buat Temen Lu (Wajib ada enctype buat upload foto) -->
             <form action="{{ url('/admin/pemerintah-desa') }}" method="POST" enctype="multipart/form-data" id="formEditPerangkat">
                 @csrf
                 @method('PATCH')
@@ -258,10 +251,15 @@
                     </div>
 
                     <!-- Input Foto -->
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="inputFoto" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Opsional)</label>
-                        <input type="file" name="profile_img" id="inputFoto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
-                        <p class="text-[10px] text-slate-400 mt-2">*Biarkan kosong jika tidak ingin mengubah foto</p>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-16 h-16 rounded-2xl bg-slate-100 border-2 border-slate-200 overflow-hidden shrink-0 flex items-center justify-center">
+                                <img id="previewEditFotoPerangkat" src="{{ asset('images/pemdes/default.svg') }}" onerror="this.src='{{ asset('images/logo.png') }}'" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="profile_img" id="inputFoto" onchange="previewImage(this, 'previewEditFotoPerangkat')" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        </div>
+                        <p class="text-[10px] text-slate-400">*Biarkan kosong jika tidak ingin mengubah foto</p>
                     </div>
                 </div>
                 
@@ -306,7 +304,7 @@
                     </div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-2 tracking-tighter" id="modal-title-delete-perangkat">Hapus Perangkat Desa?</h3>
                     <p class="text-sm font-inter text-[#929397]">
-                        Apakah kamu yakin ingin menghapus data perangkat desa ini? Data yang sudah dihapus tidak dapat dikembalikan.
+                        Apakah kamu yakin ingin menghapus data perangkat desa ini? Data yang sudah dihapus tidak dapat dikembalikan!
                     </p>
                 </div>
                 
@@ -335,41 +333,49 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddBeritaModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
-            <form action="#" method="POST">
-                
-                <!-- UPDATE DI SINI: Tambahin max-h-[65vh] dan overflow-y-auto -->
+            <form action="{{ url('/admin/pojok-warga') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="bg-white px-8 pb-8 pt-8 max-h-[65vh] overflow-y-auto custom-scrollbar">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-add-berita">Tambah Berita Baru</h3>
                     
                     <div class="mb-4">
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul</label>
-                        <input type="text" name="judul" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Masukkan judul berita..." required>
+                        <input type="text" name="title" id="inputAddJudulBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Masukkan judul berita..." required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Foto / Gambar Berita</label>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-20 h-14 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
+                                <img id="previewAddFotoBerita" src="{{ asset('images/pojok_warga/default.svg') }}" alt="Preview Foto" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="img" id="inputAddFotoBerita" onchange="previewImage(this, 'previewAddFotoBerita')" accept="image/*" class="w-full text-sm text-[#929397] file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:bg-slate-100 file:text-[#272831] hover:file:bg-slate-200 file:transition-colors file:cursor-pointer cursor-pointer">
+                        </div>
+                        <p class="text-[10px] font-medium text-slate-400 mt-1">* Format: JPG, PNG, WEBP, SVG (Maks. 5MB). Opsional, default gambar digunakan jika kosong.</p>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Deskripsi Singkat</label>
-                        <textarea name="deskripsi_singkat" rows="2" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis deskripsi singkat..." required></textarea>
+                        <textarea name="short_desc" id="inputAddDeskripsiBerita" rows="2" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis deskripsi singkat..." required></textarea>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Konten Berita</label>
-                        <textarea name="konten" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis isi konten di sini..." required></textarea>
+                        <textarea name="content" id="inputAddKontenBerita" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis isi konten di sini..." required></textarea>
                     </div>
 
                     <div class="mb-2">
                         <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Status</label>
-                        <select name="status" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors cursor-pointer" required>
-                            <option value="" disabled selected>Pilih status tayang...</option>
-                            <option value="Draft">Draft</option>
-                            <option value="Release">Release</option>
+                        <select name="status" id="inputAddStatusBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors cursor-pointer" required>
+                            <option value="published">Release (Publikasi)</option>
+                            <option value="draft">Draft (Draf)</option>
                         </select>
                     </div>
                 </div>
                 
-                <!-- UPDATE DI SINI: Tambahin border-t-2 biar ada garis batas rapi pas di-scroll -->
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem] border-t-2 border-slate-100 relative z-10">
-                    <button type="button" onclick="closeAddBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">Batal</button>
-                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">Simpan</button>
+                    <button type="button" onclick="closeAddBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none cursor-pointer">Batal</button>
+                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none cursor-pointer">Simpan</button>
                 </div>
             </form>
         </div>
@@ -386,9 +392,10 @@
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-xl border-[6px] border-white">
             
             <!-- Form -->
-            <form action="{{ url('/admin/pojok-warga') }}" method="POST" id="formEditBerita">
+            <form action="{{ url('/admin/pojok-warga') }}" method="POST" enctype="multipart/form-data" id="formEditBerita">
                 @csrf
                 @method('PATCH')
+                <input type="hidden" name="id" id="inputEditIdBerita" value="">
                 
                 <div class="bg-white px-8 pb-8 pt-8 max-h-[65vh] overflow-y-auto custom-scrollbar">
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-6 tracking-tighter" id="modal-title-berita">Edit Berita Warga</h3>
@@ -396,37 +403,49 @@
                     <!-- Input Judul Berita -->
                     <div class="mb-4">
                         <label for="inputJudulBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul Berita</label>
-                        <input type="text" name="judul" id="inputJudulBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                        <input type="text" name="title" id="inputJudulBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
                     </div>
 
-                    <!-- KOLOM BARU: Deskripsi Singkat -->
+                    <!-- Input Foto Berita -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-inter font-bold text-[#272831] mb-2">Foto / Gambar Berita</label>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-20 h-14 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
+                                <img id="previewEditFotoBerita" src="{{ asset('images/pojok_warga/default.svg') }}" alt="Preview Foto" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="img" id="inputFotoBerita" onchange="previewImage(this, 'previewEditFotoBerita')" accept="image/*" class="w-full text-sm text-[#929397] file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:bg-slate-100 file:text-[#272831] hover:file:bg-slate-200 file:transition-colors file:cursor-pointer cursor-pointer">
+                        </div>
+                        <p class="text-[10px] font-medium text-slate-400">* Kosongkan jika tidak ingin mengubah foto</p>
+                    </div>
+
+                    <!-- Deskripsi Singkat -->
                     <div class="mb-4">
                         <label for="inputDeskripsiBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Deskripsi Singkat</label>
-                        <textarea name="deskripsi_singkat" id="inputDeskripsiBerita" rows="2" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="short_desc" id="inputDeskripsiBerita" rows="2" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
 
                     <!-- Textarea Isi Berita  -->
                     <div class="mb-4">
                         <label for="inputIsiBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Isi Berita</label>
-                        <textarea name="isi" id="inputIsiBerita" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
+                        <textarea name="content" id="inputIsiBerita" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
 
-                    <!-- KOLOM BARU: Status (Draft/Release) -->
+                    <!-- Status (Draft/Release) -->
                     <div class="mb-2">
                         <label for="inputStatusBerita" class="block text-sm font-inter font-bold text-[#272831] mb-2">Status</label>
-                        <select name="status" id="inputStatusBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors cursor-pointer" required>
-                            <option value="Draft">Draft</option>
-                            <option value="Release">Release</option>
+                        <select name="status" id="inputStatusBerita" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors cursor-pointer" required>
+                            <option value="published">Release (Publikasi)</option>
+                            <option value="draft">Draft (Draf)</option>
                         </select>
                     </div>
                 </div>
                 
                 <!-- Tombol Action -->
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem] border-t-2 border-slate-100 relative z-10">
-                    <button type="button" onclick="closeBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none">
+                    <button type="button" onclick="closeBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none cursor-pointer">
                         Batal
                     </button>
-                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none">
+                    <button type="submit" class="px-6 py-3 bg-[#FFDC2E] border-2 border-[#FFDC2E] text-[#007540] font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-[#007540] hover:border-[#007540] hover:text-[#FFDC2E] transition-all shadow-md hover:-translate-y-0.5 focus:outline-none cursor-pointer">
                         Simpan
                     </button>
                 </div>
@@ -441,9 +460,10 @@
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteBeritaModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div class="relative transform overflow-hidden rounded-[2rem] bg-white text-center shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-[6px] border-white">
-            <form action="#" method="POST">
-                <!-- Tambahin @csrf dan @method('DELETE') di sini -->
-                <input type="hidden" name="judul" id="inputDeleteJudul">
+            <form action="{{ url('/admin/pojok-warga') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" id="inputDeleteIdBerita">
                 <div class="bg-white px-8 pb-6 pt-10">
                     <!-- Icon Warning (Tong Sampah / Alert) -->
                     <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-100 mb-6">
@@ -453,12 +473,12 @@
                     </div>
                     <h3 class="text-xl font-inter font-black text-[#272831] mb-2">Hapus Berita?</h3>
                     <p class="text-sm font-inter text-[#929397] leading-relaxed">
-                        Yakin nih mau ngapus berita <span id="textDeleteJudul" class="font-bold text-[#272831]"></span>? Data yang udah dihapus nggak bisa dibalikin lagi lho.
+                        Apakah kamu ingin menghapus berita <span id="textDeleteJudul" class="font-bold text-[#272831]"></span>? Berita yang sudah dihapus tidak bisa dikembalikan!
                     </p>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-center gap-3 rounded-b-[2rem]">
-                    <button type="button" onclick="closeDeleteBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none w-full">Batal</button>
-                    <button type="submit" class="px-6 py-3 bg-red-500 border-2 border-red-500 text-white font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-red-600 hover:border-red-600 transition-all shadow-md hover:-translate-y-0.5 focus:outline-none w-full">Hapus</button>
+                    <button type="button" onclick="closeDeleteBeritaModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none w-full cursor-pointer">Batal</button>
+                    <button type="submit" class="px-6 py-3 bg-red-500 border-2 border-red-500 text-white font-inter font-black text-xs uppercase tracking-widest rounded-full hover:bg-red-600 hover:border-red-600 transition-all shadow-md hover:-translate-y-0.5 focus:outline-none w-full cursor-pointer">Hapus</button>
                 </div>
             </form>
         </div>
@@ -469,7 +489,7 @@
 
 {{-- for crud potensi & galeri --}}
 
-<!-- 1. Modal Tambah Potensi -->
+<!-- Modal Tambah Potensi -->
 <div id="modalAddPotensi" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-add-potensi" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddPotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -486,9 +506,14 @@
                         <label for="inputAddRangkumanPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Rangkuman Singkat</label>
                         <textarea name="short_desc" id="inputAddRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="inputAddFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Wajib)</label>
-                        <input type="file" name="img" id="inputAddFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-20 h-14 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
+                                <img id="previewAddFotoPotensi" src="{{ asset('images/logo.png') }}" alt="Preview Potensi" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="img" id="inputAddFotoPotensi" onchange="previewImage(this, 'previewAddFotoPotensi')" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -500,7 +525,7 @@
     </div>
 </div>
 
-<!-- 2. Modal Edit Potensi -->
+<!-- Modal Edit Potensi -->
 <div id="modalEditPotensi" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-edit-potensi" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditPotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -519,9 +544,14 @@
                         <label for="inputEditRangkumanPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Rangkuman Singkat</label>
                         <textarea name="short_desc" id="inputEditRangkumanPotensi" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="inputEditFotoPotensi" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto Baru (Opsional)</label>
-                        <input type="file" name="img" id="inputEditFotoPotensi" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-20 h-14 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
+                                <img id="previewEditFotoPotensi" src="{{ asset('images/logo.png') }}" alt="Preview Potensi" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="img" id="inputEditFotoPotensi" onchange="previewImage(this, 'previewEditFotoPotensi')" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        </div>
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -533,7 +563,7 @@
     </div>
 </div>
 
-<!-- 3. Modal Delete Potensi -->
+<!-- Modal Delete Potensi -->
 <div id="modalDeletePotensi" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-delete-potensi" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeletePotensiModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -549,7 +579,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-inter font-black text-[#272831] mb-2 tracking-tighter">Hapus Potensi?</h3>
-                    <p class="text-sm font-inter text-[#929397]">Yakin ingin menghapus data potensi desa ini? Data tidak dapat dikembalikan.</p>
+                    <p class="text-sm font-inter text-[#929397]">Yakin ingin menghapus data potensi desa ini? potensi yang di hapus tidak dapat dikembalikan!</p>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-center gap-3 rounded-b-[2rem]">
                     <button type="button" onclick="closeDeletePotensiModal()" class="px-6 py-3 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none w-full">Batal</button>
@@ -563,7 +593,7 @@
 
 <!-- ================= MODAL GALERI DESA ================= -->
 
-<!-- 1. Modal Tambah Galeri -->
+<!-- Modal Tambah Galeri -->
 <div id="modalAddGaleri" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-add-galeri" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeAddGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -576,9 +606,14 @@
                         <label for="inputAddDeskripsiGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul / Deskripsi Foto</label>
                         <textarea name="title" id="inputAddDeskripsiGaleri" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Tulis deskripsi foto..." required></textarea>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="inputAddFotoGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto (Wajib)</label>
-                        <input type="file" name="img" id="inputAddFotoGaleri" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-20 h-14 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
+                                <img id="previewAddFotoGaleri" src="{{ asset('images/logo.png') }}" alt="Preview Galeri" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="img" id="inputAddFotoGaleri" onchange="previewImage(this, 'previewAddFotoGaleri')" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer" required>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -590,7 +625,7 @@
     </div>
 </div>
 
-<!-- 2. Modal Edit Galeri -->
+<!-- Modal Edit Galeri -->
 <div id="modalEditGaleri" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-edit-galeri" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeEditGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -605,9 +640,14 @@
                         <label for="inputEditDeskripsiGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Judul / Deskripsi Foto</label>
                         <textarea name="title" id="inputEditDeskripsiGaleri" rows="4" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required></textarea>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-4">
                         <label for="inputEditFotoGaleri" class="block text-sm font-inter font-bold text-[#272831] mb-2">Upload Foto Baru (Opsional)</label>
-                        <input type="file" name="img" id="inputEditFotoGaleri" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-20 h-14 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
+                                <img id="previewEditFotoGaleri" src="{{ asset('images/logo.png') }}" alt="Preview Galeri" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" name="img" id="inputEditFotoGaleri" onchange="previewImage(this, 'previewEditFotoGaleri')" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#FFDC2E]/20 file:text-[#007540] hover:file:bg-[#FFDC2E]/40 transition-all cursor-pointer">
+                        </div>
                     </div>
                 </div>
                 <div class="bg-slate-50 px-8 py-6 flex justify-end gap-3 rounded-b-[2rem]">
@@ -619,7 +659,7 @@
     </div>
 </div>
 
-<!-- 3. Modal Delete Galeri -->
+<!-- Modal Delete Galeri -->
 <div id="modalDeleteGaleri" class="fixed inset-0 z-[99] hidden" aria-labelledby="modal-title-delete-galeri" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteGaleriModal()"></div>
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -777,6 +817,21 @@
         document.getElementById('modalEditSejarah').classList.add('hidden');
     }
 
+    // Global function untuk live preview upload gambar
+    function previewImage(input, previewElementId, fallbackUrl = null) {
+        if (input.files && input.files[0]) {
+            const preview = document.getElementById(previewElementId);
+            if (preview) {
+                preview.src = URL.createObjectURL(input.files[0]);
+            }
+        } else if (fallbackUrl) {
+            const preview = document.getElementById(previewElementId);
+            if (preview) {
+                preview.src = fallbackUrl;
+            }
+        }
+    }
+
     // ==================================================
 
     // func for crud pemerintah desa
@@ -789,6 +844,10 @@
         document.getElementById('inputAddJabatan').value = '';
         document.getElementById('inputAddNama').value = '';
         document.getElementById('inputAddFoto').value = '';
+        const preview = document.getElementById('previewAddFotoPerangkat');
+        if (preview) {
+            preview.src = "{{ asset('images/pemdes/default.svg') }}";
+        }
     }
 
     function closeAddPerangkatModal() {
@@ -796,7 +855,7 @@
     }
 
     // for edit pemerintah desa
-    function openPerangkatModal(id, jabatan, nama) {
+    function openPerangkatModal(id, jabatan, nama, imgUrl) {
         document.getElementById('modal-id-perangkat').value = id;
         document.getElementById('modalPerangkat').classList.remove('hidden');
         document.getElementById('modal-title-perangkat').innerText = 'Edit ' + jabatan;
@@ -807,6 +866,11 @@
         
         // Kosongin input file tiap kali modal dibuka
         document.getElementById('inputFoto').value = '';
+
+        const preview = document.getElementById('previewEditFotoPerangkat');
+        if (preview) {
+            preview.src = imgUrl || "{{ asset('images/pemdes/default.svg') }}";
+        }
     }
 
     function closePerangkatModal() {
@@ -833,6 +897,15 @@
 
     // for tambah pojok warga
     function openAddBeritaModal() {
+        document.getElementById('inputAddJudulBerita').value = '';
+        document.getElementById('inputAddDeskripsiBerita').value = '';
+        document.getElementById('inputAddKontenBerita').value = '';
+        document.getElementById('inputAddFotoBerita').value = '';
+        document.getElementById('inputAddStatusBerita').value = 'published';
+        const preview = document.getElementById('previewAddFotoBerita');
+        if (preview) {
+            preview.src = "{{ asset('images/pojok_warga/default.svg') }}";
+        }
         document.getElementById('modalAddBerita').classList.remove('hidden');
     }
     function closeAddBeritaModal() {
@@ -840,23 +913,30 @@
     }
 
     // for edit pojok warga
-    function openBeritaModal(judul, isi) {
-        // Tunjukin modal berita
+    function openBeritaModal(id, judul, deskripsi, isi, status, imgUrl) {
         document.getElementById('modalBerita').classList.remove('hidden');
-        
-        // Isi inputan judul dan isi berita otomatis sesuai yang diklik
+        document.getElementById('inputEditIdBerita').value = id;
         document.getElementById('inputJudulBerita').value = judul;
+        document.getElementById('inputDeskripsiBerita').value = deskripsi || '';
         document.getElementById('inputIsiBerita').value = isi;
+        document.getElementById('inputStatusBerita').value = (status === 'published' || status === 'Release') ? 'published' : 'draft';
+        document.getElementById('inputFotoBerita').value = '';
+        
+        const preview = document.getElementById('previewEditFotoBerita');
+        if (imgUrl) {
+            preview.src = imgUrl;
+        } else {
+            preview.src = "{{ asset('images/pojok_warga/default.svg') }}";
+        }
     }
 
     function closeBeritaModal() {
-        // Sembunyiin modal berita
         document.getElementById('modalBerita').classList.add('hidden');
     }
 
     // for delete pojok warga
-    function openDeleteBeritaModal(judul) {
-        document.getElementById('inputDeleteJudul').value = judul;
+    function openDeleteBeritaModal(id, judul) {
+        document.getElementById('inputDeleteIdBerita').value = id;
         document.getElementById('textDeleteJudul').innerText = '"' + judul + '"';
         document.getElementById('modalDeleteBerita').classList.remove('hidden');
     }
@@ -872,17 +952,25 @@
         document.getElementById('inputAddJudulPotensi').value = '';
         document.getElementById('inputAddRangkumanPotensi').value = '';
         document.getElementById('inputAddFotoPotensi').value = '';
+        const preview = document.getElementById('previewAddFotoPotensi');
+        if (preview) {
+            preview.src = "{{ asset('images/logo.png') }}";
+        }
     }
     function closeAddPotensiModal() {
         document.getElementById('modalAddPotensi').classList.add('hidden');
     }
 
-    function openEditPotensiModal(id, judul, rangkuman) {
-        document.getElementById('inputIdEditPotensi').value = id
+    function openEditPotensiModal(id, judul, rangkuman, imgUrl) {
+        document.getElementById('inputIdEditPotensi').value = id;
         document.getElementById('modalEditPotensi').classList.remove('hidden');
         document.getElementById('inputEditJudulPotensi').value = judul;
         document.getElementById('inputEditRangkumanPotensi').value = rangkuman;
         document.getElementById('inputEditFotoPotensi').value = ''; // Reset input file
+        const preview = document.getElementById('previewEditFotoPotensi');
+        if (preview) {
+            preview.src = imgUrl || "{{ asset('images/logo.png') }}";
+        }
     }
     function closeEditPotensiModal() {
         document.getElementById('modalEditPotensi').classList.add('hidden');
@@ -901,16 +989,24 @@
         document.getElementById('modalAddGaleri').classList.remove('hidden');
         document.getElementById('inputAddDeskripsiGaleri').value = '';
         document.getElementById('inputAddFotoGaleri').value = '';
+        const preview = document.getElementById('previewAddFotoGaleri');
+        if (preview) {
+            preview.src = "{{ asset('images/logo.png') }}";
+        }
     }
     function closeAddGaleriModal() {
         document.getElementById('modalAddGaleri').classList.add('hidden');
     }
 
-    function openEditGaleriModal(id, deskripsi) {
+    function openEditGaleriModal(id, deskripsi, imgUrl) {
         document.getElementById('modalEditGaleri').classList.remove('hidden');
         document.getElementById('modalEditGaleriId').value = id;
         document.getElementById('inputEditDeskripsiGaleri').value = deskripsi;
         document.getElementById('inputEditFotoGaleri').value = ''; // Reset file input
+        const preview = document.getElementById('previewEditFotoGaleri');
+        if (preview) {
+            preview.src = imgUrl || "{{ asset('images/logo.png') }}";
+        }
     }
     function closeEditGaleriModal() {
         document.getElementById('modalEditGaleri').classList.add('hidden');

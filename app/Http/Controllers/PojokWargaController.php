@@ -2,135 +2,154 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PojokWarga;
+use App\Services\PojokWargaService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class PojokWargaController extends Controller
 {
+    public function __construct(
+        protected PojokWargaService $pojokWargaService
+    ) {}
+
+    /**
+     * Tambah berita baru dari form web admin.
+     */
     public function addPojokWarga(Request $request)
     {
-        // Validasi input
         $validated = $request->validate([
-            'title'      => 'required|string|max:255|unique:pojok_warga,title',
-            'short_desc' => 'required|string|max:500',
-            'content'    => 'required|string',
-            'status'     => ['required', Rule::in(['draft', 'published'])],
-            'date_released' => 'nullable|date',
-            'img'        => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048', // maks 2MB
+            'title'            => ['nullable', 'string', 'max:255', 'unique:pojok_wargas,title'],
+            'judul'            => ['nullable', 'string', 'max:255', 'unique:pojok_wargas,title'],
+            'short_desc'       => ['nullable', 'string', 'max:500'],
+            'deskripsi_singkat'=> ['nullable', 'string', 'max:500'],
+            'content'          => ['nullable', 'string'],
+            'konten'           => ['nullable', 'string'],
+            'isi'              => ['nullable', 'string'],
+            'status'           => ['required', 'string'],
+            'date_released'    => ['nullable', 'date'],
+            'img'              => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'foto'             => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+        ], [
+            'title.unique' => 'Judul berita sudah ada.',
+            'judul.unique' => 'Judul berita sudah ada.',
+            'img.image'    => 'File harus berupa gambar valid.',
+            'img.mimes'    => 'Format gambar yang diperbolehkan: JPEG, PNG, JPG, WEBP, SVG.',
+            'img.max'      => 'Ukuran gambar maksimal 5MB.',
         ]);
 
-        // Generate slug dari title
-        $slug = Str::slug($validated['title']);
-
-        // Cek apakah slug sudah ada (tambahkan angka jika perlu)
-        $count = PojokWarga::where('slug', $slug)->count();
-        if ($count > 0) {
-            $slug = $slug . '-' . ($count + 1);
+        $title = $validated['title'] ?? $validated['judul'] ?? null;
+        if (empty($title)) {
+            return redirect()->back()->withErrors(['title' => 'Judul berita wajib diisi.'])->withInput();
         }
 
-        // Proses upload gambar
-        $imagePath = 'images/pojok_warga/default.svg'; // default
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            // Simpan di folder public/images/pojok_warga dengan nama unik
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images/pojok_warga'), $filename);
-            $imagePath = 'images/pojok_warga/' . $filename;
+        $shortDesc = $validated['short_desc'] ?? $validated['deskripsi_singkat'] ?? '';
+        $content = $validated['content'] ?? $validated['konten'] ?? $validated['isi'] ?? '';
+        $image = $request->file('img') ?: $request->file('foto');
+
+        $data = [
+            'title' => $title,
+            'short_desc' => $shortDesc,
+            'content' => $content,
+            'status' => $validated['status'],
+            'date_released' => $validated['date_released'] ?? null,
+        ];
+
+        $berita = $this->pojokWargaService->create($data, $image);
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berita berhasil ditambahkan ke Pojok Warga.',
+                'data'    => $berita,
+            ], 201);
         }
 
-        // Simpan ke database
-        $pojok = PojokWarga::create([
-            'img'           => $imagePath,
-            'title'         => $validated['title'],
-            'slug'          => $slug,
-            'short_desc'    => $validated['short_desc'],
-            'content'       => $validated['content'],
-            'status'        => $validated['status'],
-            'date_released' => $validated['status'] === 'published' 
-                                ? ($validated['date_released'] ?? now()) 
-                                : null,
-        ]);
-
-        return response()->json([
-            'message' => 'Berita berhasil ditambahkan.',
-            'data'    => $pojok,
-        ], 201);
+        return redirect()->route('admin.pojok-warga')->with('success', 'Berita berhasil ditambahkan ke Pojok Warga!');
     }
+
+    /**
+     * Update berita dari form web admin.
+     */
     public function modifyPojokWarga(Request $request)
     {
+        $id = $request->input('id');
+
         $validated = $request->validate([
-            'id'         => 'required|integer|exists:pojok_warga,id',
-            'title'      => 'required|string|max:255|unique:pojok_warga,title,' . $request->input('id'),
-            'short_desc' => 'required|string|max:500',
-            'content'    => 'required|string',
-            'status'     => ['required', Rule::in(['draft', 'published'])],
-            'date_released' => 'nullable|date',
-            'img'        => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'id'               => ['required', 'integer', 'exists:pojok_wargas,id'],
+            'title'            => ['nullable', 'string', 'max:255', Rule::unique('pojok_wargas', 'title')->ignore($id)],
+            'judul'            => ['nullable', 'string', 'max:255', Rule::unique('pojok_wargas', 'title')->ignore($id)],
+            'short_desc'       => ['nullable', 'string', 'max:500'],
+            'deskripsi_singkat'=> ['nullable', 'string', 'max:500'],
+            'content'          => ['nullable', 'string'],
+            'konten'           => ['nullable', 'string'],
+            'isi'              => ['nullable', 'string'],
+            'status'           => ['nullable', 'string'],
+            'date_released'    => ['nullable', 'date'],
+            'img'              => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'foto'             => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+        ], [
+            'id.required'  => 'ID berita tidak valid.',
+            'id.exists'    => 'Data berita tidak ditemukan.',
+            'title.unique' => 'Judul berita sudah digunakan oleh berita lain.',
+            'judul.unique' => 'Judul berita sudah digunakan oleh berita lain.',
+            'img.image'    => 'File harus berupa gambar valid.',
+            'img.mimes'    => 'Format gambar yang diperbolehkan: JPEG, PNG, JPG, WEBP, SVG.',
+            'img.max'      => 'Ukuran gambar maksimal 5MB.',
         ]);
 
-        // Ambil data berdasarkan ID dari validated
-        $pojok = PojokWarga::findOrFail($validated['id']);
+        $image = $request->file('img') ?: $request->file('foto');
 
-        // Update slug jika title berubah
-        if ($validated['title'] !== $pojok->title) {
-            $newSlug = Str::slug($validated['title']);
-            $count = PojokWarga::where('slug', $newSlug)->where('id', '!=', $validated['id'])->count();
-            if ($count > 0) {
-                $newSlug = $newSlug . '-' . ($count + 1);
-            }
-            $pojok->slug = $newSlug;
+        $data = [];
+        if (!empty($validated['title']) || !empty($validated['judul'])) {
+            $data['title'] = $validated['title'] ?? $validated['judul'];
+        }
+        if (isset($validated['short_desc']) || isset($validated['deskripsi_singkat'])) {
+            $data['short_desc'] = $validated['short_desc'] ?? $validated['deskripsi_singkat'];
+        }
+        if (isset($validated['content']) || isset($validated['konten']) || isset($validated['isi'])) {
+            $data['content'] = $validated['content'] ?? $validated['konten'] ?? $validated['isi'];
+        }
+        if (isset($validated['status'])) {
+            $data['status'] = $validated['status'];
+        }
+        if (isset($validated['date_released'])) {
+            $data['date_released'] = $validated['date_released'];
         }
 
-        // Proses upload gambar baru (jika ada)
-        if ($request->hasFile('img')) {
-            if ($pojok->img !== 'images/pojok_warga/default.svg' && file_exists(public_path($pojok->img))) {
-                unlink(public_path($pojok->img));
-            }
+        $berita = $this->pojokWargaService->update((int) $id, $data, $image);
 
-            $file = $request->file('img');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images/pojok_warga'), $filename);
-            $pojok->img = 'images/pojok_warga/' . $filename;
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berita berhasil diperbarui.',
+                'data'    => $berita,
+            ]);
         }
 
-        // Update field lainnya
-        $pojok->title       = $validated['title'];
-        $pojok->short_desc  = $validated['short_desc'];
-        $pojok->content     = $validated['content'];
-        $pojok->status      = $validated['status'];
-
-        if ($validated['status'] === 'published') {
-            $pojok->date_released = $validated['date_released'] ?? $pojok->date_released ?? now();
-        } else {
-            $pojok->date_released = null;
-        }
-
-        $pojok->save();
-
-        return response()->json([
-            'message' => 'Berita berhasil diperbarui.',
-            'data'    => $pojok,
-        ]);
+        return redirect()->route('admin.pojok-warga')->with('success', 'Berita Pojok Warga berhasil diperbarui!');
     }
+
+    /**
+     * Hapus berita dari form web admin.
+     */
     public function removePojokWarga(Request $request)
     {
         $validated = $request->validate([
-            'id'         => 'required|integer'
+            'id' => ['required', 'integer', 'exists:pojok_wargas,id'],
+        ], [
+            'id.required' => 'ID berita wajib disertakan.',
+            'id.exists'   => 'Data berita tidak ditemukan.',
         ]);
-        $pojok = PojokWarga::findOrFail($validated->id);
 
-        // Hapus gambar jika bukan default
-        if ($pojok->img !== 'images/pojok_warga/default.svg' && file_exists(public_path($pojok->img))) {
-            unlink(public_path($pojok->img));
+        $this->pojokWargaService->delete((int) $validated['id']);
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berita berhasil dihapus.',
+            ], 200);
         }
 
-        $pojok->delete();
-
-        return response()->json([
-            'message' => 'Berita berhasil dihapus.',
-        ], 200);
+        return redirect()->route('admin.pojok-warga')->with('success', 'Berita berhasil dihapus dari Pojok Warga!');
     }
 }

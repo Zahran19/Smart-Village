@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SiteContent;
 use App\Models\PotensiGaleri;
+use App\Models\PojokWarga;
+use App\Services\DashboardAnalyticsService;
 
 class AdminController extends Controller {
+
+    public function __construct(
+        protected DashboardAnalyticsService $analyticsService
+    ) {}
+
     // Index
     public function index() {
         return redirect("/admin/dashboard");
@@ -17,11 +24,44 @@ class AdminController extends Controller {
     public function loginPage() {
         return view('admin.login');
     }
-    public function dashboardPage() {
-        return view('admin.dashboard');
+    public function dashboardPage(Request $request) {
+        $totalBerita = $this->analyticsService->getTotalBerita();
+
+        $period = $request->query('period');
+        $selectedYear = $request->query('year');
+
+        if (!$period) {
+            if ($selectedYear && $selectedYear !== 'all') {
+                $period = 'monthly';
+            } else {
+                $period = 'yearly';
+            }
+        } elseif ($selectedYear === 'all') {
+            $period = 'yearly';
+        }
+
+        $visitFilters = [
+            'period' => $period,
+            'year' => ($selectedYear && $selectedYear !== 'all') ? (int) $selectedYear : now()->year,
+            'start_date' => $request->query('start_date'),
+            'end_date' => $request->query('end_date'),
+            'date_range' => $request->query('visit_date_range'),
+        ];
+        $visitData = $this->analyticsService->getVisitAnalytics($visitFilters);
+
+        $pesanFilters = [
+            'start_date' => $request->query('start_date') ?: $request->query('pesan_start_date'),
+            'end_date' => $request->query('end_date') ?: $request->query('pesan_end_date'),
+            'date_range' => $request->query('pesan_date_range'),
+        ];
+        $pesanData = $this->analyticsService->getPesanWargaList($pesanFilters);
+        $pesanToday = $this->analyticsService->getPesanWargaToday(3);
+
+        return view('admin.dashboard', compact('totalBerita', 'visitData', 'pesanData', 'pesanToday'));
     }
     public function berandaPage() {
-        return view('admin.beranda');
+        $contents = SiteContent::where('page', 'beranda')->get()->keyBy('key');
+        return view('admin.beranda', compact('contents'));
     }
     public function visiMisiPage() {
         $contents = SiteContent::where('page', 'visi_misi')->get()->keyBy('key');
@@ -36,8 +76,8 @@ class AdminController extends Controller {
         return view('admin.pemerintah-desa', compact('contents'));
     }
     public function pojokWargaPage() {
-        $contents = SiteContent::where('page', 'pojok_warga')->get()->keyBy('key');
-        return view('admin.pojok-warga', compact('contents'));
+        $beritaList = PojokWarga::orderBy('created_at', 'desc')->get();
+        return view('admin.pojok-warga', compact('beritaList'));
     }
     public function potensiGaleriPage() {
         $contents = PotensiGaleri::all()->groupBy('type');
@@ -63,7 +103,7 @@ class AdminController extends Controller {
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin');
+            return redirect()->intended('/admin/dashboard')->with('success', 'Selamat datang kembali, Admin!');;
         }
 
         return back()->withErrors([
@@ -71,6 +111,10 @@ class AdminController extends Controller {
         ])->onlyInput('login');
     }
 
+    public function modifyProfil(Request $request) {
+        return app(ProfileController::class)->update($request);
+    }
+    
     public function logout(Request $request) {
         Auth::logout();
 

@@ -97,6 +97,46 @@
         </main>
     </div>
 
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- success notif --}}
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#007540', 
+            background: '#ffffff',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50', 
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
+
+    {{-- error notif --}}
+    @if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#ef4444', 
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
+
 </body>
 </html>
 

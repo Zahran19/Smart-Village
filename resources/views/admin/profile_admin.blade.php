@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profil Admin - Desa Cimulang</title>
+    <link rel="icon" href="{{ asset('images/fav-icon.png') }}" type="image/png">
+
     
     <!-- Load Tailwind & Font Inter -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,28 +26,47 @@
         </div>
 
         <!-- Form Action -->
-        <form action="#" method="POST" id="formEditProfile">
+        <form action="{{ route('admin.profile.update') }}" method="POST" id="formEditProfile">
             @csrf
+            @method('PUT')
             
             <!-- Grid 2 Kolom untuk Nama & Username -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <!-- Input Name -->
                 <div>
                     <label for="name" class="block text-sm font-inter font-bold text-[#272831] mb-2">Nama Lengkap</label>
-                    <input type="text" name="name" id="name" placeholder="Masukan nama lengkap" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                    <input type="text" name="name" id="name" 
+                           value="{{ old('name', auth()->user()->name ?? '') }}" 
+                           placeholder="Masukan nama lengkap" 
+                           class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('name') border-red-500 @enderror" required>
+                    @error('name')
+                        <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Input Username -->
                 <div>
                     <label for="username" class="block text-sm font-inter font-bold text-[#272831] mb-2">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Masukan username" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                    <input type="text" name="username" id="username" 
+                           value="{{ old('username', auth()->user()->username ?? '') }}" 
+                           placeholder="Masukan username" 
+                           class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('username') border-red-500 @enderror" required>
+                    @error('username')
+                        <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
             <!-- Input Email -->
             <div class="mb-6">
                 <label for="email" class="block text-sm font-inter font-bold text-[#272831] mb-2">Alamat Email</label>
-                <input type="email" name="email" id="email" placeholder="Masukan email" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" required>
+                <input type="email" name="email" id="email" 
+                       value="{{ old('email', auth()->user()->email ?? '') }}" 
+                       placeholder="Masukan email" 
+                       class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('email') border-red-500 @enderror" required>
+                @error('email')
+                    <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Input Password -->
@@ -54,12 +75,17 @@
                     Password Baru 
                     <span class="text-[10px] font-medium text-slate-400 ml-1 tracking-normal">(Kosongkan jika tidak ingin mengubah password)</span>
                 </label>
-                <input type="password" name="password" id="password" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#929397] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors" placeholder="Masukkan password baru...">
+                <input type="password" name="password" id="password" 
+                       class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 p-4 text-sm font-inter text-[#272831] focus:border-[#FFDC2E] focus:bg-white focus:outline-none focus:ring-0 transition-colors @error('password') border-red-500 @enderror" 
+                       placeholder="Masukkan password baru...">
+                @error('password')
+                    <p class="text-red-500 text-xs font-inter font-medium mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Tombol Action -->
             <div class="flex justify-end gap-3 pt-6 border-t-2 border-slate-100">
-                <button type="button" onclick="window.history.back()" class="px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none cursor-pointer">
+                <button type="button" onclick="window.location.href='{{ url('/admin/dashboard') }}'" class="px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none cursor-pointer">
                     Kembali
                 </button>
                 
@@ -70,6 +96,46 @@
             
         </form>
     </div>
+
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- success notif --}}
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#007540', 
+            background: '#ffffff',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50', 
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
+
+    {{-- error notif --}}
+    @if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#ef4444', 
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
 
 </body>
 </html>

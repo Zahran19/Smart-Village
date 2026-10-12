@@ -68,18 +68,31 @@
 </head>
 <body class="font-sans antialiased text-slate-700 bg-slate-50" x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 50) ? true : false">
 
-    <nav class="fixed w-full z-50 transition-all duration-500 ease-in-out" :class="scrolled ? 'py-3' : 'py-4'"> 
+    <nav x-data="{ mobileMenuOpen: false }" class="fixed w-full z-50 transition-all duration-500 ease-in-out" :class="scrolled ? 'py-3' : 'py-4'"> 
         
-        <div class="absolute inset-0 transition-all duration-500 ease-in-out" :class="scrolled ? 'bg-white/100 shadow-md backdrop-blur-md border-b border-slate-100' : 'bg-white/0 backdrop-blur-sm border-transparent'"></div>
+        <div class="absolute inset-0 transition-all duration-500 ease-in-out" :class="scrolled || mobileMenuOpen ? 'bg-white/100 shadow-md backdrop-blur-md border-b border-slate-100' : 'bg-white/0 backdrop-blur-sm border-transparent'"></div>
 
         <div class="container mx-auto px-8 md:px-24 flex justify-between items-center relative z-10">
+            <!-- Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:-translate-y-0.5">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo Desa" class="w-10 h-10 object-contain">
-                <span class="text-[25px] font-black capitalize transition-colors duration-500" :class="scrolled ? 'text-[#272831]' : 'text-white'">
-                    {{ $fooder_contents['beranda']['title']->value }}
+                <span class="text-[25px] font-black capitalize transition-colors duration-500" :class="scrolled || mobileMenuOpen ? 'text-[#272831]' : 'text-white'">
+                    Desa Cimulang
                 </span>
             </a>
             
+            <!-- ================= TOMBOL HAMBURGER MOBILE ================= -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden focus:outline-none transition-colors duration-300" :class="scrolled || mobileMenuOpen ? 'text-[#272831]' : 'text-white'">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Icon Garis Tiga (Buka) -->
+                    <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <!-- Icon X (Tutup) -->
+                    <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" style="display: none;"></path>
+                </svg>
+            </button>
+            <!-- =========================================================== -->
+
+            <!-- ================= MENU DESKTOP ================= -->
             <ul class="hidden md:flex space-x-8 items-center font-bold text-[12px] uppercase tracking-widest">
                 
                 <li>
@@ -111,20 +124,9 @@
                          class="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 overflow-hidden py-2" 
                          style="display: none;">
                         
-                        <a href="{{ url('/sejarah') }}" 
-                           class="block px-6 py-3 transition-colors {{ request()->is('sejarah') ? 'bg-desa-yellow text-desa-primary font-black' : 'text-[#272831] hover:bg-desa-yellow hover:text-desa-primary' }}">
-                           Sejarah
-                        </a>
-                        
-                        <a href="{{ url('/visi-misi') }}" 
-                           class="block px-6 py-3 transition-colors {{ request()->is('visi-misi') ? 'bg-desa-yellow text-desa-primary font-black' : 'text-[#272831] hover:bg-desa-yellow hover:text-desa-primary' }}">
-                           Visi & Misi
-                        </a>
-                        
-                        <a href="{{ url('/pemerintah-desa') }}" 
-                           class="block px-6 py-3 transition-colors {{ request()->is('pemerintah-desa') ? 'bg-desa-yellow text-desa-primary font-black' : 'text-[#272831] hover:bg-desa-yellow hover:text-desa-primary' }}">
-                           Pemerintah Desa
-                        </a>
+                        <a href="{{ url('/sejarah') }}" class="block px-6 py-3 transition-colors {{ request()->is('sejarah') ? 'bg-desa-yellow text-desa-primary font-black' : 'text-[#272831] hover:bg-desa-yellow hover:text-desa-primary' }}">Sejarah</a>
+                        <a href="{{ url('/visi-misi') }}" class="block px-6 py-3 transition-colors {{ request()->is('visi-misi') ? 'bg-desa-yellow text-desa-primary font-black' : 'text-[#272831] hover:bg-desa-yellow hover:text-desa-primary' }}">Visi & Misi</a>
+                        <a href="{{ url('/pemerintah-desa') }}" class="block px-6 py-3 transition-colors {{ request()->is('pemerintah-desa') ? 'bg-desa-yellow text-desa-primary font-black' : 'text-[#272831] hover:bg-desa-yellow hover:text-desa-primary' }}">Pemerintah Desa</a>
                     </div>
                 </li>
 
@@ -149,6 +151,60 @@
                        class="transition-all duration-300 hover:!text-desa-yellow {{ request()->is('kontak*') ? '!text-desa-yellow' : '' }}" 
                        :class="scrolled ? 'text-[#272831]' : 'text-white'">
                        Kontak
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ================= MENU MOBILE DROPDOWN ================= -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-slate-100 md:hidden z-0" 
+             style="display: none;">
+            
+            <ul class="flex flex-col py-2 px-8 font-bold text-[12px] uppercase tracking-widest text-[#272831]">
+                
+                <li>
+                    <a href="{{ url('/') }}" class="block py-4 border-b border-slate-100 {{ request()->is('/') ? 'text-[#007540]' : 'hover:text-[#FFDC2E]' }}">
+                        Beranda
+                    </a>
+                </li>
+
+                <!-- Dropdown Profil Desa di Mobile -->
+                <li x-data="{ openProfilMobile: false }">
+                    <button @click="openProfilMobile = !openProfilMobile" class="w-full flex justify-between items-center py-4 border-b border-slate-100 focus:outline-none {{ request()->is('sejarah*') || request()->is('visi-misi*') || request()->is('pemerintah-desa*') ? 'text-[#007540]' : 'hover:text-[#FFDC2E]' }}">
+                        Profil Desa
+                        <svg class="w-4 h-4 transition-transform duration-300" :class="openProfilMobile ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="openProfilMobile" class="bg-slate-50 rounded-xl mt-2 mb-2 overflow-hidden" style="display: none;">
+                        <a href="{{ url('/sejarah') }}" class="block px-6 py-3 border-b border-slate-200/50 {{ request()->is('sejarah') ? 'text-[#007540]' : 'text-slate-500 hover:text-[#007540]' }}">Sejarah</a>
+                        <a href="{{ url('/visi-misi') }}" class="block px-6 py-3 border-b border-slate-200/50 {{ request()->is('visi-misi') ? 'text-[#007540]' : 'text-slate-500 hover:text-[#007540]' }}">Visi & Misi</a>
+                        <a href="{{ url('/pemerintah-desa') }}" class="block px-6 py-3 {{ request()->is('pemerintah-desa') ? 'text-[#007540]' : 'text-slate-500 hover:text-[#007540]' }}">Pemerintah Desa</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="{{ url('/pojok-warga') }}" class="block py-4 border-b border-slate-100 {{ request()->is('pojok-warga*') ? 'text-[#007540]' : 'hover:text-[#FFDC2E]' }}">
+                        Pojok Warga
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url('/potensi-galeri') }}" class="block py-4 border-b border-slate-100 {{ request()->is('potensi-galeri*') ? 'text-[#007540]' : 'hover:text-[#FFDC2E]' }}">
+                        Potensi & Galeri
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url('/kontak') }}" class="block py-4 {{ request()->is('kontak*') ? 'text-[#007540]' : 'hover:text-[#FFDC2E]' }}">
+                        Kontak
                     </a>
                 </li>
             </ul>

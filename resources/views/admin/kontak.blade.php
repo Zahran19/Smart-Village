@@ -54,11 +54,11 @@
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">1</td>
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Alamat</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $contents['alamat']->value }}
+                                {{ $contents['alamat']->value ?? '-' }}
                             </td>
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button type="button" onclick="openEditKontakModal('Alamat', 'alamat', '{{ addslashes($contents['alamat']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditKontakModal('Alamat', 'alamat', '{{ addslashes($contents['alamat']->value ?? '') }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
@@ -67,11 +67,11 @@
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">2</td>
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Email</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $contents['email']->value }}
+                                {{ $contents['email']->value ?? '-' }}
                             </td>
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button type="button" onclick="openEditKontakModal('Email', 'email', '{{ addslashes($contents['email']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditKontakModal('Email', 'email', '{{ addslashes($contents['email']->value ?? '') }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
@@ -80,37 +80,37 @@
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">3</td>
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Whatsapp</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $contents['whatsapp']->value }}
+                                {{ $contents['whatsapp']->value ?? '-' }}
                             </td>
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button type="button" onclick="openEditKontakModal('Whatsapp', 'whatsapp', '{{ addslashes($contents['whatsapp']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditKontakModal('Whatsapp', 'whatsapp', '{{ addslashes($contents['whatsapp']->value ?? '') }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
                         </tr>
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">4</td>
-                            <td class="py-5 px-4 text-sm font-inter fon-bold text-[#272831] align-top">Instagram</td>
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Instagram</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $contents['instagram']->value }}
+                                {{ $contents['instagram']->value ?? '-' }}
                             </td>
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button type="button" onclick="openEditKontakModal('Instagram', 'instagram', '{{ addslashes($contents['instagram']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditKontakModal('Instagram', 'instagram', '{{ addslashes($contents['instagram']->value ?? '') }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
                         </tr>
                         <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
                             <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">5</td>
-                            <td class="py-5 px-4 text-sm font-inter fon-bold text-[#272831] align-top">Link Embed Google Maps</td>
+                            <td class="py-5 px-4 text-sm font-inter font-bold text-[#272831] align-top">Link Embed Google Maps</td>
                             <td class="py-5 px-4 text-sm font-inter font-medium text-[#929397] leading-relaxed align-top">
-                                {{ $contents['google_maps_embed']->value }}
+                                {{ $contents['google_maps_embed']->value ?? '-' }}
                             </td>
                             <!-- Tombol Action -->
                             <td class="py-5 px-4 align-top text-center">
-                                <button type="button" onclick="openEditKontakModal('Link Embed Google Maps', 'google_maps_embed', '{{ addslashes($contents['google_maps_embed']->value) }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
+                                <button type="button" onclick="openEditKontakModal('Link Embed Google Maps', 'google_maps_embed', '{{ addslashes($contents['google_maps_embed']->value ?? '') }}')" class="bg-white border-2 border-[#FFDC2E] text-[#007540] hover:bg-[#FFDC2E] font-inter font-black text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-none">
                                     Edit
                                 </button>
                             </td>
@@ -121,6 +121,46 @@
 
         </main>
     </div>
+
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- success notif --}}
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#007540', 
+            background: '#ffffff',
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50', 
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
+
+    {{-- error notif --}}
+    @if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#ef4444', 
+            customClass: {
+                popup: 'rounded-[2rem] border-[6px] border-slate-50',
+                title: 'font-inter font-black text-[#272831]',
+                htmlContainer: 'font-inter text-sm text-[#929397]',
+                confirmButton: 'font-inter font-black text-xs uppercase tracking-widest rounded-full px-8 py-3 shadow-md'
+            }
+        });
+    </script>
+    @endif
 
 </body>
 </html>
