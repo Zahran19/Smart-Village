@@ -85,7 +85,7 @@
 
             <!-- Tombol Action -->
             <div class="flex justify-end gap-3 pt-6 border-t-2 border-slate-100">
-                <button type="button" onclick="window.history.back()" class="px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none cursor-pointer">
+                <button type="button" onclick="window.location.href='{{ url('/admin/dashboard') }}'" class="px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-500 font-inter font-bold text-xs uppercase tracking-widest rounded-full hover:bg-slate-100 transition-all focus:outline-none cursor-pointer">
                     Kembali
                 </button>
                 
